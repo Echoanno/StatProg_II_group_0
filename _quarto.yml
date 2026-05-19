@@ -1,0 +1,19 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Statprog2 Project"
+  navbar:
+    left:
+      - href: proposal.qmd
+        text: Proposal
+      - href: report.qmd
+        text: Report 
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 2
+    number-sections: true

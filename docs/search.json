@@ -1,0 +1,107 @@
+[
+  {
+    "objectID": "proposal.html",
+    "href": "proposal.html",
+    "title": "StatProg II - Project Proposal",
+    "section": "",
+    "text": "library(tidyverse)\nlibrary(lubridate)\nlibrary(scales)\nlibrary(knitr)"
+  },
+  {
+    "objectID": "proposal.html#dataset-description",
+    "href": "proposal.html#dataset-description",
+    "title": "StatProg II - Project Proposal",
+    "section": "1.1 Dataset Description",
+    "text": "1.1 Dataset Description\nThis project uses the dataset Monatszahlen Bevoelkerung from the Open Data Portal of the City of Munich. The dataset is provided by the Statistical Office of Munich and contains monthly population-related indicators. The full dataset covers several demographic topics, including gender and nationality, age groups, EU and non-EU nationalities, continents, births, deaths, migration, household structures and other population-related categories.\nThe dataset is available as a CSV file and is published under the licence Datenlizenz Deutschland Namensnennung 2.0. For this project, we focus only on the topic Altersgruppen, because the research interest is the development of Munich’s age structure.\nThe raw dataset is organised in long format. Each row represents one observation for a specific demographic category, year and month. The most relevant variables are:\n\n\n\n\n\n\n\nVariable\nDescription\n\n\n\n\nMONATSZAHL\nMain demographic topic, for example Altersgruppen\n\n\nAUSPRAEGUNG\nSubcategory within the topic, for example a specific age group\n\n\nJAHR\nYear of the observation\n\n\nMONAT\nMonth of the observation, usually in YYYYMM format\n\n\nWERT\nPopulation value for the respective category and month\n\n\nVORJAHRESWERT\nValue in the same month of the previous year\n\n\nVERAEND_VORMONAT_PROZENT\nPercentage change compared with the previous month\n\n\nVERAEND_VORJAHRESMONAT_PROZENT\nPercentage change compared with the same month of the previous year\n\n\nZWOELF_MONATE_MITTELWERT\nTwelve-month moving average\n\n\n\n\nage_data &lt;- read_csv(\"data/processed/age_data.csv\")\nage_structure_long &lt;- read_csv(\"data/processed/age_structure_long.csv\")\nage_structure_share &lt;- read_csv(\"data/processed/age_structure_share.csv\")\nage_change_table &lt;- read_csv(\"data/processed/age_change_table.csv\")\n\nglimpse(age_data)\n\nRows: 2,808\nColumns: 13\n$ `_id`                          &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, …\n$ MONATSZAHL                     &lt;chr&gt; \"Altersgruppen\", \"Altersgruppen\", \"Alte…\n$ AUSPRAEGUNG                    &lt;chr&gt; \"Berufsschulpflichtige (15 bis 17 Jahre…\n$ JAHR                           &lt;dbl&gt; 2025, 2025, 2025, 2025, 2025, 2025, 202…\n$ MONAT                          &lt;dbl&gt; 202501, 202502, 202503, 202504, 202505,…\n$ WERT                           &lt;dbl&gt; 38315, 38335, 38395, 38391, 38337, 3829…\n$ VORJAHRESWERT                  &lt;dbl&gt; 37808, 37865, 37853, 37910, 37830, 3781…\n$ VERAEND_VORMONAT_PROZENT       &lt;dbl&gt; -0.16, 0.05, 0.16, -0.01, -0.14, -0.11,…\n$ VERAEND_VORJAHRESMONAT_PROZENT &lt;dbl&gt; 1.34, 1.24, 1.43, 1.27, 1.34, 1.25, 0.8…\n$ ZWOELF_MONATE_MITTELWERT       &lt;dbl&gt; 38080, 38120, 38165, 38205, 38247, 3828…\n$ date                           &lt;date&gt; 2025-01-01, 2025-02-01, 2025-03-01, 20…\n$ month                          &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, …\n$ year                           &lt;dbl&gt; 2025, 2025, 2025, 2025, 2025, 2025, 202…\n\n\nThe age-group data contain monthly observations from 2000 to 2025. However, the main analysis is restricted to the complete years from 2000 to 2024. The year 2025 is excluded from the main analysis because the available observations for 2025 are incomplete.\nFor the analysis, we construct five non-overlapping age groups:\n\n0-5 years\n6-14 years\n15-17 years\n18-64 years\n65 years and older\n\nThe original dataset provides the working-age population as Erwerbsfaehige (15 bis 64 Jahre). Since this category overlaps with Berufsschulpflichtige (15 bis 17 Jahre), the 18-64 group is derived by subtracting the 15-17 group from the original 15-64 group. This transformation avoids double-counting and allows the project to analyse a consistent age structure."
+  },
+  {
+    "objectID": "proposal.html#research-questions",
+    "href": "proposal.html#research-questions",
+    "title": "StatProg II - Project Proposal",
+    "section": "1.2 Research Questions",
+    "text": "1.2 Research Questions\nThis project investigates changes in the age structure of Munich’s population between 2000 and 2024. The analysis focuses on age-group-specific population trends and asks whether the available data provide preliminary evidence of demographic ageing in Munich.\nThe main research question is:\nHow has the age structure of Munich’s population changed between 2000 and 2024?\nThis main question is addressed through two sub-questions:\n\nWhich age groups have experienced the strongest population growth or decline over time?\nIs there preliminary evidence of demographic ageing in Munich?\n\nThe first sub-question focuses on absolute and relative population changes across age groups. The second sub-question is treated cautiously: an increase in the 65+ group may indicate demographic ageing, but this needs to be assessed together with the development of younger age groups and the relative age-group shares."
+  },
+  {
+    "objectID": "proposal.html#context-and-target-audience",
+    "href": "proposal.html#context-and-target-audience",
+    "title": "StatProg II - Project Proposal",
+    "section": "1.3 Context and Target Audience",
+    "text": "1.3 Context and Target Audience\nMunich has experienced strong population growth over the past decades. Changes in the city’s age structure are relevant for several areas of urban planning, including childcare, schools, housing, public transport, healthcare and services for older residents.\nThe target audience of this analysis includes local policymakers, urban planners, researchers and citizens interested in demographic change in Munich. The project is mainly descriptive and exploratory: it does not aim to explain the causes of population change, but to describe how different age groups developed over time and whether the data show preliminary signs of demographic ageing."
+  },
+  {
+    "objectID": "proposal.html#data-structure",
+    "href": "proposal.html#data-structure",
+    "title": "StatProg II - Project Proposal",
+    "section": "2.1 Data Structure",
+    "text": "2.1 Data Structure\nThe initial data analysis uses the cleaned age-group dataset. The dataset contains monthly observations for different age groups from 2000 to 2025. Since 2025 is incomplete, the main analysis focuses on the complete years 2000-2024.\n\nglimpse(age_data)\n\nRows: 2,808\nColumns: 13\n$ `_id`                          &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, …\n$ MONATSZAHL                     &lt;chr&gt; \"Altersgruppen\", \"Altersgruppen\", \"Alte…\n$ AUSPRAEGUNG                    &lt;chr&gt; \"Berufsschulpflichtige (15 bis 17 Jahre…\n$ JAHR                           &lt;dbl&gt; 2025, 2025, 2025, 2025, 2025, 2025, 202…\n$ MONAT                          &lt;dbl&gt; 202501, 202502, 202503, 202504, 202505,…\n$ WERT                           &lt;dbl&gt; 38315, 38335, 38395, 38391, 38337, 3829…\n$ VORJAHRESWERT                  &lt;dbl&gt; 37808, 37865, 37853, 37910, 37830, 3781…\n$ VERAEND_VORMONAT_PROZENT       &lt;dbl&gt; -0.16, 0.05, 0.16, -0.01, -0.14, -0.11,…\n$ VERAEND_VORJAHRESMONAT_PROZENT &lt;dbl&gt; 1.34, 1.24, 1.43, 1.27, 1.34, 1.25, 0.8…\n$ ZWOELF_MONATE_MITTELWERT       &lt;dbl&gt; 38080, 38120, 38165, 38205, 38247, 3828…\n$ date                           &lt;date&gt; 2025-01-01, 2025-02-01, 2025-03-01, 20…\n$ month                          &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, …\n$ year                           &lt;dbl&gt; 2025, 2025, 2025, 2025, 2025, 2025, 202…\n\n\nThe following summary shows the number of observations, missing values and time range for each original age group.\n\nage_data %&gt;%\n  group_by(AUSPRAEGUNG) %&gt;%\n  summarise(\n    n_rows = n(),\n    missing_values = sum(is.na(WERT)),\n    min_year = min(year, na.rm = TRUE),\n    max_year = max(year, na.rm = TRUE),\n    .groups = \"drop\"\n  ) %&gt;%\n  arrange(AUSPRAEGUNG) %&gt;%\n  kable()\n\n\n\n\n\n\n\n\n\n\n\nAUSPRAEGUNG\nn_rows\nmissing_values\nmin_year\nmax_year\n\n\n\n\nBerufsschulpflichtige (15 bis 17 Jahre)\n312\n5\n2000\n2025\n\n\nErwerbsfähige (15 bis 64 Jahre)\n312\n5\n2000\n2025\n\n\nMinderjährige (0 bis 17 Jahre)\n312\n5\n2000\n2025\n\n\nRentner*innen (65 Jahre und älter)\n312\n5\n2000\n2025\n\n\nSchulpflichtige (6 bis 14 Jahre)\n312\n5\n2000\n2025\n\n\nStrafmündige (14 Jahre und älter)\n312\n5\n2000\n2025\n\n\nSäuglinge (0 Jahre)\n312\n5\n2000\n2025\n\n\nVolljährige (18 Jahre und älter)\n312\n5\n2000\n2025\n\n\nnoch nicht Schulpflichtige (0 bis 5 Jahre)\n312\n5\n2000\n2025\n\n\n\n\n\nThe original age categories are partly overlapping. For example, Minderjaehrige (0 bis 17 Jahre) includes the younger age groups 0-5, 6-14 and 15-17. Therefore, the analysis does not simply add all original age groups together. Instead, it constructs five non-overlapping groups: 0-5, 6-14, 15-17, 18-64 and 65+."
+  },
+  {
+    "objectID": "proposal.html#distribution-of-age-structure-in-selected-years",
+    "href": "proposal.html#distribution-of-age-structure-in-selected-years",
+    "title": "StatProg II - Project Proposal",
+    "section": "2.2 Distribution of Age Structure in Selected Years",
+    "text": "2.2 Distribution of Age Structure in Selected Years\nThe following plot compares the constructed age structure in selected years. This provides an initial view of how the relative composition of Munich’s population changed in 2000, 2010, 2020 and 2024.\n\nage_structure_bar_plot &lt;- ggplot(\n  age_structure_share %&gt;%\n    filter(year %in% c(2000, 2010, 2020, 2024)),\n  aes(\n    x = factor(year),\n    y = population_share,\n    fill = age_group\n  )\n) +\n  geom_col() +\n  scale_y_continuous(labels = percent) +\n  labs(\n    title = \"Age structure of Munich's population in selected years\",\n    subtitle = \"Comparison of age group shares in 2000, 2010, 2020 and 2024\",\n    x = \"Year\",\n    y = \"Share of population\",\n    fill = \"Age group\"\n  ) +\n  theme_minimal()\n\nage_structure_bar_plot\n\n\n\n\n\n\n\nFigure 1: Age structure of Munich’s population in selected years (2000, 2010, 2020, 2024)\n\n\n\n\n\nThe plot shows that the 18-64 group remained the dominant age group throughout the period. However, the relative composition changed slightly over time. The 65+ group became more important, while younger age groups also increased in relative and absolute terms."
+  },
+  {
+    "objectID": "proposal.html#population-trends-by-age-group",
+    "href": "proposal.html#population-trends-by-age-group",
+    "title": "StatProg II - Project Proposal",
+    "section": "2.3 Population Trends by Age Group",
+    "text": "2.3 Population Trends by Age Group\nThe following plot shows the yearly mean population for each age group from 2000 to 2024. Each panel has its own y-axis, which makes it easier to inspect smaller age groups separately.\n\nage_trend_facet_plot &lt;- ggplot(\n  age_structure_long,\n  aes(\n    x = year,\n    y = population\n  )\n) +\n  geom_line(linewidth = 1) +\n  geom_point(size = 1.5) +\n  facet_wrap(\n    ~ age_group,\n    scales = \"free_y\"\n  ) +\n  scale_y_continuous(labels = scales::comma) +\n  labs(\n    title = \"Population trends by age group in Munich, 2000-2024\",\n    subtitle = \"Yearly mean population, shown with separate y-axes for each age group\",\n    x = \"Year\",\n    y = \"Mean population\"\n  ) +\n  theme_minimal()\n\nage_trend_facet_plot\n\n\n\n\n\n\n\nFigure 2: Population trends by age group in Munich, 2000-2024.\n\n\n\n\n\nThe faceted trend plot indicates that all selected age groups increased between 2000 and 2024. The 18-64 group experienced the largest absolute increase, while school-age children and adolescents show particularly strong relative growth."
+  },
+  {
+    "objectID": "proposal.html#change-between-2000-and-2024",
+    "href": "proposal.html#change-between-2000-and-2024",
+    "title": "StatProg II - Project Proposal",
+    "section": "2.4 Change Between 2000 and 2024",
+    "text": "2.4 Change Between 2000 and 2024\nThe following table compares the yearly mean population of each age group in 2000 and 2024.\n\nage_change_table %&gt;%\n  mutate(\n    across(\n      c(`2000`, `2024`, absolute_change),\n      ~ round(.x, digits = 0)\n    ),\n    relative_change = round(relative_change, digits = 1)\n  ) %&gt;%\n  rename(\n    `Age group` = age_group,\n    `Population 2000` = `2000`,\n    `Population 2024` = `2024`,\n    `Absolute change` = absolute_change,\n    `Relative change (%)` = relative_change\n  ) %&gt;%\n  kable()\n\n\n\n\n\n\n\n\n\n\n\nAge group\nPopulation 2000\nPopulation 2024\nAbsolute change\nRelative change (%)\n\n\n\n\nSchulpflichtige (6 bis 14 Jahre)\n84870\n119601\n34731\n40.9\n\n\nBerufsschulpflichtige (15 bis 17 Jahre)\n27045\n38038\n10993\n40.6\n\n\nRentner*innen (65 Jahre und älter)\n196769\n270945\n74176\n37.7\n\n\nnoch nicht Schulpflichtige (0 bis 5 Jahre)\n65097\n89063\n23966\n36.8\n\n\n18 bis 64 Jahre\n865765\n1078140\n212375\n24.5\n\n\n\n\n\nThe table shows that the 18-64 group had the largest absolute increase, growing by more than 212,000 people between 2000 and 2024. In relative terms, however, the strongest growth occurred among school-age children aged 6-14 and adolescents aged 15-17, both increasing by around 41%. The 65+ group also grew substantially, by about 38%, which provides preliminary evidence of demographic ageing. However, because younger age groups also increased strongly, Munich’s demographic change cannot be described as ageing alone."
+  },
+  {
+    "objectID": "proposal.html#data-quality-issues",
+    "href": "proposal.html#data-quality-issues",
+    "title": "StatProg II - Project Proposal",
+    "section": "2.5 Data Quality Issues",
+    "text": "2.5 Data Quality Issues\nSeveral data quality issues need to be considered. First, the year 2025 is incomplete and is therefore excluded from the main trend analysis. Second, each selected age group contains several missing monthly values. These missing values are handled by calculating yearly means with na.rm = TRUE. Third, the original age categories overlap, so derived non-overlapping age groups are required to avoid double-counting. Finally, evidence of demographic ageing should not be based only on absolute population counts; relative shares and ratios are also needed for a more careful interpretation."
+  },
+  {
+    "objectID": "proposal.html#repository-structure",
+    "href": "proposal.html#repository-structure",
+    "title": "StatProg II - Project Proposal",
+    "section": "4.1 Repository Structure",
+    "text": "4.1 Repository Structure\nThe project repository follows this structure:\nproject-name/\n|-- README.md\n|-- _quarto.yml\n|-- data/\n|   |-- raw/\n|   `-- processed/\n|-- code/\n|   |-- 01_import_clean.R\n|   |-- 02_eda.R\n|   `-- 03_analysis.R\n|-- docs/\n|   `-- figures/\n|-- proposal.qmd\n|-- report.qmd\n`-- .gitignore\nThe raw dataset is stored in data/raw/ and is not edited manually. Cleaned and derived datasets are saved in data/processed/. The R scripts in code/ document the data cleaning and exploratory analysis steps. Figures created by the scripts are saved in figures/, while the rendered website is written to docs/."
+  },
+  {
+    "objectID": "proposal.html#code-style",
+    "href": "proposal.html#code-style",
+    "title": "StatProg II - Project Proposal",
+    "section": "4.2 Code Style",
+    "text": "4.2 Code Style\nThe project uses a tidyverse-oriented coding style. Object names are written in lower case with underscores, for example age_data, age_structure_long and age_change_table. Scripts are numbered according to their role in the workflow, so that the order of execution is clear.\nThe code is structured into separate steps:\n\nimporting and cleaning the raw data;\nfiltering and restructuring the age-group data;\ncalculating yearly means and derived age groups;\ncreating exploratory visualisations and summary tables.\n\nWe aim to keep the code readable by using clear object names, short comments and consistent indentation."
+  },
+  {
+    "objectID": "proposal.html#packages",
+    "href": "proposal.html#packages",
+    "title": "StatProg II - Project Proposal",
+    "section": "4.3 Packages",
+    "text": "4.3 Packages\nThe project currently uses the following R packages:\n\n\n\nPackage\nPurpose\n\n\n\n\ntidyverse\nData import, cleaning, transformation and plotting\n\n\nlubridate\nDate conversion and extraction of year and month\n\n\nscales\nFormatting percentages and large numbers in plots\n\n\nknitr\nRendering tables in the Quarto document\n\n\nquarto\nRendering the proposal as an HTML webpage\n\n\n\nIf the analysis becomes more complex later, additional packages may be added. Package use will be documented in the scripts and in the Quarto document."
+  },
+  {
+    "objectID": "proposal.html#reproducibility",
+    "href": "proposal.html#reproducibility",
+    "title": "StatProg II - Project Proposal",
+    "section": "4.4 Reproducibility",
+    "text": "4.4 Reproducibility\nThe workflow is designed so that the analysis can be reproduced from the raw data. The raw CSV file is read from data/raw/, cleaned in code/01_import_clean.R, and then saved as processed CSV files in data/processed/. The proposal reads these processed files directly.\nAt the current proposal stage, renv is not yet used. If package version control becomes necessary later in the project, we plan to initialise renv to make the computational environment more reproducible."
+  },
+  {
+    "objectID": "proposal.html#git-workflow",
+    "href": "proposal.html#git-workflow",
+    "title": "StatProg II - Project Proposal",
+    "section": "4.5 Git Workflow",
+    "text": "4.5 Git Workflow\nGit is used to track changes to code, data-processing scripts and the Quarto proposal. The main branch should contain stable versions of the project. Larger changes should be developed in separate branches, for example:\n\nclean-age-data\neda-age-structure\nwrite-proposal\nupdate-figures\n\nCommit messages should describe the change clearly, for example:\nAdd age group cleaning script\nCreate faceted age trend plot\nUpdate initial data analysis section\nBefore pushing changes, the Quarto document should be rendered locally to check whether the proposal still works."
+  },
+  {
+    "objectID": "proposal.html#files-ignored-by-git",
+    "href": "proposal.html#files-ignored-by-git",
+    "title": "StatProg II - Project Proposal",
+    "section": "4.6 Files Ignored by Git",
+    "text": "4.6 Files Ignored by Git\nThe .gitignore file should exclude temporary or local files that are not needed for reproducibility, for example:\n.Rhistory\n.RData\n.Rproj.user/\n.DS_Store\n*.html\n*.log\nLarge raw files or sensitive files such as API keys should also be excluded if they are added later. Since this project currently uses a public CSV dataset, there are no confidential data files."
+  }
+]
