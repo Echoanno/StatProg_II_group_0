@@ -5,9 +5,10 @@
 
 figures/
 
-
+*.html
 *.log
 *.tmp
+*_files/
 Rplots.pdf
 .vscode/
 /.quarto/
