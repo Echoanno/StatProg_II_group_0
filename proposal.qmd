@@ -100,6 +100,30 @@ In addition to overall migration trends, the project also compares demographic d
 
 To highlight longer-term migration developments, a 3-year rolling average is calculated for the migration balance series. This smoothing approach helps reduce short-term yearly fluctuations and makes long-term migration trends easier to interpret.
 
+### Household Structure
+
+```{r}
+household_base_filtered <- read_csv("data/processed/household_base_filtered.csv")
+household_size_baseline <- read_csv("data/processed/household_size_baseline.csv")
+household_grouped <- read_csv("data/processed/household_grouped.csv")
+household_grouped_percentage <- read_csv("data/processed/household_grouped_percentage.csv")
+glimpse(household_base_filtered)
+```
+
+The household categories data contain monthly observations from 2000 to 2025. However, the main analysis is restricted to the complete years from 2000 to 2024. The year 2025 is excluded from the main analysis because the available observations for 2025 are incomplete. To avoid counting several monthly observations for the same year, the household analysis uses the December observations as an annual baseline.
+
+For the first part of the analysis, five household-size categories are used:
+
+-   1 Person
+-   2 Personen
+-   3 Personen
+-   4 Personen
+-   5 Personen und mehr
+
+The dataset `household_base_filtered` contains the absolute number of households by year and household size. From this dataset, we calculate the percentage share of each household type. The resulting table is stored as `household_size_baseline`.
+
+For a simpler comparison, we also group the household types into three categories: `1 Person`, `2 Personen` and `3+ Personen`. This helps us examine whether the household structure in Munich is shifting toward smaller households. The grouped count data are stored in `household_grouped`, and the grouped percentage data are stored in `household_grouped_percentage`.
+
 ## Research Questions
 
 The project investigates the following research questions:
@@ -134,7 +158,17 @@ This main question is addressed through two sub-questions:
 
 ### Household Structure
 
-1\.
+The main research question is:
+
+**How has the household structure in Munich changed between 2012 and 2024?**
+
+This main question is addressed through two sub-questions:
+
+1.  **Which household types have changed the most in their relative share over time?**
+
+2.  **Is there preliminary evidence of a shift toward smaller households in Munich?**
+
+The first sub-question compares the percentage shares of different household types between 2012 and 2024. The second sub-question uses the grouped categories `1 Person`, `2 Personen` and `3+ Personen` to examine whether smaller households have become more important in Munich's household structure.
 
 ## Context and Target Audience
 
@@ -401,6 +435,82 @@ knitr::include_graphics(
 
 Several issues should be considered when interpreting the migration analysis. First, the year 2025 is incomplete and is therefore excluded from the main analysis. Second, monthly observations are aggregated into yearly mean values, which may conceal short-term migration fluctuations. Third, the EU/non-EU and continental comparisons are descriptive and do not allow causal conclusions about migration processes. Finally, migration trends should not be interpreted based solely on absolute population counts; relative population shares and growth rates may provide additional insights into Munich's demographic transformation.
 
+### Household Structure
+
+#### Household Data Structure
+
+```{r}
+glimpse(household_base_filtered)
+```
+
+The household analysis uses the category Haushalte nach Personenzahl from the Munich Open Data population dataset. The analysis focuses on the years from 2012 to 2024, because household-size data are available for this period. To avoid counting several monthly observations for the same year, the analysis uses the December observations as an annual baseline. This is appropriate because household-size categories describe the number of households at a specific point in time rather than monthly flow data. The analysis includes five household-size categories: `1 Person` `2 Personen` `3 Personen` `4 Personen` `5 Personen und mehr` The dataset household_base_filtered contains the number of households by year and household size. From this dataset, we calculate the percentage share of each household type. The resulting table is stored as household_size_baseline.
+
+#### Household Size Trends
+
+The following figure shows how the percentage share of different household-size categories changed between 2012 and 2024.
+
+```{r}
+#| label: fig-household-percentage-trend
+#| fig-cap: "Household size shares in Munich, 2012-2024."
+
+knitr::include_graphics(
+  "figures/household_percentage_plot.png"
+)
+```
+
+The plot provides an initial overview of Munich's household structure over time. It shows that one-person households remained the largest household category throughout the period, while the relative shares of the other household-size categories changed only moderately.
+
+The following figure shows the absolute number of households by household size.
+
+```{r}
+#| label: fig-household-count-trend
+#| fig-cap: "Number of households by household size in Munich, 2012-2024."
+
+knitr::include_graphics(
+  "figures/household_count_plot.png"
+)
+```
+
+In absolute numbers, several household categories increased over time, especially one-person households. This suggests that the number of smaller households increased, although their percentage share did not change strongly.
+
+#### Change Between 2012 and 2024
+
+The following figure compares the percentage point change of each household-size category between 2012 and 2024.
+
+```{r}
+#| label: fig-household-share-change
+#| fig-cap: "Change in household shares in Munich, 2012-2024."
+
+knitr::include_graphics(
+  "figures/household_share_change_plot.png"
+)
+```
+
+This comparison helps identify which household types experienced the strongest relative increase or decrease over time. Instead of only looking at absolute household numbers, the analysis focuses on percentage shares, because the total number of households also changed during the period.
+
+#### Grouped Household Structure
+
+For a simpler comparison, the household types are also grouped into three broader categories: `1 Person`, `2 Personen` and `3+ Personen`. This makes it easier to examine whether Munich's household structure is shifting toward smaller households.
+
+```{r}
+#| label: fig-household-grouped-trend
+#| fig-cap: "Grouped household structure in Munich, 2012-2024."
+
+knitr::include_graphics(
+  "figures/household_grouped_percentage_plot.png"
+)
+```
+
+The grouped household structure shows that one-person households were the largest household group throughout the period, followed by two-person households and households with three or more persons. Together, one-person and two-person households made up the majority of households in Munich.
+
+However, the relative shares changed only moderately between 2012 and 2024. Therefore, the figure does not show a strong structural shift toward smaller households during this period. Rather, it suggests that Munich already had a household structure strongly shaped by smaller households, especially one-person households.
+
+#### Data Quality Issues
+
+Several issues need to be considered when interpreting the household analysis. First, the household-size analysis is restricted to the years 2012 to 2024, because this is the consistent period available for this part of the project. Second, the analysis uses December observations as an annual baseline, so short-term monthly changes are not examined. Third, the data are aggregated municipal statistics. Therefore, the analysis cannot explain individual living situations or causal mechanisms behind changes in household structure.
+
+In addition, the relative household shares changed only moderately during the observation period. Therefore, the question of a shift toward smaller households should be interpreted cautiously. The analysis can show whether smaller households were dominant or changed in relative importance, but it cannot by itself explain why this pattern occurred.
+
 # Analysis Plan
 
 ## Age Structure Analysis
@@ -448,6 +558,16 @@ First, migration-related population groups will be analysed not only in terms of
 Second, the report will compare long-term developments across EU and non-EU populations as well as continental population groups in order to identify differences in demographic growth patterns.
 
 Third, migration trends will be interpreted together with the project's findings on age structure and household composition. The aim is to explore whether increasing internationalisation, population ageing and changing household structures can be understood as interconnected dimensions of Munich's broader demographic restructuring.
+
+## Household Structure Analysis
+
+The final report will extend the household analysis in three ways.
+
+First, household-size categories will be analysed in terms of both absolute household numbers and relative percentage shares. This will show whether changes are mainly caused by general growth in the number of households or by changes in the overall household structure.
+
+Second, the report will compare the development of five household-size categories: `1 Person`, `2 Personen`, `3 Personen`, `4 Personen` and `5 Personen und mehr`. This will help identify which household types changed most between 2012 and 2024.
+
+Third, the household categories will be grouped into `1 Person`, `2 Personen` and `3+ Personen`. This broader comparison will be used to examine whether there is preliminary evidence of a shift toward smaller households, or whether smaller households were already dominant throughout the period.
 
 # Workflow Organisation
 
