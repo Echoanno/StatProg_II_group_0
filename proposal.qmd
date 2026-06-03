@@ -32,7 +32,7 @@ For this project, we focus on several demographic dimensions of population chang
 The raw dataset is organised in long format. Each row represents one observation for a specific demographic category, year and month. The most relevant variables are:
 
 | Variable | Description |
-|------------------------------------|------------------------------------|
+|----|----|
 | `MONATSZAHL` | Main demographic topic, for example `Altersgruppen` |
 | `AUSPRAEGUNG` | Subcategory within the topic, for example a specific age group |
 | `JAHR` | Year of the observation |
@@ -460,6 +460,19 @@ knitr::include_graphics(
 
 The plot provides an initial overview of Munich's household structure over time. It shows that one-person households remained the largest household category throughout the period, while the relative shares of the other household-size categories changed only moderately.
 
+The following figure compares the percentage point change of each household-size category between 2012 and 2024. This provides a category-based comparison and helps identify which household types changed the most in relative terms.
+
+```{r}
+#| label: fig-household-share-change
+#| fig-cap: "Change in household shares in Munich, 2012-2024."
+
+knitr::include_graphics(
+  "figures/household_share_change_plot.png"
+)
+```
+
+This comparison shows whether changes in household structure are concentrated in specific household-size categories. It complements the trend plot by summarising the overall change between the first and last year of the observation period.
+
 The following figure shows the absolute number of households by household size.
 
 ```{r}
@@ -520,7 +533,7 @@ The final analysis will remain descriptive and exploratory. The aim is not to id
 The analysis will use the following variables:
 
 | Variable | Role in the analysis |
-|------------------------------------|------------------------------------|
+|----|----|
 | `year` | Time variable for yearly trend analysis |
 | `month` | Month variable, mainly used for data cleaning and possible seasonal checks |
 | `AUSPRAEGUNG` | Original age-group category |
