@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.37">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Group 0">
+
+<title>StatProg II - Project Proposal – Statprog2 Project</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Statprog2 Project</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./proposal.html" aria-current="page"> 
+<span class="menu-text">Proposal</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./report.html"> 
+<span class="menu-text">Report</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#dataset-and-research-questions" id="toc-dataset-and-research-questions" class="nav-link active" data-scroll-target="#dataset-and-research-questions"><span class="header-section-number">1</span> Dataset and Research Questions</a>
+  <ul class="collapse">
+  <li><a href="#dataset-description" id="toc-dataset-description" class="nav-link" data-scroll-target="#dataset-description"><span class="header-section-number">1.1</span> Dataset Description</a></li>
+  <li><a href="#research-questions" id="toc-research-questions" class="nav-link" data-scroll-target="#research-questions"><span class="header-section-number">1.2</span> Research Questions</a></li>
+  <li><a href="#context-and-target-audience" id="toc-context-and-target-audience" class="nav-link" data-scroll-target="#context-and-target-audience"><span class="header-section-number">1.3</span> Context and Target Audience</a></li>
+  </ul></li>
+  <li><a href="#initial-data-analysis" id="toc-initial-data-analysis" class="nav-link" data-scroll-target="#initial-data-analysis"><span class="header-section-number">2</span> Initial Data Analysis</a>
+  <ul class="collapse">
+  <li><a href="#data-structure" id="toc-data-structure" class="nav-link" data-scroll-target="#data-structure"><span class="header-section-number">2.1</span> Data Structure</a></li>
+  </ul></li>
+  <li><a href="#analysis-plan" id="toc-analysis-plan" class="nav-link" data-scroll-target="#analysis-plan"><span class="header-section-number">3</span> Analysis Plan</a>
+  <ul class="collapse">
+  <li><a href="#age-structure-analysis" id="toc-age-structure-analysis" class="nav-link" data-scroll-target="#age-structure-analysis"><span class="header-section-number">3.1</span> Age Structure Analysis</a></li>
+  <li><a href="#migration-analysis" id="toc-migration-analysis" class="nav-link" data-scroll-target="#migration-analysis"><span class="header-section-number">3.2</span> Migration Analysis</a></li>
+  <li><a href="#household-structure-analysis" id="toc-household-structure-analysis" class="nav-link" data-scroll-target="#household-structure-analysis"><span class="header-section-number">3.3</span> Household Structure Analysis</a></li>
+  </ul></li>
+  <li><a href="#workflow-organisation" id="toc-workflow-organisation" class="nav-link" data-scroll-target="#workflow-organisation"><span class="header-section-number">4</span> Workflow Organisation</a>
+  <ul class="collapse">
+  <li><a href="#repository-structure" id="toc-repository-structure" class="nav-link" data-scroll-target="#repository-structure"><span class="header-section-number">4.1</span> Repository Structure</a></li>
+  <li><a href="#code-style" id="toc-code-style" class="nav-link" data-scroll-target="#code-style"><span class="header-section-number">4.2</span> Code Style</a></li>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages"><span class="header-section-number">4.3</span> Packages</a></li>
+  <li><a href="#reproducibility" id="toc-reproducibility" class="nav-link" data-scroll-target="#reproducibility"><span class="header-section-number">4.4</span> Reproducibility</a></li>
+  <li><a href="#git-workflow" id="toc-git-workflow" class="nav-link" data-scroll-target="#git-workflow"><span class="header-section-number">4.5</span> Git Workflow</a></li>
+  <li><a href="#files-ignored-by-git" id="toc-files-ignored-by-git" class="nav-link" data-scroll-target="#files-ignored-by-git"><span class="header-section-number">4.6</span> Files Ignored by Git</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">StatProg II - Project Proposal</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Group 0 </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="dataset-and-research-questions" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Dataset and Research Questions</h1>
+<section id="dataset-description" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="dataset-description"><span class="header-section-number">1.1</span> Dataset Description</h2>
+<p>This project uses the dataset <em>Monatszahlen Bevoelkerung</em> from the Open Data Portal of the City of Munich. The dataset is provided by the Statistical Office of Munich and contains monthly population-related indicators. The full dataset covers several demographic topics, including gender and nationality, age groups, EU and non-EU nationalities, continents, births, deaths, migration, household structures and other population-related categories.</p>
+<p>The dataset is available as a CSV file and is published under the licence <strong>Datenlizenz Deutschland Namensnennung 2.0</strong>.</p>
+<p>For this project, we focus on several demographic dimensions of population change in Munich, including age structure, migration dynamics and household composition.</p>
+<p>The raw dataset is organised in long format. Each row represents one observation for a specific demographic category, year and month. The most relevant variables are:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>MONATSZAHL</code></td>
+<td>Main demographic topic, for example <code>Altersgruppen</code></td>
+</tr>
+<tr class="even">
+<td><code>AUSPRAEGUNG</code></td>
+<td>Subcategory within the topic, for example a specific age group</td>
+</tr>
+<tr class="odd">
+<td><code>JAHR</code></td>
+<td>Year of the observation</td>
+</tr>
+<tr class="even">
+<td><code>MONAT</code></td>
+<td>Month of the observation, usually in <code>YYYYMM</code> format</td>
+</tr>
+<tr class="odd">
+<td><code>WERT</code></td>
+<td>Population value for the respective category and month</td>
+</tr>
+<tr class="even">
+<td><code>VORJAHRESWERT</code></td>
+<td>Value in the same month of the previous year</td>
+</tr>
+<tr class="odd">
+<td><code>VERAEND_VORMONAT_PROZENT</code></td>
+<td>Percentage change compared with the previous month</td>
+</tr>
+<tr class="even">
+<td><code>VERAEND_VORJAHRESMONAT_PROZENT</code></td>
+<td>Percentage change compared with the same month of the previous year</td>
+</tr>
+<tr class="odd">
+<td><code>ZWOELF_MONATE_MITTELWERT</code></td>
+<td>Twelve-month moving average</td>
+</tr>
+</tbody>
+</table>
+<section id="age-structure" class="level3" data-number="1.1.1">
+<h3 data-number="1.1.1" class="anchored" data-anchor-id="age-structure"><span class="header-section-number">1.1.1</span> Age Structure</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>age_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/processed/age_data.csv"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>age_structure_long <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/processed/age_structure_long.csv"</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>age_structure_share <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/processed/age_structure_share.csv"</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>age_change_table <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/processed/age_change_table.csv"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(age_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 2,808
+Columns: 13
+$ `_id`                          &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, …
+$ MONATSZAHL                     &lt;chr&gt; "Altersgruppen", "Altersgruppen", "Alte…
+$ AUSPRAEGUNG                    &lt;chr&gt; "Berufsschulpflichtige (15 bis 17 Jahre…
+$ JAHR                           &lt;dbl&gt; 2025, 2025, 2025, 2025, 2025, 2025, 202…
+$ MONAT                          &lt;dbl&gt; 202501, 202502, 202503, 202504, 202505,…
+$ WERT                           &lt;dbl&gt; 38315, 38335, 38395, 38391, 38337, 3829…
+$ VORJAHRESWERT                  &lt;dbl&gt; 37808, 37865, 37853, 37910, 37830, 3781…
+$ VERAEND_VORMONAT_PROZENT       &lt;dbl&gt; -0.16, 0.05, 0.16, -0.01, -0.14, -0.11,…
+$ VERAEND_VORJAHRESMONAT_PROZENT &lt;dbl&gt; 1.34, 1.24, 1.43, 1.27, 1.34, 1.25, 0.8…
+$ ZWOELF_MONATE_MITTELWERT       &lt;dbl&gt; 38080, 38120, 38165, 38205, 38247, 3828…
+$ date                           &lt;date&gt; 2025-01-01, 2025-02-01, 2025-03-01, 20…
+$ month                          &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, …
+$ year                           &lt;dbl&gt; 2025, 2025, 2025, 2025, 2025, 2025, 202…</code></pre>
+</div>
+</div>
+<p>The age-group data contain monthly observations from 2000 to 2025. However, the main analysis is restricted to the complete years from 2000 to 2024. The year 2025 is excluded from the main analysis because the available observations for 2025 are incomplete.</p>
+<p>For the analysis, we construct five non-overlapping age groups:</p>
+<ul>
+<li>0-5 years</li>
+<li>6-14 years</li>
+<li>15-17 years</li>
+<li>18-64 years</li>
+<li>65 years and older</li>
+</ul>
+<p>The original dataset provides the working-age population as <code>Erwerbsfaehige (15 bis 64 Jahre)</code>. Since this category overlaps with <code>Berufsschulpflichtige (15 bis 17 Jahre)</code>, the 18-64 group is derived by subtracting the 15-17 group from the original 15-64 group. This transformation avoids double-counting and allows the project to analyse a consistent age structure.</p>
+</section>
+<section id="migration-dynamics" class="level3" data-number="1.1.2">
+<h3 data-number="1.1.2" class="anchored" data-anchor-id="migration-dynamics"><span class="header-section-number">1.1.2</span> Migration Dynamics</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>population_data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"data/processed/population_data.csv"</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>migration_data <span class="ot">&lt;-</span> population_data <span class="sc">%&gt;%</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    MONATSZAHL <span class="sc">%in%</span> <span class="fu">c</span>(</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Zugezogene"</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Weggezogene"</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Wanderungssaldo"</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>migration_yearly <span class="ot">&lt;-</span> migration_data <span class="sc">%&gt;%</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(MONATSZAHL, year) <span class="sc">%&gt;%</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_value =</span> <span class="fu">mean</span>(WERT, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(migration_yearly)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 78
+Columns: 3
+$ MONATSZAHL &lt;chr&gt; "Wanderungssaldo", "Wanderungssaldo", "Wanderungssaldo", "W…
+$ year       &lt;dbl&gt; 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009,…
+$ mean_value &lt;dbl&gt; 833.111111, 668.333333, 62.111111, 17.166667, 579.555556, 8…</code></pre>
+</div>
+</div>
+<p>The migration-related analysis uses the processed population dataset created during the preprocessing stage. The analysis focuses on the categories <code>Zugezogene</code>, <code>Weggezogene</code> and <code>Wanderungssaldo</code> in order to investigate long-term migration dynamics in Munich.</p>
+<p>Monthly observations are aggregated into yearly mean values to simplify long-term trend analysis and reduce short-term fluctuations in the data. The analysis is restricted to the complete years from 2000 to 2024. The year 2025 is excluded because the available observations are incomplete.</p>
+<p>In addition to overall migration trends, the project also compares demographic developments between EU and non-EU population groups as well as different continental population groups. These comparisons are used to explore broader processes of demographic internationalisation in Munich.</p>
+<p>To highlight longer-term migration developments, a 3-year rolling average is calculated for the migration balance series. This smoothing approach helps reduce short-term yearly fluctuations and makes long-term migration trends easier to interpret.</p>
+</section>
+<section id="household-structure" class="level3" data-number="1.1.3">
+<h3 data-number="1.1.3" class="anchored" data-anchor-id="household-structure"><span class="header-section-number">1.1.3</span> Household Structure</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>household_base_filtered <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/processed/household_base_filtered.csv"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>household_size_baseline <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/processed/household_size_baseline.csv"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>household_grouped <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/processed/household_grouped.csv"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>household_grouped_percentage <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/processed/household_grouped_percentage.csv"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(household_base_filtered)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 65
+Columns: 3
+$ year     &lt;dbl&gt; 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2…
+$ category &lt;chr&gt; "1 Person", "1 Person", "1 Person", "1 Person", "1 Person", "…
+$ count    &lt;dbl&gt; 468540, 461441, 452585, 448248, 449561, 448732, 446350, 44225…</code></pre>
+</div>
+</div>
+<p>The household categories data contain monthly observations from 2000 to 2025. However, the main analysis is restricted to the complete years from 2000 to 2024. The year 2025 is excluded from the main analysis because the available observations for 2025 are incomplete. To avoid counting several monthly observations for the same year, the household analysis uses the December observations as an annual baseline.</p>
+<p>For the first part of the analysis, five household-size categories are used:</p>
+<ul>
+<li>1 Person</li>
+<li>2 Personen</li>
+<li>3 Personen</li>
+<li>4 Personen</li>
+<li>5 Personen und mehr</li>
+</ul>
+<p>The dataset <code>household_base_filtered</code> contains the absolute number of households by year and household size. From this dataset, we calculate the percentage share of each household type. The resulting table is stored as <code>household_size_baseline</code>.</p>
+<p>For a simpler comparison, we also group the household types into three categories: <code>1 Person</code>, <code>2 Personen</code> and <code>3+ Personen</code>. This helps us examine whether the household structure in Munich is shifting toward smaller households. The grouped count data are stored in <code>household_grouped</code>, and the grouped percentage data are stored in <code>household_grouped_percentage</code>.</p>
+</section>
+</section>
+<section id="research-questions" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="research-questions"><span class="header-section-number">1.2</span> Research Questions</h2>
+<p>The project investigates the following research questions:</p>
+<section id="age-structure-1" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="age-structure-1"><span class="header-section-number">1.2.1</span> Age Structure</h3>
+<p>This project investigates changes in the age structure of Munich’s population between 2000 and 2024. The analysis focuses on age-group-specific population trends and asks whether the available data provide preliminary evidence of demographic ageing in Munich.</p>
+<p>The main research question is:</p>
+<p><strong>How has the age structure of Munich’s population changed between 2000 and 2024?</strong></p>
+<p>This main question is addressed through two sub-questions:</p>
+<ol type="1">
+<li><p><strong>Which age groups have experienced the strongest population growth or decline over time?</strong></p></li>
+<li><p><strong>Is there preliminary evidence of demographic ageing in Munich?</strong></p></li>
+</ol>
+<p>The first sub-question focuses on absolute and relative population changes across age groups. The second sub-question is treated cautiously: an increase in the 65+ group may indicate demographic ageing, but this needs to be assessed together with the development of younger age groups and the relative age-group shares.</p>
+</section>
+<section id="migration-dynamics-1" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="migration-dynamics-1"><span class="header-section-number">1.2.2</span> Migration Dynamics</h3>
+<p>Main question</p>
+<ol type="1">
+<li><strong>How have migration-related demographic trends changed over time in Munich?</strong></li>
+</ol>
+<p>This main question is addressed through two sub-questions:</p>
+<ol type="1">
+<li><p><strong>Are there observable differences between EU and non-EU demographic trends?</strong></p></li>
+<li><p><strong>How do demographic developments differ across continental population groups in Munich?</strong></p></li>
+</ol>
+</section>
+<section id="household-structure-1" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="household-structure-1"><span class="header-section-number">1.2.3</span> Household Structure</h3>
+<p>The main research question is:</p>
+<p><strong>How has the household structure in Munich changed between 2012 and 2024?</strong></p>
+<p>This main question is addressed through two sub-questions:</p>
+<ol type="1">
+<li><p><strong>Which household types have changed the most in their relative share over time?</strong></p></li>
+<li><p><strong>Is there preliminary evidence of a shift toward smaller households in Munich?</strong></p></li>
+</ol>
+<p>The first sub-question compares the percentage shares of different household types between 2012 and 2024. The second sub-question uses the grouped categories <code>1 Person</code>, <code>2 Personen</code> and <code>3+ Personen</code> to examine whether smaller households have become more important in Munich’s household structure.</p>
+</section>
+</section>
+<section id="context-and-target-audience" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="context-and-target-audience"><span class="header-section-number">1.3</span> Context and Target Audience</h2>
+<p>Munich has experienced substantial demographic transformation over the past decades. Population growth, migration, demographic ageing and changing household structures are all relevant for several areas of urban planning, including housing, childcare, schools, healthcare, public transport and social services.</p>
+<p>The target audience of this analysis includes local policymakers, urban planners, researchers and citizens interested in demographic change in Munich.</p>
+<p>The project is primarily descriptive and exploratory. Rather than explaining the causal mechanisms behind demographic change, the project aims to investigate how different demographic dimensions — including age structure, migration dynamics and household composition — developed over time between 2000 and 2024.</p>
+<p>Particular attention is given to long-term demographic restructuring and processes of urban internationalisation in Munich.</p>
+</section>
+</section>
+<section id="initial-data-analysis" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Initial Data Analysis</h1>
+<section id="data-structure" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="data-structure"><span class="header-section-number">2.1</span> Data Structure</h2>
+<section id="age-structure-2" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="age-structure-2"><span class="header-section-number">2.1.1</span> Age Structure</h3>
+<p>The initial data analysis uses the cleaned age-group dataset. The dataset contains monthly observations for different age groups from 2000 to 2025. Since 2025 is incomplete, the main analysis focuses on the complete years 2000-2024.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(age_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 2,808
+Columns: 13
+$ `_id`                          &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, …
+$ MONATSZAHL                     &lt;chr&gt; "Altersgruppen", "Altersgruppen", "Alte…
+$ AUSPRAEGUNG                    &lt;chr&gt; "Berufsschulpflichtige (15 bis 17 Jahre…
+$ JAHR                           &lt;dbl&gt; 2025, 2025, 2025, 2025, 2025, 2025, 202…
+$ MONAT                          &lt;dbl&gt; 202501, 202502, 202503, 202504, 202505,…
+$ WERT                           &lt;dbl&gt; 38315, 38335, 38395, 38391, 38337, 3829…
+$ VORJAHRESWERT                  &lt;dbl&gt; 37808, 37865, 37853, 37910, 37830, 3781…
+$ VERAEND_VORMONAT_PROZENT       &lt;dbl&gt; -0.16, 0.05, 0.16, -0.01, -0.14, -0.11,…
+$ VERAEND_VORJAHRESMONAT_PROZENT &lt;dbl&gt; 1.34, 1.24, 1.43, 1.27, 1.34, 1.25, 0.8…
+$ ZWOELF_MONATE_MITTELWERT       &lt;dbl&gt; 38080, 38120, 38165, 38205, 38247, 3828…
+$ date                           &lt;date&gt; 2025-01-01, 2025-02-01, 2025-03-01, 20…
+$ month                          &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, …
+$ year                           &lt;dbl&gt; 2025, 2025, 2025, 2025, 2025, 2025, 202…</code></pre>
+</div>
+</div>
+<p>The following summary shows the number of observations, missing values and time range for each original age group.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>age_data <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(AUSPRAEGUNG) <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">n_rows =</span> <span class="fu">n</span>(),</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">missing_values =</span> <span class="fu">sum</span>(<span class="fu">is.na</span>(WERT)),</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">min_year =</span> <span class="fu">min</span>(year, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">max_year =</span> <span class="fu">max</span>(year, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(AUSPRAEGUNG) <span class="sc">%&gt;%</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 51%">
+<col style="width: 8%">
+<col style="width: 18%">
+<col style="width: 10%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">AUSPRAEGUNG</th>
+<th style="text-align: right;">n_rows</th>
+<th style="text-align: right;">missing_values</th>
+<th style="text-align: right;">min_year</th>
+<th style="text-align: right;">max_year</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Berufsschulpflichtige (15 bis 17 Jahre)</td>
+<td style="text-align: right;">312</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2000</td>
+<td style="text-align: right;">2025</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Erwerbsfähige (15 bis 64 Jahre)</td>
+<td style="text-align: right;">312</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2000</td>
+<td style="text-align: right;">2025</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Minderjährige (0 bis 17 Jahre)</td>
+<td style="text-align: right;">312</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2000</td>
+<td style="text-align: right;">2025</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Rentner*innen (65 Jahre und älter)</td>
+<td style="text-align: right;">312</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2000</td>
+<td style="text-align: right;">2025</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Schulpflichtige (6 bis 14 Jahre)</td>
+<td style="text-align: right;">312</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2000</td>
+<td style="text-align: right;">2025</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Strafmündige (14 Jahre und älter)</td>
+<td style="text-align: right;">312</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2000</td>
+<td style="text-align: right;">2025</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Säuglinge (0 Jahre)</td>
+<td style="text-align: right;">312</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2000</td>
+<td style="text-align: right;">2025</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Volljährige (18 Jahre und älter)</td>
+<td style="text-align: right;">312</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2000</td>
+<td style="text-align: right;">2025</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">noch nicht Schulpflichtige (0 bis 5 Jahre)</td>
+<td style="text-align: right;">312</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">2000</td>
+<td style="text-align: right;">2025</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The original age categories are partly overlapping. For example, <code>Minderjaehrige (0 bis 17 Jahre)</code> includes the younger age groups 0-5, 6-14 and 15-17. Therefore, the analysis does not simply add all original age groups together. Instead, it constructs five non-overlapping groups: 0-5, 6-14, 15-17, 18-64 and 65+.</p>
+<section id="distribution-of-age-structure-in-selected-years" class="level4" data-number="2.1.1.1">
+<h4 data-number="2.1.1.1" class="anchored" data-anchor-id="distribution-of-age-structure-in-selected-years"><span class="header-section-number">2.1.1.1</span> Distribution of Age Structure in Selected Years</h4>
+<p>The following plot compares the constructed age structure in selected years. This provides an initial view of how the relative composition of Munich’s population changed in 2000, 2010, 2020 and 2024.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>age_structure_bar_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  age_structure_share <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2000</span>, <span class="dv">2010</span>, <span class="dv">2020</span>, <span class="dv">2024</span>)),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="fu">factor</span>(year),</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> population_share,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> age_group</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> percent) <span class="sc">+</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Age structure of Munich's population in selected years"</span>,</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Comparison of age group shares in 2000, 2010, 2020 and 2024"</span>,</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Share of population"</span>,</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Age group"</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>age_structure_bar_plot</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-age-structure-selected-years" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-age-structure-selected-years-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="proposal_files/figure-html/fig-age-structure-selected-years-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-age-structure-selected-years-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Age structure of Munich’s population in selected years (2000, 2010, 2020, 2024)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The plot shows that the 18-64 group remained the dominant age group throughout the period. However, the relative composition changed slightly over time. The 65+ group became more important, while younger age groups also increased in relative and absolute terms.</p>
+</section>
+<section id="population-trends-by-age-group" class="level4" data-number="2.1.1.2">
+<h4 data-number="2.1.1.2" class="anchored" data-anchor-id="population-trends-by-age-group"><span class="header-section-number">2.1.1.2</span> Population Trends by Age Group</h4>
+<p>The following plot shows the yearly mean population for each age group from 2000 to 2024. Each panel has its own y-axis, which makes it easier to inspect smaller age groups separately.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>age_trend_facet_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  age_structure_long,</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">aes</span>(</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> year,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> population</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">1.5</span>) <span class="sc">+</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>    <span class="sc">~</span> age_group,</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">scales =</span> <span class="st">"free_y"</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>comma) <span class="sc">+</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Population trends by age group in Munich, 2000-2024"</span>,</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Yearly mean population, shown with separate y-axes for each age group"</span>,</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Mean population"</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>age_trend_facet_plot</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-age-trends-faceted" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-age-trends-faceted-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="proposal_files/figure-html/fig-age-trends-faceted-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-age-trends-faceted-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Population trends by age group in Munich, 2000-2024.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The faceted trend plot indicates that all selected age groups increased between 2000 and 2024. The 18-64 group experienced the largest absolute increase, while school-age children and adolescents show particularly strong relative growth.</p>
+</section>
+<section id="change-between-2000-and-2024" class="level4" data-number="2.1.1.3">
+<h4 data-number="2.1.1.3" class="anchored" data-anchor-id="change-between-2000-and-2024"><span class="header-section-number">2.1.1.3</span> Change Between 2000 and 2024</h4>
+<p>The following table compares the yearly mean population of each age group in 2000 and 2024.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>age_change_table <span class="sc">%&gt;%</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(<span class="st">`</span><span class="at">2000</span><span class="st">`</span>, <span class="st">`</span><span class="at">2024</span><span class="st">`</span>, absolute_change),</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>      <span class="sc">~</span> <span class="fu">round</span>(.x, <span class="at">digits =</span> <span class="dv">0</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">relative_change =</span> <span class="fu">round</span>(relative_change, <span class="at">digits =</span> <span class="dv">1</span>)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Age group</span><span class="st">`</span> <span class="ot">=</span> age_group,</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Population 2000</span><span class="st">`</span> <span class="ot">=</span> <span class="st">`</span><span class="at">2000</span><span class="st">`</span>,</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Population 2024</span><span class="st">`</span> <span class="ot">=</span> <span class="st">`</span><span class="at">2024</span><span class="st">`</span>,</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Absolute change</span><span class="st">`</span> <span class="ot">=</span> absolute_change,</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Relative change (%)</span><span class="st">`</span> <span class="ot">=</span> relative_change</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 38%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Age group</th>
+<th style="text-align: right;">Population 2000</th>
+<th style="text-align: right;">Population 2024</th>
+<th style="text-align: right;">Absolute change</th>
+<th style="text-align: right;">Relative change (%)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Schulpflichtige (6 bis 14 Jahre)</td>
+<td style="text-align: right;">84870</td>
+<td style="text-align: right;">119601</td>
+<td style="text-align: right;">34731</td>
+<td style="text-align: right;">40.9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Berufsschulpflichtige (15 bis 17 Jahre)</td>
+<td style="text-align: right;">27045</td>
+<td style="text-align: right;">38038</td>
+<td style="text-align: right;">10993</td>
+<td style="text-align: right;">40.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Rentner*innen (65 Jahre und älter)</td>
+<td style="text-align: right;">196769</td>
+<td style="text-align: right;">270945</td>
+<td style="text-align: right;">74176</td>
+<td style="text-align: right;">37.7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">noch nicht Schulpflichtige (0 bis 5 Jahre)</td>
+<td style="text-align: right;">65097</td>
+<td style="text-align: right;">89063</td>
+<td style="text-align: right;">23966</td>
+<td style="text-align: right;">36.8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">18 bis 64 Jahre</td>
+<td style="text-align: right;">865765</td>
+<td style="text-align: right;">1078140</td>
+<td style="text-align: right;">212375</td>
+<td style="text-align: right;">24.5</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The table shows that the 18-64 group had the largest absolute increase, growing by more than 212,000 people between 2000 and 2024. In relative terms, however, the strongest growth occurred among school-age children aged 6-14 and adolescents aged 15-17, both increasing by around 41%. The 65+ group also grew substantially, by about 38%, which provides preliminary evidence of demographic ageing. However, because younger age groups also increased strongly, Munich’s demographic change cannot be described as ageing alone.</p>
+</section>
+<section id="data-quality-issues" class="level4" data-number="2.1.1.4">
+<h4 data-number="2.1.1.4" class="anchored" data-anchor-id="data-quality-issues"><span class="header-section-number">2.1.1.4</span> Data Quality Issues</h4>
+<p>Several data quality issues need to be considered. First, the year 2025 is incomplete and is therefore excluded from the main trend analysis. Second, each selected age group contains several missing monthly values. These missing values are handled by calculating yearly means with <code>na.rm = TRUE</code>. Third, the original age categories overlap, so derived non-overlapping age groups are required to avoid double-counting. Finally, evidence of demographic ageing should not be based only on absolute population counts; relative shares and ratios are also needed for a more careful interpretation.</p>
+</section>
+</section>
+<section id="migration-dynamics-2" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="migration-dynamics-2"><span class="header-section-number">2.1.2</span> Migration Dynamics</h3>
+<section id="migration-data-structure" class="level4" data-number="2.1.2.1">
+<h4 data-number="2.1.2.1" class="anchored" data-anchor-id="migration-data-structure"><span class="header-section-number">2.1.2.1</span> Migration Data Structure</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(population_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 25,711
+Columns: 13
+$ `_id`                          &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, …
+$ MONATSZAHL                     &lt;chr&gt; "Altersgruppen", "Altersgruppen", "Alte…
+$ AUSPRAEGUNG                    &lt;chr&gt; "Berufsschulpflichtige (15 bis 17 Jahre…
+$ JAHR                           &lt;dbl&gt; 2025, 2025, 2025, 2025, 2025, 2025, 202…
+$ MONAT                          &lt;dbl&gt; 202501, 202502, 202503, 202504, 202505,…
+$ WERT                           &lt;dbl&gt; 38315, 38335, 38395, 38391, 38337, 3829…
+$ VORJAHRESWERT                  &lt;dbl&gt; 37808, 37865, 37853, 37910, 37830, 3781…
+$ VERAEND_VORMONAT_PROZENT       &lt;dbl&gt; -0.16, 0.05, 0.16, -0.01, -0.14, -0.11,…
+$ VERAEND_VORJAHRESMONAT_PROZENT &lt;dbl&gt; 1.34, 1.24, 1.43, 1.27, 1.34, 1.25, 0.8…
+$ ZWOELF_MONATE_MITTELWERT       &lt;dbl&gt; 38080, 38120, 38165, 38205, 38247, 3828…
+$ date                           &lt;date&gt; 2025-01-01, 2025-02-01, 2025-03-01, 20…
+$ month                          &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, …
+$ year                           &lt;dbl&gt; 2025, 2025, 2025, 2025, 2025, 2025, 202…</code></pre>
+</div>
+</div>
+</section>
+<section id="migration-variable-selection" class="level4" data-number="2.1.2.2">
+<h4 data-number="2.1.2.2" class="anchored" data-anchor-id="migration-variable-selection"><span class="header-section-number">2.1.2.2</span> Migration Variable Selection</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>migration_overview <span class="ot">&lt;-</span> population_data <span class="sc">%&gt;%</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    MONATSZAHL <span class="sc">%in%</span> <span class="fu">c</span>(</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Zugezogene"</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Weggezogene"</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>      <span class="st">"Wanderungssaldo"</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The migration analysis investigates demographic change from three complementary perspectives.<br>
+<br>
+First, overall migration dynamics are analysed using migration inflows (`Zugezogene`), migration outflows (`Weggezogene`) and net migration balance (`Wanderungssaldo`). These indicators provide information about long-term migration developments in Munich.<br>
+<br>
+Second, processes of internationalisation are explored through comparisons between EU and non-EU population groups.<br>
+<br>
+Third, demographic diversification is examined through continental population groups (`Kontinente`), allowing the project to investigate differences in population development across broader geographical regions.</p>
+</section>
+<section id="migration-trends" class="level4" data-number="2.1.2.3">
+<h4 data-number="2.1.2.3" class="anchored" data-anchor-id="migration-trends"><span class="header-section-number">2.1.2.3</span> Migration Trends</h4>
+<p>The following figure compares migration inflows (<code>Zugezogene</code>), migration outflows (<code>Weggezogene</code>) and net migration balance (<code>Wanderungssaldo</code>) between 2000 and 2024.</p>
+<p>The plot shows that both migration inflows and outflows increased considerably over time. Although the two series generally follow similar patterns, migration inflows exceeded migration outflows during many years, resulting in a positive migration balance. However, the migration balance appears to weaken after the mid-2010s, indicating slower net migration growth.</p>
+<p>These trends suggest that migration has been an important contributor to Munich’s population growth during the observation period.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"figures/migration_trend_plot.png"</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-migration-trends" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-migration-trends-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/migration_trend_plot.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-migration-trends-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3: Migration inflows, outflows and migration balance in Munich, 2000-2024.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="migration-balance" class="level4" data-number="2.1.2.4">
+<h4 data-number="2.1.2.4" class="anchored" data-anchor-id="migration-balance"><span class="header-section-number">2.1.2.4</span> Migration Balance</h4>
+<p>The migration balance provides a more direct measure of whether Munich gained or lost population through migration.</p>
+<p>To highlight longer-term migration dynamics and reduce short-term fluctuations, a 3-year rolling average was calculated for the migration balance series.</p>
+<p>The rolling-average trend indicates that Munich experienced sustained positive net migration during much of the 2000s and early 2010s. However, migration gains appear to decline after approximately 2015, followed by a period of greater fluctuation.</p>
+<p>While Munich generally remained a net recipient of migrants, the results suggest that migration-driven population growth became less pronounced in recent years.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"figures/migration_balance_rolling_plot.png"</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-migration-balance" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-migration-balance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/migration_balance_rolling_plot.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-migration-balance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Net migration balance in Munich, 2000-2024 (3-year rolling average).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="eu-vs-non-eu-comparison" class="level4" data-number="2.1.2.5">
+<h4 data-number="2.1.2.5" class="anchored" data-anchor-id="eu-vs-non-eu-comparison"><span class="header-section-number">2.1.2.5</span> EU vs Non-EU Comparison</h4>
+<p>The migration analysis also examines broader processes of internationalisation through comparisons between EU and non-EU population groups.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>population_data <span class="sc">%&gt;%</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(MONATSZAHL <span class="sc">==</span> <span class="st">"EU-Staatsangehörigkeiten"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3,120 × 13
+   `_id` MONATSZAHL               AUSPRAEGUNG  JAHR  MONAT  WERT VORJAHRESWERT
+   &lt;dbl&gt; &lt;chr&gt;                    &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt;
+ 1  2809 EU-Staatsangehörigkeiten bulgarisch   2025 202501 14567         14288
+ 2  2810 EU-Staatsangehörigkeiten bulgarisch   2025 202502 14623         14316
+ 3  2811 EU-Staatsangehörigkeiten bulgarisch   2025 202503 14553         14393
+ 4  2812 EU-Staatsangehörigkeiten bulgarisch   2025 202504 14487         14426
+ 5  2813 EU-Staatsangehörigkeiten bulgarisch   2025 202505 14445         14488
+ 6  2814 EU-Staatsangehörigkeiten bulgarisch   2025 202506 14432         14504
+ 7  2815 EU-Staatsangehörigkeiten bulgarisch   2025 202507 14421         14460
+ 8  2816 EU-Staatsangehörigkeiten bulgarisch   2025 202508 14366         14442
+ 9  2817 EU-Staatsangehörigkeiten bulgarisch   2025 202509    NA         14516
+10  2818 EU-Staatsangehörigkeiten bulgarisch   2025 202510    NA         14574
+# ℹ 3,110 more rows
+# ℹ 6 more variables: VERAEND_VORMONAT_PROZENT &lt;dbl&gt;,
+#   VERAEND_VORJAHRESMONAT_PROZENT &lt;dbl&gt;, ZWOELF_MONATE_MITTELWERT &lt;dbl&gt;,
+#   date &lt;date&gt;, month &lt;dbl&gt;, year &lt;dbl&gt;</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>population_data <span class="sc">%&gt;%</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(MONATSZAHL <span class="sc">==</span> <span class="st">"Nicht-EU-Staatsangehörigkeiten"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2,707 × 13
+   `_id` MONATSZAHL                 AUSPRAEGUNG  JAHR  MONAT  WERT VORJAHRESWERT
+   &lt;dbl&gt; &lt;chr&gt;                      &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt;
+ 1 17620 Nicht-EU-Staatsangehörigk… amerikanis…  2025 202501  6796          6695
+ 2 17621 Nicht-EU-Staatsangehörigk… amerikanis…  2025 202502  6787          6714
+ 3 17622 Nicht-EU-Staatsangehörigk… amerikanis…  2025 202503  6810          6748
+ 4 17623 Nicht-EU-Staatsangehörigk… amerikanis…  2025 202504  6833          6772
+ 5 17624 Nicht-EU-Staatsangehörigk… amerikanis…  2025 202505  6852          6784
+ 6 17625 Nicht-EU-Staatsangehörigk… amerikanis…  2025 202506  6830          6791
+ 7 17626 Nicht-EU-Staatsangehörigk… amerikanis…  2025 202507  6765          6763
+ 8 17627 Nicht-EU-Staatsangehörigk… amerikanis…  2025 202508  6781          6714
+ 9 17628 Nicht-EU-Staatsangehörigk… amerikanis…  2025 202509    NA          6782
+10 17629 Nicht-EU-Staatsangehörigk… amerikanis…  2025 202510    NA          6800
+# ℹ 2,697 more rows
+# ℹ 6 more variables: VERAEND_VORMONAT_PROZENT &lt;dbl&gt;,
+#   VERAEND_VORJAHRESMONAT_PROZENT &lt;dbl&gt;, ZWOELF_MONATE_MITTELWERT &lt;dbl&gt;,
+#   date &lt;date&gt;, month &lt;dbl&gt;, year &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"figures/eu_non_eu_plot.png"</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-eu-non-eu" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-eu-non-eu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/eu_non_eu_plot.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eu-non-eu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5: EU and non-EU demographic trends in Munich, 2000-2024.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The figure shows that both EU and non-EU populations increased substantially between 2000 and 2024. However, the growth patterns differ considerably.</p>
+<p>The EU population experienced rapid growth between approximately 2010 and 2016, reaching a peak of more than 220,000 residents before declining slightly in recent years. In contrast, the non-EU population remained relatively stable during the early 2000s but increased strongly after the mid-2010s.</p>
+<p>Around 2018, the non-EU population surpassed the EU population and continued to grow throughout the remainder of the observation period. By 2024, non-EU populations represented the larger of the two groups.</p>
+<p>These results suggest that Munich’s demographic internationalisation has increasingly been driven by non-EU populations in recent years.</p>
+</section>
+<section id="continental-group-comparison" class="level4" data-number="2.1.2.6">
+<h4 data-number="2.1.2.6" class="anchored" data-anchor-id="continental-group-comparison"><span class="header-section-number">2.1.2.6</span> Continental Group Comparison</h4>
+<p>In addition to the EU and non-EU comparison, the project investigates demographic developments across continental population groups.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>population_data <span class="sc">%&gt;%</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(MONATSZAHL <span class="sc">==</span> <span class="st">"Kontinente"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,560 × 13
+   `_id` MONATSZAHL AUSPRAEGUNG  JAHR  MONAT  WERT VORJAHRESWERT
+   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt;         &lt;dbl&gt;
+ 1 14365 Kontinente afrikanisch  2025 202501 26060         24888
+ 2 14366 Kontinente afrikanisch  2025 202502 26089         25028
+ 3 14367 Kontinente afrikanisch  2025 202503 26065         25086
+ 4 14368 Kontinente afrikanisch  2025 202504 26128         25225
+ 5 14369 Kontinente afrikanisch  2025 202505 26188         25375
+ 6 14370 Kontinente afrikanisch  2025 202506 26239         25462
+ 7 14371 Kontinente afrikanisch  2025 202507 26250         25552
+ 8 14372 Kontinente afrikanisch  2025 202508 26305         25560
+ 9 14373 Kontinente afrikanisch  2025 202509    NA         25694
+10 14374 Kontinente afrikanisch  2025 202510    NA         25936
+# ℹ 1,550 more rows
+# ℹ 6 more variables: VERAEND_VORMONAT_PROZENT &lt;dbl&gt;,
+#   VERAEND_VORJAHRESMONAT_PROZENT &lt;dbl&gt;, ZWOELF_MONATE_MITTELWERT &lt;dbl&gt;,
+#   date &lt;date&gt;, month &lt;dbl&gt;, year &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<p>The faceted trend plot reveals substantial differences in demographic developments across continental population groups between 2000 and 2024.</p>
+<p>European populations remained the largest continental group throughout the observation period, increasing from approximately 236,000 to more than 350,000 residents. Growth accelerated particularly after 2010.</p>
+<p>Asian populations experienced the strongest relative increase among the larger continental groups. The population more than tripled during the observation period, rising from around 25,000 in 2000 to nearly 90,000 in 2024. A particularly strong increase can be observed after 2015.</p>
+<p>African and American populations also grew steadily over time. Both groups approximately doubled in size between 2000 and 2024, although their absolute population levels remained substantially lower than those of European and Asian populations.</p>
+<p>In contrast, the Australian population remained comparatively small and showed only moderate growth, followed by a relatively stable development after the mid-2010s.</p>
+<p>Overall, the results suggest that Munich’s demographic change has been characterised not only by population growth but also by increasing international diversification. While European populations continue to dominate numerically, Asian, African and American populations have grown considerably faster, indicating a broadening geographical composition of Munich’s population.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"figures/continent_facet_plot.png"</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-continental-groups" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-continental-groups-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/continent_facet_plot.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-continental-groups-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;6: Population trends by continental groups in Munich, 2000-2024.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="data-quality-issues-1" class="level4" data-number="2.1.2.7">
+<h4 data-number="2.1.2.7" class="anchored" data-anchor-id="data-quality-issues-1"><span class="header-section-number">2.1.2.7</span> Data Quality Issues</h4>
+<p>Several issues should be considered when interpreting the migration analysis. First, the year 2025 is incomplete and is therefore excluded from the main analysis. Second, monthly observations are aggregated into yearly mean values, which may conceal short-term migration fluctuations. Third, the EU/non-EU and continental comparisons are descriptive and do not allow causal conclusions about migration processes. Finally, migration trends should not be interpreted based solely on absolute population counts; relative population shares and growth rates may provide additional insights into Munich’s demographic transformation.</p>
+</section>
+</section>
+<section id="household-structure-2" class="level3" data-number="2.1.3">
+<h3 data-number="2.1.3" class="anchored" data-anchor-id="household-structure-2"><span class="header-section-number">2.1.3</span> Household Structure</h3>
+<section id="household-data-structure" class="level4" data-number="2.1.3.1">
+<h4 data-number="2.1.3.1" class="anchored" data-anchor-id="household-data-structure"><span class="header-section-number">2.1.3.1</span> Household Data Structure</h4>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(household_base_filtered)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 65
+Columns: 3
+$ year     &lt;dbl&gt; 2024, 2023, 2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2…
+$ category &lt;chr&gt; "1 Person", "1 Person", "1 Person", "1 Person", "1 Person", "…
+$ count    &lt;dbl&gt; 468540, 461441, 452585, 448248, 449561, 448732, 446350, 44225…</code></pre>
+</div>
+</div>
+<p>The household analysis uses the category Haushalte nach Personenzahl from the Munich Open Data population dataset. The analysis focuses on the years from 2012 to 2024, because household-size data are available for this period. To avoid counting several monthly observations for the same year, the analysis uses the December observations as an annual baseline. This is appropriate because household-size categories describe the number of households at a specific point in time rather than monthly flow data. The analysis includes five household-size categories: <code>1 Person</code> <code>2 Personen</code> <code>3 Personen</code> <code>4 Personen</code> <code>5 Personen und mehr</code> The dataset household_base_filtered contains the number of households by year and household size. From this dataset, we calculate the percentage share of each household type. The resulting table is stored as household_size_baseline.</p>
+</section>
+<section id="household-size-trends" class="level4" data-number="2.1.3.2">
+<h4 data-number="2.1.3.2" class="anchored" data-anchor-id="household-size-trends"><span class="header-section-number">2.1.3.2</span> Household Size Trends</h4>
+<p>The following figure shows how the percentage share of different household-size categories changed between 2012 and 2024.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"figures/household_percentage_plot.png"</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-household-size-share-trend" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-household-size-share-trend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/household_percentage_plot.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-household-size-share-trend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;7: Percentage share of household-size categories in Munich, 2012-2024.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The plot provides an initial overview of Munich’s household structure over time. It shows that one-person households remained the largest household category throughout the period, while the relative shares of the other household-size categories changed only moderately.</p>
+</section>
+<section id="change-between-2012-and-2024" class="level4" data-number="2.1.3.3">
+<h4 data-number="2.1.3.3" class="anchored" data-anchor-id="change-between-2012-and-2024"><span class="header-section-number">2.1.3.3</span> Change Between 2012 and 2024</h4>
+<p>The following figure compares the percentage point change of each household-size category between 2012 and 2024.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"figures/household_share_change_plot.png"</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-household-share-change" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-household-share-change-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/household_share_change_plot.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-household-share-change-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8: Percentage point change in household-size shares between 2012 and 2024.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>This comparison helps identify which household types experienced the strongest relative increase or decrease over time. Instead of only looking at absolute household numbers, the analysis focuses on percentage shares, because the total number of households also changed during the period.</p>
+</section>
+<section id="grouped-household-structure" class="level4" data-number="2.1.3.4">
+<h4 data-number="2.1.3.4" class="anchored" data-anchor-id="grouped-household-structure"><span class="header-section-number">2.1.3.4</span> Grouped Household Structure</h4>
+<p>For a simpler comparison, the household types are also grouped into three broader categories: <code>1 Person</code>, <code>2 Personen</code> and <code>3+ Personen</code>. This makes it easier to examine whether Munich’s household structure is shifting toward smaller households.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"figures/household_grouped_percentage_plot.png"</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div id="fig-household-grouped-share-trend" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-household-grouped-share-trend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="figures/household_grouped_percentage_plot.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-household-grouped-share-trend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9: Percentage share of one-person, two-person, and three-or-more-person households in Munich, 2012-2024.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The grouped household structure shows that one-person households were the largest household group throughout the period, followed by two-person households and households with three or more persons. Together, one-person and two-person households made up the majority of households in Munich.</p>
+<p>However, the relative shares changed only moderately between 2012 and 2024. Therefore, the figure does not show a strong structural shift toward smaller households during this period. Rather, it suggests that Munich already had a household structure strongly shaped by smaller households, especially one-person households.</p>
+</section>
+<section id="data-quality-issues-2" class="level4" data-number="2.1.3.5">
+<h4 data-number="2.1.3.5" class="anchored" data-anchor-id="data-quality-issues-2"><span class="header-section-number">2.1.3.5</span> Data Quality Issues</h4>
+<p>Several issues need to be considered when interpreting the household analysis. First, the household-size analysis is restricted to the years 2012 to 2024, because this is the consistent period available for this part of the project. Second, the analysis uses December observations as an annual baseline, so short-term monthly changes are not examined. Third, the data are aggregated municipal statistics. Therefore, the analysis cannot explain individual living situations or causal mechanisms behind changes in household structure.</p>
+<p>In addition, the relative household shares changed only moderately during the observation period. Therefore, the question of a shift toward smaller households should be interpreted cautiously. The analysis can show whether smaller households were dominant or changed in relative importance, but it cannot by itself explain why this pattern occurred.</p>
+</section>
+</section>
+</section>
+</section>
+<section id="analysis-plan" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Analysis Plan</h1>
+<section id="age-structure-analysis" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="age-structure-analysis"><span class="header-section-number">3.1</span> Age Structure Analysis</h2>
+<p>The final analysis will remain descriptive and exploratory. The aim is not to identify causal mechanisms behind Munich’s demographic development, but to describe how the city’s age structure changed over time and whether the available data suggest preliminary evidence of demographic ageing.</p>
+<p>The analysis will use the following variables:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Role in the analysis</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>year</code></td>
+<td>Time variable for yearly trend analysis</td>
+</tr>
+<tr class="even">
+<td><code>month</code></td>
+<td>Month variable, mainly used for data cleaning and possible seasonal checks</td>
+</tr>
+<tr class="odd">
+<td><code>AUSPRAEGUNG</code></td>
+<td>Original age-group category</td>
+</tr>
+<tr class="even">
+<td><code>WERT</code></td>
+<td>Monthly population value</td>
+</tr>
+<tr class="odd">
+<td><code>age_group</code></td>
+<td>Constructed non-overlapping age-group category</td>
+</tr>
+<tr class="even">
+<td><code>population</code></td>
+<td>Yearly mean population by constructed age group</td>
+</tr>
+<tr class="odd">
+<td><code>population_share</code></td>
+<td>Relative share of each age group within the constructed age structure</td>
+</tr>
+</tbody>
+</table>
+<p>The main analysis will proceed in four steps.</p>
+<p>First, the raw data will be cleaned by removing annual summary rows where <code>MONAT == "Summe"</code> and by converting the monthly variable into a proper date format. The analysis will then be restricted to the topic <code>Altersgruppen</code>, because the project focuses on age structure.</p>
+<p>Second, the original age-group categories will be reorganised into five non-overlapping groups: 0-5, 6-14, 15-17, 18-64 and 65+. Since the original dataset contains <code>Erwerbsfaehige (15 bis 64 Jahre)</code> but not a direct 18-64 category, the 18-64 group will be derived by subtracting the 15-17 group from the 15-64 group. This step is necessary to avoid double-counting across overlapping age categories.</p>
+<p>Third, yearly mean population values will be calculated for each constructed age group. These values will be used to visualise long-term trends and to calculate absolute and relative population changes between 2000 and 2024.</p>
+<p>Fourth, the analysis will compare both absolute population changes and relative age-group shares. Absolute changes help identify which groups contributed most to the numerical population increase, while relative shares are needed to assess whether Munich’s population structure shifted toward older age groups.</p>
+<p>The main indicators will be:</p>
+<ul>
+<li>absolute population change between 2000 and 2024;</li>
+<li>relative population change in percent;</li>
+<li>yearly age-group trends;</li>
+<li>age-group shares in selected years;</li>
+<li>development of the 65+ group relative to younger and working-age groups.</li>
+</ul>
+<p>Several limitations need to be considered. The year 2025 is not included in the main analysis because it is incomplete. Some monthly observations are missing, especially around 2018 and in the incomplete 2025 data. These missing values are handled by calculating yearly means with <code>na.rm = TRUE</code>, but the missingness should still be mentioned as a limitation. In addition, demographic ageing should not be inferred only from absolute growth of the 65+ group. A careful interpretation requires comparing the 65+ group with the total population and with other age groups.</p>
+</section>
+<section id="migration-analysis" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="migration-analysis"><span class="header-section-number">3.2</span> Migration Analysis</h2>
+<p>The final report will extend the exploratory analysis in three ways.</p>
+<p>First, migration-related population groups will be analysed not only in terms of absolute population counts but also through relative population shares and growth rates. This will allow a more detailed assessment of demographic internationalisation in Munich.</p>
+<p>Second, the report will compare long-term developments across EU and non-EU populations as well as continental population groups in order to identify differences in demographic growth patterns.</p>
+<p>Third, migration trends will be interpreted together with the project’s findings on age structure and household composition. The aim is to explore whether increasing internationalisation, population ageing and changing household structures can be understood as interconnected dimensions of Munich’s broader demographic restructuring.</p>
+</section>
+<section id="household-structure-analysis" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="household-structure-analysis"><span class="header-section-number">3.3</span> Household Structure Analysis</h2>
+<p>The final report will extend the household analysis in three ways.</p>
+<p>First, household-size categories will be analysed in terms of both absolute household numbers and relative percentage shares. This will show whether changes are mainly caused by general growth in the number of households or by changes in the overall household structure.</p>
+<p>Second, the report will compare the development of five household-size categories: <code>1 Person</code>, <code>2 Personen</code>, <code>3 Personen</code>, <code>4 Personen</code> and <code>5 Personen und mehr</code>. This will help identify which household types changed most between 2012 and 2024.</p>
+<p>Third, the household categories will be grouped into <code>1 Person</code>, <code>2 Personen</code> and <code>3+ Personen</code>. This broader comparison will be used to examine whether there is preliminary evidence of a shift toward smaller households, or whether smaller households were already dominant throughout the period.</p>
+</section>
+</section>
+<section id="workflow-organisation" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Workflow Organisation</h1>
+<p>The project is organised as a reproducible Quarto and GitHub-based workflow. The repository separates raw data, processed data, analysis scripts, figures and written output.</p>
+<section id="repository-structure" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="repository-structure"><span class="header-section-number">4.1</span> Repository Structure</h2>
+<p>The project repository follows this structure:</p>
+<pre class="text"><code>project-name/
+|-- README.md
+|-- _quarto.yml
+|-- data/
+|   |-- raw/
+|   `-- processed/
+|-- code/
+|   |-- 01_import_clean.R
+|   |-- 02_eda.R
+|   `-- 03_analysis.R
+|-- docs/
+|   `-- figures/
+|-- proposal.qmd
+|-- report.qmd
+`-- .gitignore</code></pre>
+<p>The raw dataset is stored in <code>data/raw/</code> and is not edited manually. Cleaned and derived datasets are saved in <code>data/processed/</code>. The R scripts in <code>code/</code> document the data cleaning and exploratory analysis steps. Figures created by the scripts are saved in <code>figures/</code>, while the rendered website is written to <code>docs/</code>.</p>
+</section>
+<section id="code-style" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="code-style"><span class="header-section-number">4.2</span> Code Style</h2>
+<p>The project uses a tidyverse-oriented coding style. Object names are written in lower case with underscores, for example <code>age_data</code>, <code>age_structure_long</code> and <code>age_change_table</code>. Scripts are numbered according to their role in the workflow, so that the order of execution is clear.</p>
+<p>The code is structured into separate steps:</p>
+<ol type="1">
+<li>importing and cleaning the raw data;</li>
+<li>filtering and restructuring the age-group data;</li>
+<li>calculating yearly means and derived age groups;</li>
+<li>creating exploratory visualisations and summary tables.</li>
+</ol>
+<p>We aim to keep the code readable by using clear object names, short comments and consistent indentation.</p>
+</section>
+<section id="packages" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="packages"><span class="header-section-number">4.3</span> Packages</h2>
+<p>The project currently uses the following R packages:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Package</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>tidyverse</code></td>
+<td>Data import, cleaning, transformation and plotting</td>
+</tr>
+<tr class="even">
+<td><code>lubridate</code></td>
+<td>Date conversion and extraction of year and month</td>
+</tr>
+<tr class="odd">
+<td><code>scales</code></td>
+<td>Formatting percentages and large numbers in plots</td>
+</tr>
+<tr class="even">
+<td><code>knitr</code></td>
+<td>Rendering tables in the Quarto document</td>
+</tr>
+<tr class="odd">
+<td><code>quarto</code></td>
+<td>Rendering the proposal as an HTML webpage</td>
+</tr>
+</tbody>
+</table>
+<p>If the analysis becomes more complex later, additional packages may be added. Package use will be documented in the scripts and in the Quarto document.</p>
+</section>
+<section id="reproducibility" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="reproducibility"><span class="header-section-number">4.4</span> Reproducibility</h2>
+<p>The workflow is designed so that the analysis can be reproduced from the raw data. The raw CSV file is read from <code>data/raw/</code>, cleaned in <code>code/01_import_clean.R</code>, and then saved as processed CSV files in <code>data/processed/</code>. The proposal reads these processed files directly.</p>
+<p>At the current proposal stage, <code>renv</code> is not yet used. If package version control becomes necessary later in the project, we plan to initialise <code>renv</code> to make the computational environment more reproducible.</p>
+</section>
+<section id="git-workflow" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="git-workflow"><span class="header-section-number">4.5</span> Git Workflow</h2>
+<p>Git is used to track changes to code, data-processing scripts and the Quarto proposal. The main branch should contain stable versions of the project. Larger changes should be developed in separate branches, for example:</p>
+<ul>
+<li><code>clean-age-data</code></li>
+<li><code>eda-age-structure</code></li>
+<li><code>write-proposal</code></li>
+<li><code>update-figures</code></li>
+</ul>
+<p>Commit messages should describe the change clearly, for example:</p>
+<pre class="text"><code>Add age group cleaning script
+Create faceted age trend plot
+Update initial data analysis section</code></pre>
+<p>Before pushing changes, the Quarto document should be rendered locally to check whether the proposal still works.</p>
+</section>
+<section id="files-ignored-by-git" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="files-ignored-by-git"><span class="header-section-number">4.6</span> Files Ignored by Git</h2>
+<p>The <code>.gitignore</code> file should exclude temporary or local files that are not needed for reproducibility, for example:</p>
+<pre class="text"><code>.Rhistory
+.RData
+.Rproj.user/
+.DS_Store
+*.html
+*.log</code></pre>
+<p>Large raw files or sensitive files such as API keys should also be excluded if they are added later. Since this project currently uses a public CSV dataset, there are no confidential data files.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -17,4 +17,6 @@ Rplots.pdf
 /.quarto/
 
 **/*.quarto_ipynb
+!docs/
+!docs/**
 
