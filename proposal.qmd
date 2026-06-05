@@ -450,8 +450,8 @@ The household analysis uses the category Haushalte nach Personenzahl from the Mu
 The following figure shows how the percentage share of different household-size categories changed between 2012 and 2024.
 
 ```{r}
-#| label: fig-household-percentage-trend
-#| fig-cap: "Household size shares in Munich, 2012-2024."
+#| label: fig-household-size-share-trend
+#| fig-cap: "Percentage share of household-size categories in Munich, 2012-2024."
 
 knitr::include_graphics(
   "figures/household_percentage_plot.png"
@@ -460,39 +460,13 @@ knitr::include_graphics(
 
 The plot provides an initial overview of Munich's household structure over time. It shows that one-person households remained the largest household category throughout the period, while the relative shares of the other household-size categories changed only moderately.
 
-The following figure compares the percentage point change of each household-size category between 2012 and 2024. This provides a category-based comparison and helps identify which household types changed the most in relative terms.
-
-```{r}
-#| label: fig-household-share-change
-#| fig-cap: "Change in household shares in Munich, 2012-2024."
-
-knitr::include_graphics(
-  "figures/household_share_change_plot.png"
-)
-```
-
-This comparison shows whether changes in household structure are concentrated in specific household-size categories. It complements the trend plot by summarising the overall change between the first and last year of the observation period.
-
-The following figure shows the absolute number of households by household size.
-
-```{r}
-#| label: fig-household-count-trend
-#| fig-cap: "Number of households by household size in Munich, 2012-2024."
-
-knitr::include_graphics(
-  "figures/household_count_plot.png"
-)
-```
-
-In absolute numbers, several household categories increased over time, especially one-person households. This suggests that the number of smaller households increased, although their percentage share did not change strongly.
-
 #### Change Between 2012 and 2024
 
 The following figure compares the percentage point change of each household-size category between 2012 and 2024.
 
 ```{r}
 #| label: fig-household-share-change
-#| fig-cap: "Change in household shares in Munich, 2012-2024."
+#| fig-cap: "Percentage point change in household-size shares between 2012 and 2024."
 
 knitr::include_graphics(
   "figures/household_share_change_plot.png"
@@ -506,8 +480,8 @@ This comparison helps identify which household types experienced the strongest r
 For a simpler comparison, the household types are also grouped into three broader categories: `1 Person`, `2 Personen` and `3+ Personen`. This makes it easier to examine whether Munich's household structure is shifting toward smaller households.
 
 ```{r}
-#| label: fig-household-grouped-trend
-#| fig-cap: "Grouped household structure in Munich, 2012-2024."
+#| label: fig-household-grouped-share-trend
+#| fig-cap: "Percentage share of one-person, two-person, and three-or-more-person households in Munich, 2012-2024."
 
 knitr::include_graphics(
   "figures/household_grouped_percentage_plot.png"
