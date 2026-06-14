@@ -362,7 +362,7 @@ $ category &lt;chr&gt; "1 Person", "1 Person", "1 Person", "1 Person", "1 Person
 $ count    &lt;dbl&gt; 468540, 461441, 452585, 448248, 449561, 448732, 446350, 44225…</code></pre>
 </div>
 </div>
-<p>The household categories data contain monthly observations from 2000 to 2025. However, the main analysis is restricted to the complete years from 2000 to 2024. The year 2025 is excluded from the main analysis because the available observations for 2025 are incomplete. To avoid counting several monthly observations for the same year, the household analysis uses the December observations as an annual baseline.</p>
+<p>The household categories data contain monthly observations from 2000 to 2025. However, the main analysis is restricted to the complete years from 2012 to 2024. The year 2025 is excluded from the main analysis because the available observations for 2025 are incomplete. To avoid counting several monthly observations for the same year, the household analysis uses the December observations as an annual baseline.</p>
 <p>For the first part of the analysis, five household-size categories are used:</p>
 <ul>
 <li>1 Person</li>
@@ -372,7 +372,7 @@ $ count    &lt;dbl&gt; 468540, 461441, 452585, 448248, 449561, 448732, 446350, 4
 <li>5 Personen und mehr</li>
 </ul>
 <p>The dataset <code>household_base_filtered</code> contains the absolute number of households by year and household size. From this dataset, we calculate the percentage share of each household type. The resulting table is stored as <code>household_size_baseline</code>.</p>
-<p>For a simpler comparison, we also group the household types into three categories: <code>1 Person</code>, <code>2 Personen</code> and <code>3+ Personen</code>. This helps us examine whether the household structure in Munich is shifting toward smaller households. The grouped count data are stored in <code>household_grouped</code>, and the grouped percentage data are stored in <code>household_grouped_percentage</code>.</p>
+<p>For a simpler comparison, group the household types into three categories: <code>1 Person</code>, <code>2 Personen</code> and <code>3+ Personen</code>. The grouped count data are stored in <code>household_grouped</code>, and the grouped percentage data are stored in <code>household_grouped_percentage</code>.</p>
 </section>
 </section>
 <section id="research-questions" class="level2" data-number="1.2">
@@ -1095,10 +1095,9 @@ Figure&nbsp;9: Percentage share of one-person, two-person, and three-or-more-per
 </section>
 <section id="household-structure-analysis" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="household-structure-analysis"><span class="header-section-number">3.3</span> Household Structure Analysis</h2>
-<p>The final report will extend the household analysis in three ways.</p>
-<p>First, household-size categories will be analysed in terms of both absolute household numbers and relative percentage shares. This will show whether changes are mainly caused by general growth in the number of households or by changes in the overall household structure.</p>
-<p>Second, the report will compare the development of five household-size categories: <code>1 Person</code>, <code>2 Personen</code>, <code>3 Personen</code>, <code>4 Personen</code> and <code>5 Personen und mehr</code>. This will help identify which household types changed most between 2012 and 2024.</p>
-<p>Third, the household categories will be grouped into <code>1 Person</code>, <code>2 Personen</code> and <code>3+ Personen</code>. This broader comparison will be used to examine whether there is preliminary evidence of a shift toward smaller households, or whether smaller households were already dominant throughout the period.</p>
+<p>For the household structure analysis, I will filter the population dataset for <code>MONATSZAHL == "Haushalte nach Personenzahl"</code> and use the December observations from 2012 to 2024 as annual reference points. I will use <code>year</code>, <code>category</code> and <code>count</code> from <code>household_base_filtered</code> to compare the absolute number of households in the five categories <code>1 Person</code>, <code>2 Personen</code>, <code>3 Personen</code>, <code>4 Personen</code> and <code>5 Personen und mehr</code>. I will report a line plot of household counts and a summary table comparing the first and last year of the analysis period. This addresses the household research question because it shows which household types increased or decreased most clearly in absolute terms.</p>
+<p>I will then calculate the percentage share of each household type per year using <code>household_size_baseline</code>. I will report a line plot of household-size shares over time. This step addresses the research question because it shows whether the distribution of household sizes changed, instead of only showing growth in the total number of households.</p>
+<p>Finally, I will use <code>household_grouped_percentage</code> to compare the grouped categories <code>1 Person</code>, <code>2 Personen</code> and <code>3+ Personen</code>. This dataset contains both grouped counts and percentage shares, so it can be used to show absolute developments as well as relative changes. I will report a grouped trend plot or summary table to examine whether smaller households became more important over time.</p>
 </section>
 </section>
 <section id="workflow-organisation" class="level1" data-number="4">

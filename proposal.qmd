@@ -110,7 +110,7 @@ household_grouped_percentage <- read_csv("data/processed/household_grouped_perce
 glimpse(household_base_filtered)
 ```
 
-The household categories data contain monthly observations from 2000 to 2025. However, the main analysis is restricted to the complete years from 2000 to 2024. The year 2025 is excluded from the main analysis because the available observations for 2025 are incomplete. To avoid counting several monthly observations for the same year, the household analysis uses the December observations as an annual baseline.
+The household categories data contain monthly observations from 2000 to 2025. However, the main analysis is restricted to the complete years from 2012 to 2024. The year 2025 is excluded from the main analysis because the available observations for 2025 are incomplete. To avoid counting several monthly observations for the same year, the household analysis uses the December observations as an annual baseline.
 
 For the first part of the analysis, five household-size categories are used:
 
@@ -122,7 +122,7 @@ For the first part of the analysis, five household-size categories are used:
 
 The dataset `household_base_filtered` contains the absolute number of households by year and household size. From this dataset, we calculate the percentage share of each household type. The resulting table is stored as `household_size_baseline`.
 
-For a simpler comparison, we also group the household types into three categories: `1 Person`, `2 Personen` and `3+ Personen`. This helps us examine whether the household structure in Munich is shifting toward smaller households. The grouped count data are stored in `household_grouped`, and the grouped percentage data are stored in `household_grouped_percentage`.
+For a simpler comparison, group the household types into three categories: `1 Person`, `2 Personen` and `3+ Personen`. The grouped count data are stored in `household_grouped`, and the grouped percentage data are stored in `household_grouped_percentage`.
 
 ## Research Questions
 
@@ -548,13 +548,12 @@ Third, migration trends will be interpreted together with the project's findings
 
 ## Household Structure Analysis
 
-The final report will extend the household analysis in three ways.
+For the household structure analysis, I will filter the population dataset for `MONATSZAHL == "Haushalte nach Personenzahl"` and use the December observations from 2012 to 2024 as annual reference points. I will use `year`, `category` and `count` from `household_base_filtered` to compare the absolute number of households in the five categories `1 Person`, `2 Personen`, `3 Personen`, `4 Personen` and `5 Personen und mehr`. I will report a line plot of household counts and a summary table comparing the first and last year of the analysis period. This addresses the household research question because it shows which household types increased or decreased most clearly in absolute terms.
 
-First, household-size categories will be analysed in terms of both absolute household numbers and relative percentage shares. This will show whether changes are mainly caused by general growth in the number of households or by changes in the overall household structure.
+I will then calculate the percentage share of each household type per year using `household_size_baseline`. I will report a line plot of household-size shares over time. This step addresses the research question because it shows whether the distribution of household sizes changed, instead of only showing growth in the total number of households.
 
-Second, the report will compare the development of five household-size categories: `1 Person`, `2 Personen`, `3 Personen`, `4 Personen` and `5 Personen und mehr`. This will help identify which household types changed most between 2012 and 2024.
+Finally, I will use `household_grouped_percentage` to compare the grouped categories `1 Person`, `2 Personen` and `3+ Personen`. This dataset contains both grouped counts and percentage shares, so it can be used to show absolute developments as well as relative changes. I will report a grouped trend plot or summary table to examine whether smaller households became more important over time.
 
-Third, the household categories will be grouped into `1 Person`, `2 Personen` and `3+ Personen`. This broader comparison will be used to examine whether there is preliminary evidence of a shift toward smaller households, or whether smaller households were already dominant throughout the period.
 
 # Workflow Organisation
 
