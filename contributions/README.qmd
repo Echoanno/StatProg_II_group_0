@@ -1,0 +1,6 @@
+---
+title: "Contributions"
+format: html
+---
+
+This file will document the contributions of each group member for the final project submission.
