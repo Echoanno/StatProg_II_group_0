@@ -1,0 +1,27 @@
+---
+title: "data_readme"
+format: html
+---
+
+------------------------------------------------------------------------
+
+title: "Data README" format: html ------------
+
+## Data overview
+
+The dataset contains monthly population-related indicators for the City of Munich, published by the Statistical Office of Munich through the Munich Open Data Portal. It covers topics such as age groups, migration, births, deaths, nationality and household structure. The data are published under Datenlizenz Deutschland – Namensnennung – Version 2.0 and should be cited as: “Statistisches Amt München, Monatszahlen Bevölkerung, opendata.muenchen.de, Datenlizenz Deutschland Namensnennung 2.0.”
+
+## Variable dictionary
+
+| Variable | Type | Description | Example / note |
+|----|----|----|----|
+| `_id` | `<dbl>` | Row identifier in the raw file | `1`, `2`, `3` |
+| `MONATSZAHL` | `<chr>` | Main statistical topic | `Altersgruppen`, `Haushalte nach Personenzahl` |
+| `AUSPRAEGUNG` | `<chr>` | Subcategory within the topic | age group, household type, migration category |
+| `JAHR` | `<dbl>` | Year of the observation | `2024` |
+| `MONAT` | `<chr>` | Monthly reference period | usually `YYYYMM`, also contains `Summe` |
+| `WERT` | `<dbl>` | Reported value for the selected topic and category | population count, household count, migration count |
+| `VORJAHRESWERT` | `<dbl>` | Value for the same month in the previous year | may contain missing values |
+| `VERAEND_VORMONAT_PROZENT` | `<dbl>` | Percentage change compared with the previous month | may contain missing values |
+| `VERAEND_VORJAHRESMONAT_PROZENT` | `<dbl>` | Percentage change compared with the same month in the previous year | may contain missing values |
+| `ZWOELF_MONATE_MITTELWERT` | `<dbl>` | Twelve-month moving average | may contain missing values |
