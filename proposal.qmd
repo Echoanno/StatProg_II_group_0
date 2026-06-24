@@ -32,7 +32,7 @@ For this project, we focus on several demographic dimensions of population chang
 The raw dataset is organised in long format. Each row represents one observation for a specific demographic category, year and month. The most relevant variables are:
 
 | Variable | Description |
-|----|----|
+|------------------------------------|------------------------------------|
 | `MONATSZAHL` | Main demographic topic, for example `Altersgruppen` |
 | `AUSPRAEGUNG` | Subcategory within the topic, for example a specific age group |
 | `JAHR` | Year of the observation |
@@ -83,6 +83,7 @@ migration_data <- population_data %>%
   )
 
 migration_yearly <- migration_data %>%
+  filter(year >= 2000, year <= 2024) %>%
   group_by(MONATSZAHL, year) %>%
   summarise(
     mean_value = mean(WERT, na.rm = TRUE),
@@ -346,7 +347,7 @@ These trends suggest that migration has been an important contributor to Munich'
 
 ```{r}
 #| label: fig-migration-trends
-#| fig-cap: "Migration inflows, outflows and migration balance in Munich, 2000-2024."
+#| fig-cap: "Yearly averages of monthly migration inflows, outflows and migration balance in Munich, 2000-2024."
 
 knitr::include_graphics(
   "figures/migration_trend_plot.png"
@@ -365,7 +366,7 @@ While Munich generally remained a net recipient of migrants, the results suggest
 
 ```{r}
 #| label: fig-migration-balance
-#| fig-cap: "Net migration balance in Munich, 2000-2024 (3-year rolling average)."
+#| fig-cap: "Yearly average monthly net migration balance in Munich, 2000-2024, with a 3-year rolling average."
 
 knitr::include_graphics(
   "figures/migration_balance_rolling_plot.png"
@@ -397,9 +398,9 @@ The figure shows that both EU and non-EU populations increased substantially bet
 
 The EU population experienced rapid growth between approximately 2010 and 2016, reaching a peak of more than 220,000 residents before declining slightly in recent years. In contrast, the non-EU population remained relatively stable during the early 2000s but increased strongly after the mid-2010s.
 
-Around 2018, the non-EU population surpassed the EU population and continued to grow throughout the remainder of the observation period. By 2024, non-EU populations represented the larger of the two groups.
+The EU population temporarily exceeded the non-EU population between 2014 and 2018. From around 2019 onward, the non-EU population became larger again and continued to grow throughout the remainder of the observation period. By 2024, non-EU populations represented the larger of the two groups.
 
-These results suggest that Munich's demographic internationalisation has increasingly been driven by non-EU populations in recent years.
+These results suggest that non-EU populations have become an increasingly important component of Munich's demographic internationalisation in recent years.
 
 #### Continental Group Comparison
 
@@ -416,7 +417,7 @@ European populations remained the largest continental group throughout the obser
 
 Asian populations experienced the strongest relative increase among the larger continental groups. The population more than tripled during the observation period, rising from around 25,000 in 2000 to nearly 90,000 in 2024. A particularly strong increase can be observed after 2015.
 
-African and American populations also grew steadily over time. Both groups approximately doubled in size between 2000 and 2024, although their absolute population levels remained substantially lower than those of European and Asian populations.
+African and American populations also grew steadily over time. American populations approximately doubled, while African populations nearly tripled between 2000 and 2024. Although their absolute population levels remained substantially lower than those of European and Asian populations.
 
 In contrast, the Australian population remained comparatively small and showed only moderate growth, followed by a relatively stable development after the mid-2010s.
 
@@ -507,7 +508,7 @@ The final analysis will remain descriptive and exploratory. The aim is not to id
 The analysis will use the following variables:
 
 | Variable | Role in the analysis |
-|----|----|
+|------------------------------------|------------------------------------|
 | `year` | Time variable for yearly trend analysis |
 | `month` | Month variable, mainly used for data cleaning and possible seasonal checks |
 | `AUSPRAEGUNG` | Original age-group category |

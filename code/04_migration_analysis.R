@@ -49,9 +49,9 @@ migration_trend_plot <- migration_yearly %>%
   geom_point(size = 1.5) +
   labs(
     title = "Migration trends in Munich, 2000–2024",
-    subtitle = "Yearly mean values for migration inflow, outflow and migration balance",
+    subtitle = "Monthly migration values aggregated as yearly averages",
     x = "Year",
-    y = "Mean yearly migration",
+    y = "Yearly average of monthly values",
     color = "Migration type"
   ) +
   theme_minimal()
@@ -101,7 +101,7 @@ migration_balance_plot <- migration_balance %>%
     title = "Net migration balance in Munich, 2000–2024",
     subtitle = "Positive values indicate net migration gains",
     x = "Year",
-    y = "Mean yearly migration balance"
+    y = "Average monthly migration balance"
   ) +
   theme_minimal() +
   theme(
