@@ -430,6 +430,23 @@ migration_extreme_years <- migration_yearly %>%
 
 migration_extreme_years
 
+# Summary table: EU and non-EU population change between 2000 and 2024
+
+eu_non_eu_change_table <- eu_non_eu_yearly %>%
+  filter(year %in% c(2000, 2024)) %>%
+  pivot_wider(
+    names_from = year,
+    values_from = mean_population,
+    names_prefix = "year_"
+  ) %>%
+  mutate(
+    absolute_change = year_2024 - year_2000,
+    relative_change_percent = absolute_change / year_2000 * 100
+  ) %>%
+  arrange(MONATSZAHL)
+
+eu_non_eu_change_table
+
 # Export processed migration tables
 
 write_csv(
@@ -462,3 +479,7 @@ write_csv(
   "data/processed/migration_extreme_years.csv"
 )
 
+write_csv(
+  eu_non_eu_change_table,
+  "data/processed/eu_non_eu_change_table.csv"
+)
