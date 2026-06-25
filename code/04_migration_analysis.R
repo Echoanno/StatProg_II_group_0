@@ -415,6 +415,21 @@ migration_change_table <- migration_yearly %>%
 
 migration_change_table
 
+# Summary table: highest and lowest yearly average migration values
+
+migration_extreme_years <- migration_yearly %>%
+  group_by(MONATSZAHL) %>%
+  summarise(
+    lowest_year = year[which.min(mean_value)],
+    lowest_value = min(mean_value, na.rm = TRUE),
+    highest_year = year[which.max(mean_value)],
+    highest_value = max(mean_value, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  arrange(MONATSZAHL)
+
+migration_extreme_years
+
 # Export processed migration tables
 
 write_csv(
@@ -441,3 +456,9 @@ write_csv(
   migration_change_table,
   "data/processed/migration_change_table.csv"
 )
+
+write_csv(
+  migration_extreme_years,
+  "data/processed/migration_extreme_years.csv"
+)
+
