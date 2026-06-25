@@ -398,6 +398,23 @@ ggsave(
   dpi = 300
 )
 
+# Summary table: migration change between 2000 and 2024
+
+migration_change_table <- migration_yearly %>%
+  filter(year %in% c(2000, 2024)) %>%
+  pivot_wider(
+    names_from = year,
+    values_from = mean_value,
+    names_prefix = "year_"
+  ) %>%
+  mutate(
+    absolute_change = year_2024 - year_2000,
+    relative_change_percent = absolute_change / year_2000 * 100
+  ) %>%
+  arrange(MONATSZAHL)
+
+migration_change_table
+
 # Export processed migration tables
 
 write_csv(
@@ -418,4 +435,9 @@ write_csv(
 write_csv(
   eu_non_eu_yearly,
   "data/processed/eu_non_eu_yearly.csv"
+)
+
+write_csv(
+  migration_change_table,
+  "data/processed/migration_change_table.csv"
 )
