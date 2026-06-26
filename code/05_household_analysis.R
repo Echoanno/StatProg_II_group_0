@@ -5,6 +5,7 @@ library(readr)
 library(tidyr)
 library(stringr)
 library(ggplot2)
+library(gt)
 
 dir.create("data/processed", recursive = TRUE, showWarnings = FALSE)
 dir.create("figures", showWarnings = FALSE)
@@ -151,6 +152,36 @@ write_csv(
   household_share_change_table,
   "data/processed/household_share_change_table.csv"
 )
+
+household_share_change_gt <- household_share_change_table %>%
+  gt() %>%
+  fmt_number(
+    columns = c(percentage_2012, percentage_2024, percentage_point_change),
+    decimals = 1
+  ) %>%
+  cols_label(
+    household_size = "Household size",
+    percentage_2012 = "2012",
+    percentage_2024 = "2024",
+    percentage_point_change = html("Change<br>(percentage points)")
+  ) %>%
+  tab_spanner(
+    label = "Household share (%)",
+    columns = c(percentage_2012, percentage_2024)
+  ) %>%
+  cols_align(
+    align = "right",
+    columns = where(is.numeric)
+  ) %>%
+  tab_header(
+    title = "Household shares in Munich by household size, 2012 and 2024",
+    subtitle = "One-person households remained the largest group, and no household type changed by more than one percentage point"
+  ) %>%
+  tab_source_note(
+    md("Source: Munich Open Data, Monatszahlen Bevölkerung")
+  )
+
+household_share_change_gt
 
 # Plot the percentage point change
 
