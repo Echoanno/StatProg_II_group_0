@@ -1,0 +1,42 @@
+---
+title: "Demographic Change in Munich"
+subtitle: "Statistical Programming II Project"
+format:
+  html:
+    toc: false
+---
+
+# Project Overview
+
+This website presents our Statistical Programming II group project on demographic change in Munich.
+
+The analysis focuses on three dimensions:
+
+- Age structure
+- Migration dynamics
+- Household composition
+
+# Analysis Modules
+
+## Age Structure
+
+How has Munich's age structure changed between 2000 and 2024?
+
+![](figures/age_trend_facet_plot.png){width="90%"}
+
+## Migration Dynamics
+
+How have migration-related demographic trends changed over time?
+
+![](figures/migration_balance_rolling_plot.png){width="90%"}
+
+## Household Structure
+
+How has household composition changed between 2012 and 2024?
+
+![](figures/household_grouped_percentage_plot.png){width="90%"}
+
+# Website Pages
+
+- [Project Proposal](proposal.qmd)
+- [Final Report](report.qmd)
