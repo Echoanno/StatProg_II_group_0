@@ -111,7 +111,7 @@ household_grouped_percentage <- read_csv("data/processed/household_grouped_perce
 glimpse(household_base_filtered)
 ```
 
-The household categories data contain monthly observations from 2000 to 2025. However, the main analysis is restricted to the complete years from 2000 to 2024. The year 2025 is excluded from the main analysis because the available observations for 2025 are incomplete. To avoid counting several monthly observations for the same year, the household analysis uses the December observations as an annual baseline.
+The household analysis focuses on the years 2012 to 2024, because this is the consistent period available for household-size categories in the project dataset. The year 2025 is excluded from the main analysis because the available observations for 2025 are incomplete. To avoid counting several monthly observations for the same year, the analysis uses December observations as an annual baseline.
 
 For the first part of the analysis, five household-size categories are used:
 
@@ -444,7 +444,20 @@ Several issues should be considered when interpreting the migration analysis. Fi
 glimpse(household_base_filtered)
 ```
 
-The household analysis uses the category Haushalte nach Personenzahl from the Munich Open Data population dataset. The analysis focuses on the years from 2012 to 2024, because household-size data are available for this period. To avoid counting several monthly observations for the same year, the analysis uses the December observations as an annual baseline. This is appropriate because household-size categories describe the number of households at a specific point in time rather than monthly flow data. The analysis includes five household-size categories: `1 Person` `2 Personen` `3 Personen` `4 Personen` `5 Personen und mehr` The dataset household_base_filtered contains the number of households by year and household size. From this dataset, we calculate the percentage share of each household type. The resulting table is stored as household_size_baseline.
+The household analysis uses the category `Haushalte nach Personenzahl` from the Munich Open Data population dataset. The analysis focuses on 2012 to 2024, because this is the consistent period available for household-size categories.
+
+To avoid counting several monthly observations for the same year, December observations are used as an annual baseline. This is appropriate because household-size categories describe the number of households at a specific point in time rather than monthly flow data.
+
+The analysis includes five household-size categories:
+
+- `1 Person`
+- `2 Personen`
+- `3 Personen`
+- `4 Personen`
+- `5 Personen und mehr`
+
+The dataset `household_base_filtered` contains the number of households by year and household size. From this dataset, the percentage share of each household type is calculated and stored as `household_size_baseline`.
+
 
 #### Household Size Trends
 
@@ -459,7 +472,8 @@ knitr::include_graphics(
 )
 ```
 
-The plot provides an initial overview of Munich's household structure over time. It shows that one-person households remained the largest household category throughout the period, while the relative shares of the other household-size categories changed only moderately.
+The plot provides an initial overview of Munich's household structure over time. It shows that one-person households remained the largest household category throughout the period, while the relative shares of the other household-size categories changed only moderately. The percentage view is useful because it separates changes in household composition from the overall increase in the number of households.
+
 
 #### Change Between 2012 and 2024
 
@@ -549,13 +563,13 @@ Third, migration trends will be interpreted together with the project's findings
 
 ## Household Structure Analysis
 
-The final report will extend the household analysis in three ways.
+The household analysis is structured around three outputs.
 
-First, household-size categories will be analysed in terms of both absolute household numbers and relative percentage shares. This will show whether changes are mainly caused by general growth in the number of households or by changes in the overall household structure.
+First, the percentage share of five household-size categories is visualised from 2012 to 2024.
 
-Second, the report will compare the development of five household-size categories: `1 Person`, `2 Personen`, `3 Personen`, `4 Personen` and `5 Personen und mehr`. This will help identify which household types changed most between 2012 and 2024.
+Second, the percentage point change between 2012 and 2024 is calculated to identify which household types changed most.
 
-Third, the household categories will be grouped into `1 Person`, `2 Personen` and `3+ Personen`. This broader comparison will be used to examine whether there is preliminary evidence of a shift toward smaller households, or whether smaller households were already dominant throughout the period.
+Third, household types are grouped into `1 Person`, `2 Personen` and `3+ Personen` to assess whether there is evidence of a shift toward smaller households.
 
 # Workflow Organisation
 

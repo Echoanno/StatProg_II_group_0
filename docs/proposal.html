@@ -78,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-158031087360bce0ff56dc785ce39e06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -326,15 +326,16 @@ $ year                           &lt;dbl&gt; 2025, 2025, 2025, 2025, 2025, 2025,
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  )</span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>migration_yearly <span class="ot">&lt;-</span> migration_data <span class="sc">%&gt;%</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(MONATSZAHL, year) <span class="sc">%&gt;%</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_value =</span> <span class="fu">mean</span>(WERT, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(migration_yearly)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2000</span>, year <span class="sc">&lt;=</span> <span class="dv">2024</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(MONATSZAHL, year) <span class="sc">%&gt;%</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean_value =</span> <span class="fu">mean</span>(WERT, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(migration_yearly)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Rows: 78
+<pre><code>Rows: 75
 Columns: 3
 $ MONATSZAHL &lt;chr&gt; "Wanderungssaldo", "Wanderungssaldo", "Wanderungssaldo", "W…
 $ year       &lt;dbl&gt; 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009,…
@@ -362,7 +363,7 @@ $ category &lt;chr&gt; "1 Person", "1 Person", "1 Person", "1 Person", "1 Person
 $ count    &lt;dbl&gt; 468540, 461441, 452585, 448248, 449561, 448732, 446350, 44225…</code></pre>
 </div>
 </div>
-<p>The household categories data contain monthly observations from 2000 to 2025. However, the main analysis is restricted to the complete years from 2000 to 2024. The year 2025 is excluded from the main analysis because the available observations for 2025 are incomplete. To avoid counting several monthly observations for the same year, the household analysis uses the December observations as an annual baseline.</p>
+<p>The household analysis focuses on the years 2012 to 2024, because this is the consistent period available for household-size categories in the project dataset. The year 2025 is excluded from the main analysis because the available observations for 2025 are incomplete.To avoid counting several monthly observations for the same year, the analysis uses December observations as an annual baseline.</p>
 <p>For the first part of the analysis, five household-size categories are used:</p>
 <ul>
 <li>1 Person</li>
@@ -777,7 +778,7 @@ Third, demographic diversification is examined through continental population gr
 <img src="figures/migration_trend_plot.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-migration-trends-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Migration inflows, outflows and migration balance in Munich, 2000-2024.
+Figure&nbsp;3: Yearly averages of monthly migration inflows, outflows and migration balance in Munich, 2000-2024.
 </figcaption>
 </figure>
 </div>
@@ -801,7 +802,7 @@ Figure&nbsp;3: Migration inflows, outflows and migration balance in Munich, 2000
 <img src="figures/migration_balance_rolling_plot.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-migration-balance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Net migration balance in Munich, 2000-2024 (3-year rolling average).
+Figure&nbsp;4: Yearly average monthly net migration balance in Munich, 2000-2024, with a 3-year rolling average.
 </figcaption>
 </figure>
 </div>
@@ -874,8 +875,8 @@ Figure&nbsp;5: EU and non-EU demographic trends in Munich, 2000-2024.
 </div>
 <p>The figure shows that both EU and non-EU populations increased substantially between 2000 and 2024. However, the growth patterns differ considerably.</p>
 <p>The EU population experienced rapid growth between approximately 2010 and 2016, reaching a peak of more than 220,000 residents before declining slightly in recent years. In contrast, the non-EU population remained relatively stable during the early 2000s but increased strongly after the mid-2010s.</p>
-<p>Around 2018, the non-EU population surpassed the EU population and continued to grow throughout the remainder of the observation period. By 2024, non-EU populations represented the larger of the two groups.</p>
-<p>These results suggest that Munich’s demographic internationalisation has increasingly been driven by non-EU populations in recent years.</p>
+<p>The EU population temporarily exceeded the non-EU population between 2014 and 2018. From around 2019 onward, the non-EU population became larger again and continued to grow throughout the remainder of the observation period. By 2024, non-EU populations represented the larger of the two groups.</p>
+<p>These results suggest that non-EU populations have become an increasingly important component of Munich’s demographic internationalisation in recent years.</p>
 </section>
 <section id="continental-group-comparison" class="level4" data-number="2.1.2.6">
 <h4 data-number="2.1.2.6" class="anchored" data-anchor-id="continental-group-comparison"><span class="header-section-number">2.1.2.6</span> Continental Group Comparison</h4>
@@ -906,7 +907,7 @@ Figure&nbsp;5: EU and non-EU demographic trends in Munich, 2000-2024.
 <p>The faceted trend plot reveals substantial differences in demographic developments across continental population groups between 2000 and 2024.</p>
 <p>European populations remained the largest continental group throughout the observation period, increasing from approximately 236,000 to more than 350,000 residents. Growth accelerated particularly after 2010.</p>
 <p>Asian populations experienced the strongest relative increase among the larger continental groups. The population more than tripled during the observation period, rising from around 25,000 in 2000 to nearly 90,000 in 2024. A particularly strong increase can be observed after 2015.</p>
-<p>African and American populations also grew steadily over time. Both groups approximately doubled in size between 2000 and 2024, although their absolute population levels remained substantially lower than those of European and Asian populations.</p>
+<p>African and American populations also grew steadily over time. American populations approximately doubled, while African populations nearly tripled between 2000 and 2024. Although their absolute population levels remained substantially lower than those of European and Asian populations.</p>
 <p>In contrast, the Australian population remained comparatively small and showed only moderate growth, followed by a relatively stable development after the mid-2010s.</p>
 <p>Overall, the results suggest that Munich’s demographic change has been characterised not only by population growth but also by increasing international diversification. While European populations continue to dominate numerically, Asian, African and American populations have grown considerably faster, indicating a broadening geographical composition of Munich’s population.</p>
 <div class="cell">
@@ -946,7 +947,17 @@ $ category &lt;chr&gt; "1 Person", "1 Person", "1 Person", "1 Person", "1 Person
 $ count    &lt;dbl&gt; 468540, 461441, 452585, 448248, 449561, 448732, 446350, 44225…</code></pre>
 </div>
 </div>
-<p>The household analysis uses the category Haushalte nach Personenzahl from the Munich Open Data population dataset. The analysis focuses on the years from 2012 to 2024, because household-size data are available for this period. To avoid counting several monthly observations for the same year, the analysis uses the December observations as an annual baseline. This is appropriate because household-size categories describe the number of households at a specific point in time rather than monthly flow data. The analysis includes five household-size categories: <code>1 Person</code> <code>2 Personen</code> <code>3 Personen</code> <code>4 Personen</code> <code>5 Personen und mehr</code> The dataset household_base_filtered contains the number of households by year and household size. From this dataset, we calculate the percentage share of each household type. The resulting table is stored as household_size_baseline.</p>
+<p>The household analysis uses the category <code>Haushalte nach Personenzahl</code> from the Munich Open Data population dataset. The analysis focuses on 2012 to 2024, because this is the consistent period available for household-size categories.</p>
+<p>To avoid counting several monthly observations for the same year, December observations are used as an annual baseline. This is appropriate because household-size categories describe the number of households at a specific point in time rather than monthly flow data.</p>
+<p>The analysis includes five household-size categories:</p>
+<ul>
+<li><code>1 Person</code></li>
+<li><code>2 Personen</code></li>
+<li><code>3 Personen</code></li>
+<li><code>4 Personen</code></li>
+<li><code>5 Personen und mehr</code></li>
+</ul>
+<p>The dataset <code>household_base_filtered</code> contains the number of households by year and household size. From this dataset, the percentage share of each household type is calculated and stored as <code>household_size_baseline</code>.</p>
 </section>
 <section id="household-size-trends" class="level4" data-number="2.1.3.2">
 <h4 data-number="2.1.3.2" class="anchored" data-anchor-id="household-size-trends"><span class="header-section-number">2.1.3.2</span> Household Size Trends</h4>
@@ -968,7 +979,7 @@ Figure&nbsp;7: Percentage share of household-size categories in Munich, 2012-202
 </div>
 </div>
 </div>
-<p>The plot provides an initial overview of Munich’s household structure over time. It shows that one-person households remained the largest household category throughout the period, while the relative shares of the other household-size categories changed only moderately.</p>
+<p>The plot provides an initial overview of Munich’s household structure over time. It shows that one-person households remained the largest household category throughout the period, while the relative shares of the other household-size categories changed only moderately. The percentage view is useful because it separates changes in household composition from the overall increase in the number of households.</p>
 </section>
 <section id="change-between-2012-and-2024" class="level4" data-number="2.1.3.3">
 <h4 data-number="2.1.3.3" class="anchored" data-anchor-id="change-between-2012-and-2024"><span class="header-section-number">2.1.3.3</span> Change Between 2012 and 2024</h4>
@@ -1095,10 +1106,10 @@ Figure&nbsp;9: Percentage share of one-person, two-person, and three-or-more-per
 </section>
 <section id="household-structure-analysis" class="level2" data-number="3.3">
 <h2 data-number="3.3" class="anchored" data-anchor-id="household-structure-analysis"><span class="header-section-number">3.3</span> Household Structure Analysis</h2>
-<p>The final report will extend the household analysis in three ways.</p>
-<p>First, household-size categories will be analysed in terms of both absolute household numbers and relative percentage shares. This will show whether changes are mainly caused by general growth in the number of households or by changes in the overall household structure.</p>
-<p>Second, the report will compare the development of five household-size categories: <code>1 Person</code>, <code>2 Personen</code>, <code>3 Personen</code>, <code>4 Personen</code> and <code>5 Personen und mehr</code>. This will help identify which household types changed most between 2012 and 2024.</p>
-<p>Third, the household categories will be grouped into <code>1 Person</code>, <code>2 Personen</code> and <code>3+ Personen</code>. This broader comparison will be used to examine whether there is preliminary evidence of a shift toward smaller households, or whether smaller households were already dominant throughout the period.</p>
+<p>The household analysis is structured around three outputs.</p>
+<p>First, the percentage share of five household-size categories is visualised from 2012 to 2024.</p>
+<p>Second, the percentage point change between 2012 and 2024 is calculated to identify which household types changed most.</p>
+<p>Third, household types are grouped into <code>1 Person</code>, <code>2 Personen</code> and <code>3+ Personen</code> to assess whether there is evidence of a shift toward smaller households.</p>
 </section>
 </section>
 <section id="workflow-organisation" class="level1" data-number="4">
