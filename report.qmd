@@ -1,0 +1,219 @@
+---
+title: "Demographic Change in Munich"
+subtitle: "Age structure, migration dynamics and household composition, 2000-2024"
+author: "Group 0"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+    code-fold: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+library(tidyverse)
+library(gt)
+library(scales)
+library(knitr)
+
+age_change_table <- read_csv("data/processed/age_change_table.csv")
+migration_change_table <- read_csv("data/processed/migration_change_table.csv")
+migration_extreme_years <- read_csv("data/processed/migration_extreme_years.csv")
+eu_non_eu_change_table <- read_csv("data/processed/eu_non_eu_change_table.csv")
+household_share_change_table <- read_csv("data/processed/household_share_change_table.csv")
+```
+
+# Executive Summary
+
+- **Munich's demographic structure changed substantially between 2000 and 2024.** All selected age groups increased, but growth differed strongly by age group.
+- **Migration remained an important driver of demographic change.** Inflows and outflows both increased, while net migration became more volatile after the mid-2010s.
+- **Internationalisation became more visible.** Non-EU populations grew strongly in recent years, and continental population groups developed at different speeds.
+- **Household structure was already strongly shaped by smaller households.** Between 2012 and 2024, household shares changed only moderately.
+
+# Data and Scope
+
+This project uses the dataset *Monatszahlen Bevölkerung* from the Open Data Portal of the City of Munich. Each row represents one demographic topic, subcategory and month.
+
+Rows where `MONAT == "Summe"` were removed because they are annual summary rows, not monthly observations. The main analysis excludes 2025 because it is incomplete.
+
+For age structure and migration, the report focuses on 2000-2024. For household structure, it focuses on 2012-2024 because this is the consistent period available for household-size categories.
+
+# Munich Grew Across Age Groups, But Not Evenly
+
+The age analysis compares five non-overlapping age groups. The 18-64 group had the largest absolute increase, while younger school-age groups and the 65+ group showed stronger relative growth.
+
+```{r}
+knitr::include_graphics("figures/age_trend_facet_plot.png")
+```
+
+The table reports exact start-end comparisons. This follows the communication principle that plots are better for patterns, while tables are better for precise values.
+
+```{r}
+age_change_table %>%
+  mutate(
+    across(c(`2000`, `2024`, absolute_change), ~ round(.x, 0)),
+    relative_change = round(relative_change, 1)
+  ) %>%
+  gt() %>%
+  fmt_number(columns = c(`2000`, `2024`, absolute_change), decimals = 0) %>%
+  fmt_number(columns = relative_change, decimals = 1) %>%
+  cols_label(
+    age_group = "Age group",
+    `2000` = "2000",
+    `2024` = "2024",
+    absolute_change = "Absolute change",
+    relative_change = "Relative change (%)"
+  ) %>%
+  tab_header(
+    title = "Age groups changed unevenly between 2000 and 2024",
+    subtitle = "Values are yearly mean population counts"
+  ) %>%
+  tab_source_note("Source: Munich Open Data Portal, Monatszahlen Bevölkerung")
+```
+
+# Migration Became More Volatile After the Mid-2010s
+
+Migration indicators are aggregated as yearly averages of monthly observations. Therefore, the values describe average monthly migration levels within each year, not total annual migration flows.
+
+```{r}
+knitr::include_graphics("figures/migration_trend_plot.png")
+```
+
+```{r}
+migration_change_table %>%
+  mutate(
+    MONATSZAHL = recode(
+      MONATSZAHL,
+      "Zugezogene" = "Inflow",
+      "Weggezogene" = "Outflow",
+      "Wanderungssaldo" = "Net migration balance"
+    )
+  ) %>%
+  gt() %>%
+  fmt_number(columns = c(year_2000, year_2024, absolute_change), decimals = 0) %>%
+  fmt_number(columns = relative_change_percent, decimals = 1) %>%
+  cols_label(
+    MONATSZAHL = "Migration indicator",
+    year_2000 = "2000",
+    year_2024 = "2024",
+    absolute_change = "Absolute change",
+    relative_change_percent = "Relative change (%)"
+  ) %>%
+  tab_header(
+    title = "Migration indicators changed between 2000 and 2024",
+    subtitle = "Yearly averages of monthly observations"
+  ) %>%
+  tab_source_note("Source: Munich Open Data Portal, Monatszahlen Bevölkerung")
+```
+
+# Net Migration Shows Strong Year-to-Year Fluctuation
+
+The rolling average smooths short-term variation and makes the longer-term pattern easier to read.
+
+```{r}
+knitr::include_graphics("figures/migration_balance_rolling_plot.png")
+```
+
+```{r}
+migration_extreme_years %>%
+  mutate(
+    MONATSZAHL = recode(
+      MONATSZAHL,
+      "Zugezogene" = "Inflow",
+      "Weggezogene" = "Outflow",
+      "Wanderungssaldo" = "Net migration balance"
+    )
+  ) %>%
+  gt() %>%
+  fmt_number(columns = c(lowest_value, highest_value), decimals = 0) %>%
+  cols_label(
+    MONATSZAHL = "Migration indicator",
+    lowest_year = "Lowest year",
+    lowest_value = "Lowest value",
+    highest_year = "Highest year",
+    highest_value = "Highest value"
+  ) %>%
+  tab_header(
+    title = "Migration indicators reached their extremes in different years",
+    subtitle = "Extremes are based on yearly averages of monthly values"
+  ) %>%
+  tab_source_note("Source: Munich Open Data Portal, Monatszahlen Bevölkerung")
+```
+
+# Internationalisation Increased, Especially Among Non-EU Groups
+
+The EU/non-EU comparison helps describe Munich's demographic internationalisation. This comparison is descriptive and does not identify causal mechanisms.
+
+```{r}
+knitr::include_graphics("figures/eu_non_eu_plot.png")
+```
+
+```{r}
+eu_non_eu_change_table %>%
+  mutate(
+    MONATSZAHL = recode(
+      MONATSZAHL,
+      "EU-Staatsangehörigkeiten" = "EU citizens",
+      "Nicht-EU-Staatsangehörigkeiten" = "Non-EU citizens"
+    )
+  ) %>%
+  gt() %>%
+  fmt_number(columns = c(year_2000, year_2024, absolute_change), decimals = 0) %>%
+  fmt_number(columns = relative_change_percent, decimals = 1) %>%
+  cols_label(
+    MONATSZAHL = "Group",
+    year_2000 = "2000",
+    year_2024 = "2024",
+    absolute_change = "Absolute change",
+    relative_change_percent = "Relative change (%)"
+  ) %>%
+  tab_header(
+    title = "Non-EU populations became increasingly important",
+    subtitle = "Comparison of yearly mean population values in 2000 and 2024"
+  ) %>%
+  tab_source_note("Source: Munich Open Data Portal, Monatszahlen Bevölkerung")
+```
+
+```{r}
+knitr::include_graphics("figures/continent_facet_plot.png")
+```
+
+# Smaller Households Remained Dominant
+
+The household analysis uses December observations from 2012 to 2024 as an annual baseline. This avoids counting several monthly observations for the same year.
+
+```{r}
+knitr::include_graphics("figures/household_grouped_percentage_plot.png")
+```
+
+```{r}
+knitr::include_graphics("figures/household_share_change_plot.png")
+```
+
+# What This Analysis Cannot Answer
+
+This analysis is descriptive and exploratory. It can show how demographic indicators changed, but it cannot explain why they changed. The data are aggregate municipal statistics, so they cannot identify individual migration decisions, household formation processes or causal effects of policies.
+
+# Next Steps
+
+- Improve figure titles, captions and alt text for the final website.
+- Add one optional interactive migration exploration page using `plotly`.
+- Track remaining tasks with GitHub Issues.
+- Write `group-reflection.qmd` and individual contribution statements.
+
+# Reproducibility
+
+The project separates raw data, processed data, scripts, figures and rendered website files. To reproduce the main outputs, run the cleaning and analysis scripts and then render the Quarto website.
+
+```bash
+Rscript code/01_import_clean.R
+Rscript code/02_eda.R
+Rscript code/04_migration_analysis.R
+Rscript code/05_household_analysis.R
+Rscript code/06_age_migration_comparison.R
+quarto render
+```
