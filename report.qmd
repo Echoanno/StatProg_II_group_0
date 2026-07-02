@@ -29,10 +29,15 @@ household_share_change_table <- read_csv("data/processed/household_share_change_
 
 # Executive Summary
 
-- **Munich's demographic structure changed substantially between 2000 and 2024.** All selected age groups increased, but growth differed strongly by age group.
-- **Migration remained an important driver of demographic change.** Inflows and outflows both increased, while net migration became more volatile after the mid-2010s.
-- **Internationalisation became more visible.** Non-EU populations grew strongly in recent years, and continental population groups developed at different speeds.
-- **Household structure was already strongly shaped by smaller households.** Between 2012 and 2024, household shares changed only moderately.
+Munich’s demographic transformation between 2000 and 2024 is characterized by modest age-structure change, volatile migration flows, strong international diversification, and stable household composition.
+
+- **Ageing is visible but limited.** The 65+ population increased in absolute terms, but its population share rose only slightly, from about 15.9% to 17.0%. Younger age groups also grew, so Munich cannot be described as simply getting older.
+
+- **Migration is better understood as a volatile short-term indicator than as a smooth long-term trend.** Net migration balance was about 833 in 2000 and 634 in 2024, but it fluctuated strongly between those years, reaching a high around 1,597 in 2011 and a low around -1,340 in 2017.
+
+- **International diversification is one of the clearest structural changes.** EU and non-EU populations both increased strongly, while Asian and African population groups grew especially fast. This suggests that Munich's demographic transformation is not only about population growth, but also about changing international composition.
+
+- **Household composition remained surprisingly stable.** One-person households stayed at around 54.3% between 2012 and 2024. This stability provides an important contrast to the stronger changes observed in migration and international composition.
 
 # Data and Scope
 
@@ -42,12 +47,22 @@ Rows where `MONAT == "Summe"` were removed because they are annual summary rows,
 
 For age structure and migration, the report focuses on 2000-2024. For household structure, it focuses on 2012-2024 because this is the consistent period available for household-size categories.
 
+# Report Storyline
+
+The report follows four connected findings. Age structure changed gradually, with only limited evidence of ageing and growth among younger groups. Migration indicators fluctuated strongly and therefore reflect short-term demographic volatility. International composition changed more visibly, especially through the growth of non-EU, Asian and African population groups. In contrast, household composition remained surprisingly stable, with one-person households continuing to dominate throughout 2012-2024.
+
 # Munich Grew Across Age Groups, But Not Evenly
 
 The age analysis compares five non-overlapping age groups. The 18-64 group had the largest absolute increase, while younger school-age groups and the 65+ group showed stronger relative growth.
 
 ```{r}
 knitr::include_graphics("figures/age_trend_facet_plot.png")
+```
+
+The age-share comparison gives a more direct view of demographic ageing. The 65+ share increased from about 15.9% in 2000 to about 17.0% in 2024. This suggests a slight shift toward an older age structure, but the change is not large enough to describe Munich's demographic development as ageing alone.
+
+```{r}
+knitr::include_graphics("figures/age_share_bar_plot.png")
 ```
 
 The table reports exact start-end comparisons. This follows the communication principle that plots are better for patterns, while tables are better for precise values.
