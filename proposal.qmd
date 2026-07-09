@@ -111,8 +111,7 @@ household_grouped_percentage <- read_csv("data/processed/household_grouped_perce
 glimpse(household_base_filtered)
 ```
 
-The household analysis focuses on the years 2012 to 2024, because this is the consistent period available for household-size categories in the project dataset.  The year 2025 is excluded from the main analysis because the available observations for 2025 are incomplete.To avoid counting several monthly observations for the same year, the analysis uses December observations as an annual baseline.
- 
+The household analysis focuses on the years 2012 to 2024, because this is the consistent period available for household-size categories in the project dataset. The year 2025 is excluded from the main analysis because the available observations for 2025 are incomplete. To avoid counting several monthly observations for the same year, the analysis uses December observations as an annual baseline.
 
 For the first part of the analysis, five household-size categories are used:
 
@@ -436,6 +435,23 @@ knitr::include_graphics(
 #### Data Quality Issues
 
 Several issues should be considered when interpreting the migration analysis. First, the year 2025 is incomplete and is therefore excluded from the main analysis. Second, monthly observations are aggregated into yearly mean values, which may conceal short-term migration fluctuations. Third, the EU/non-EU and continental comparisons are descriptive and do not allow causal conclusions about migration processes. Finally, migration trends should not be interpreted based solely on absolute population counts; relative population shares and growth rates may provide additional insights into Munich's demographic transformation.
+
+### Age-Migration Exploratory Comparison
+
+To connect the age structure analysis with the migration dynamics analysis, this section compares selected age and migration indicators at the yearly level from 2000 to 2024. The combined table includes age-group shares, migration inflows, migration outflows, migration balance, and EU and non-EU population indicators.
+
+Because these indicators have different units, they are indexed to 2000 = 100. This makes it possible to compare long-term relative changes across indicators.
+
+```{r}
+#| label: fig-age-migration-indexed
+#| fig-cap: "Indexed trends in selected age-structure and migration indicators in Munich, 2000-2024. All indicators are indexed to 2000 = 100."
+
+knitr::include_graphics(
+  "figures/age_migration_indexed_plot.png"
+)
+```
+
+The indexed comparison provides a descriptive overview of how age-structure indicators and migration-related indicators developed over the same period. It can show whether selected indicators moved in similar or different directions over time. However, this comparison is exploratory only and does not provide evidence of causal relationships. Similar trends may reflect shared long-term demographic developments rather than a direct effect of migration on age structure.
 
 ### Household Structure
 

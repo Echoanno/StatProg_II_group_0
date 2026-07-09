@@ -49,9 +49,9 @@ migration_trend_plot <- migration_yearly %>%
   geom_point(size = 1.5) +
   labs(
     title = "Migration trends in Munich, 2000–2024",
-    subtitle = "Yearly mean values for migration inflow, outflow and migration balance",
+    subtitle = "Monthly migration values aggregated as yearly averages",
     x = "Year",
-    y = "Mean yearly migration",
+    y = "Yearly average of monthly values",
     color = "Migration type"
   ) +
   theme_minimal()
@@ -101,7 +101,7 @@ migration_balance_plot <- migration_balance %>%
     title = "Net migration balance in Munich, 2000–2024",
     subtitle = "Positive values indicate net migration gains",
     x = "Year",
-    y = "Mean yearly migration balance"
+    y = "Average monthly migration balance"
   ) +
   theme_minimal() +
   theme(
@@ -398,6 +398,55 @@ ggsave(
   dpi = 300
 )
 
+# Summary table: migration change between 2000 and 2024
+
+migration_change_table <- migration_yearly %>%
+  filter(year %in% c(2000, 2024)) %>%
+  pivot_wider(
+    names_from = year,
+    values_from = mean_value,
+    names_prefix = "year_"
+  ) %>%
+  mutate(
+    absolute_change = year_2024 - year_2000,
+    relative_change_percent = absolute_change / year_2000 * 100
+  ) %>%
+  arrange(MONATSZAHL)
+
+migration_change_table
+
+# Summary table: highest and lowest yearly average migration values
+
+migration_extreme_years <- migration_yearly %>%
+  group_by(MONATSZAHL) %>%
+  summarise(
+    lowest_year = year[which.min(mean_value)],
+    lowest_value = min(mean_value, na.rm = TRUE),
+    highest_year = year[which.max(mean_value)],
+    highest_value = max(mean_value, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  arrange(MONATSZAHL)
+
+migration_extreme_years
+
+# Summary table: EU and non-EU population change between 2000 and 2024
+
+eu_non_eu_change_table <- eu_non_eu_yearly %>%
+  filter(year %in% c(2000, 2024)) %>%
+  pivot_wider(
+    names_from = year,
+    values_from = mean_population,
+    names_prefix = "year_"
+  ) %>%
+  mutate(
+    absolute_change = year_2024 - year_2000,
+    relative_change_percent = absolute_change / year_2000 * 100
+  ) %>%
+  arrange(MONATSZAHL)
+
+eu_non_eu_change_table
+
 # Export processed migration tables
 
 write_csv(
@@ -418,4 +467,19 @@ write_csv(
 write_csv(
   eu_non_eu_yearly,
   "data/processed/eu_non_eu_yearly.csv"
+)
+
+write_csv(
+  migration_change_table,
+  "data/processed/migration_change_table.csv"
+)
+
+write_csv(
+  migration_extreme_years,
+  "data/processed/migration_extreme_years.csv"
+)
+
+write_csv(
+  eu_non_eu_change_table,
+  "data/processed/eu_non_eu_change_table.csv"
 )
