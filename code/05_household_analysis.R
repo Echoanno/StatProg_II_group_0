@@ -83,11 +83,12 @@ household_percentage_plot <- ggplot(
   geom_line() +
   geom_point() +
   labs(
-    title = "Household Size Trends in Munich (2012-2024)",
-    subtitle = "Percentage share of total households by person count.",
+    title = "Household structure in Munich by household size, 2012-2024",
+    subtitle = "One-person households remained the largest category throughout the period.",
     x = "Year",
-    y = "Percentage of Total Households (%)",
-    color = "Household Type"
+    y = "Share of total households (%)",
+    color = "Household size",
+    caption = "Source: Munich Open Data, Monatszahlen Bevölkerung; December observations; own calculations."
   ) +
   theme_minimal()
 household_percentage_plot
@@ -112,11 +113,12 @@ household_count_plot <- ggplot(
   geom_line() +
   geom_point() +
   labs(
-    title = "Household Size Count Trends in Munich (2012-2024)",
-    subtitle = "Count change by person count.",
+    title = "Number of households in Munich by household size, 2012-2024",
+    subtitle = "Annual household counts based on December observations.",
     x = "Year",
-    y = "Count of Total Household",
-    color = "Household Type"
+    y = "Number of households",
+    color = "Household size",
+    caption = "Source: Munich Open Data, Monatszahlen Bevölkerung; December observations; own calculations."
   ) +
   theme_minimal()
 household_count_plot
@@ -175,10 +177,10 @@ household_share_change_gt <- household_share_change_table %>%
   ) %>%
   tab_header(
     title = "Household shares in Munich by household size, 2012 and 2024",
-    subtitle = "One-person households remained the largest group, and no household type changed by more than one percentage point"
+    subtitle = "One-person households remained the largest category, while all household-size shares changed only moderately."
   ) %>%
   tab_source_note(
-    md("Source: Munich Open Data, Monatszahlen Bevölkerung")
+    md("Source: Munich Open Data, Monatszahlen Bevölkerung; December observations; own calculations.")
   )
 
 household_share_change_gt
@@ -197,9 +199,9 @@ household_share_change_plot <- ggplot(
   labs(
     title = "Change in household-size shares in Munich, 2012-2024",
     subtitle = "Household-size shares changed only moderately over the analysis period.",
-    x = "Household type",
+    x = "Household size",
     y = "Change in percentage points",
-    caption = "Source: Munich Open Data, population monthly figures; December observations."
+    caption = "Source: Munich Open Data, Monatszahlen Bevölkerung; December observations; own calculations."
   ) +
   theme_minimal()
 
@@ -262,11 +264,12 @@ household_grouped_percentage_plot <- ggplot(
   geom_line() +
   geom_point() +
   labs(
-    title = "Regrouped Household Structure in Munich (2012-2024)",
-    subtitle = "Percentage share of 1-person, 2-person, and 3+ person households.",
+    title = "Grouped household structure in Munich, 2012-2024",
+    subtitle = "Smaller households formed the majority throughout the period.",
     x = "Year",
-    y = "Percentage of Total Households (%)",
-    color = "Household Group"
+    y = "Share of total households (%)",
+    color = "Household group",
+    caption = "Source: Munich Open Data, Monatszahlen Bevölkerung; December observations; own calculations."
   ) +
   theme_minimal()
 
