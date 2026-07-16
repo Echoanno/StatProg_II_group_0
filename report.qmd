@@ -31,13 +31,13 @@ household_share_change_table <- read_csv("data/processed/household_share_change_
 
 Munich’s demographic transformation between 2000 and 2024 is characterized by modest age-structure change, volatile migration flows, strong international diversification, and stable household composition.
 
-- **Ageing is visible but limited.** The 65+ population increased in absolute terms, but its population share rose only slightly, from about 15.9% to 17.0%. Younger age groups also grew, so Munich cannot be described as simply getting older.
+-   **Ageing is visible but limited.** The 65+ population increased in absolute terms, but its population share rose only slightly, from about 15.9% to 17.0%. Younger age groups also grew, so Munich cannot be described as simply getting older.
 
-- **Migration is better understood as a volatile short-term indicator than as a smooth long-term trend.** Net migration balance was about 833 in 2000 and 634 in 2024, but it fluctuated strongly between those years, reaching a high around 1,597 in 2011 and a low around -1,340 in 2017.
+-   **Migration is better understood as a volatile short-term indicator than as a smooth long-term trend.** Net migration balance was about 833 in 2000 and 634 in 2024, but it fluctuated strongly between those years, reaching a high around 1,597 in 2011 and a low around -1,340 in 2017.
 
-- **International diversification is one of the clearest structural changes.** EU and non-EU populations both increased strongly, while Asian and African population groups grew especially fast. This suggests that Munich's demographic transformation is not only about population growth, but also about changing international composition.
+-   **International diversification is one of the clearest structural changes.** EU and non-EU populations both increased strongly, while Asian and African population groups grew especially fast. This suggests that Munich's demographic transformation is not only about population growth, but also about changing international composition.
 
-- **Household composition remained surprisingly stable.** One-person households stayed at around 54.3% between 2012 and 2024. This stability provides an important contrast to the stronger changes observed in migration and international composition.
+-   **Household composition remained surprisingly stable.** One-person households stayed at around 54.3% between 2012 and 2024. This stability provides an important contrast to the stronger changes observed in migration and international composition.
 
 # Research Questions
 
@@ -45,19 +45,25 @@ This report asks how Munich's demographic structure changed between 2000 and 202
 
 More specifically, we focus on three descriptive questions:
 
-1. How did Munich's age structure change during this period?
-2. How did migration dynamics and international population composition change?
-3. Did household size composition change in the same way, or did it remain relatively stable?
+1.  How did Munich's age structure change during this period?
+2.  How did migration dynamics and international population composition change?
+3.  Did household size composition change in the same way, or did it remain relatively stable?
 
 The analysis is descriptive and exploratory. It does not aim to identify causal effects.
 
 # Data and Scope
 
+# Data and Scope
+
 This project uses the dataset *Monatszahlen Bevölkerung* from the Open Data Portal of the City of Munich. Each row represents one demographic topic, subcategory and month.
 
-Rows where `MONAT == "Summe"` were removed because they are annual summary rows, not monthly observations. The main analysis excludes 2025 because it is incomplete.
+The main value column, `WERT`, contains the reported population count or migration value for a specific demographic category and month. For population-stock variables such as age groups, EU/non-EU citizenship groups and household structure, the values describe the size of a group at a given time. For migration indicators, the values describe monthly inflows, outflows or net migration balance.
+
+Rows where `MONAT == "Summe"` were excluded from analyses based on monthly observations because they are annual summary rows, not monthly observations. The main analysis excludes 2025 because it is incomplete.
 
 For age structure and migration, the report focuses on 2000-2024. For household structure, it focuses on 2012-2024 because this is the consistent period available for household-size categories.
+
+Because the dataset is monthly, the yearly migration values in this report are calculated as yearly averages of monthly observations. They should therefore not be interpreted as annual totals.
 
 # Report Storyline
 
@@ -223,7 +229,7 @@ knitr::include_graphics("figures/age_migration_indexed_plot.png")
 ```
 
 By placing age-structure and migration indicators on a common indexed scale, this comparison shows that Munich's demographic change was not a single synchronized process. Age-structure indicators changed gradually, while migration indicators fluctuated more strongly. This section is therefore a synthesis of the previous findings, not a causal analysis.
- 
+
 # Smaller Households Remained Dominant
 
 The household analysis uses December observations from 2012 to 2024 as an annual baseline. This avoids counting several monthly observations for the same year.
@@ -242,16 +248,16 @@ This analysis is descriptive and exploratory. It can show how demographic indica
 
 # Next Steps
 
-- Improve figure titles, captions and alt text for the final website.
-- Add one optional interactive migration exploration page using `plotly`.
-- Track remaining tasks with GitHub Issues.
-- Write `group-reflection.qmd` and individual contribution statements.
+-   Improve figure titles, captions and alt text for the final website.
+-   Add one optional interactive migration exploration page using `plotly`.
+-   Track remaining tasks with GitHub Issues.
+-   Write `group-reflection.qmd` and individual contribution statements.
 
 # Reproducibility
 
 The project separates raw data, processed data, scripts, figures and rendered website files. To reproduce the main outputs, run the cleaning and analysis scripts and then render the Quarto website.
 
-```bash
+``` bash
 Rscript code/01_import_clean.R
 Rscript code/02_eda.R
 Rscript code/04_migration_analysis.R
