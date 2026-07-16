@@ -53,8 +53,6 @@ The analysis is descriptive and exploratory. It does not aim to identify causal 
 
 # Data and Scope
 
-# Data and Scope
-
 This project uses the dataset *Monatszahlen Bevölkerung* from the Open Data Portal of the City of Munich. Each row represents one demographic topic, subcategory and month.
 
 The main value column, `WERT`, contains the reported population count or migration value for a specific demographic category and month. For population-stock variables such as age groups, EU/non-EU citizenship groups and household structure, the values describe the size of a group at a given time. For migration indicators, the values describe monthly inflows, outflows or net migration balance.
@@ -150,6 +148,7 @@ The rolling average smooths short-term variation and makes the longer-term patte
 ```{r}
 knitr::include_graphics("figures/migration_balance_rolling_plot.png")
 ```
+The rolling average highlights a clear change around the mid-2010s, including the negative net migration balance around 2017 and the later recovery. This supports interpreting migration as a short-term volatile indicator rather than a smooth structural trend.
 
 ```{r}
 migration_extreme_years %>%
@@ -214,6 +213,7 @@ eu_non_eu_change_table %>%
 ```{r}
 knitr::include_graphics("figures/continent_facet_plot.png")
 ```
+The continental comparison adds detail to the EU/non-EU result. European population groups remain the largest in absolute terms, but Asian and African population groups show stronger relative growth. This suggests that Munich's internationalisation is not only a change in EU/non-EU composition, but also a broader geographical diversification.
 
 # Exploratory Age-Migration Comparison
 
@@ -241,10 +241,15 @@ knitr::include_graphics("figures/household_grouped_percentage_plot.png")
 ```{r}
 knitr::include_graphics("figures/household_share_change_plot.png")
 ```
+The household results show stability rather than dramatic change. One-person households remained the dominant household type, accounting for about 54.3% in both 2012 and 2024. This stability is important because it contrasts with the stronger changes in population size, migration dynamics and international composition.
 
 # What This Analysis Cannot Answer
 
-This analysis is descriptive and exploratory. It can show how demographic indicators changed, but it cannot explain why they changed. The data are aggregate municipal statistics, so they cannot identify individual migration decisions, household formation processes or causal effects of policies.
+This analysis is descriptive and exploratory. It can show how demographic indicators changed, but it cannot explain why they changed.
+
+Several limitations are important. First, the data are aggregate municipal statistics, so the analysis cannot identify individual migration decisions or household formation processes. Second, migration values are summarised as yearly averages of monthly observations and should not be interpreted as annual totals. Third, international population categories describe population stocks, not migration flows. Fourth, household data are only analysed from 2012 onward, so this section covers a shorter period than the age and migration sections.
+
+For these reasons, the report avoids causal claims such as migration causing changes in age structure or household composition.
 
 # Next Steps
 
