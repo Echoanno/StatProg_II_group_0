@@ -209,6 +209,21 @@ eu_non_eu_change_table %>%
 knitr::include_graphics("figures/continent_facet_plot.png")
 ```
 
+# Exploratory Age-Migration Comparison
+
+To compare long-term structural change with short-term migration dynamics, we also use an indexed view of selected age and migration indicators.
+
+```{r}
+#| echo: false
+#| out-width: "90%"
+#| fig-cap: "Indexed comparison of selected age-structure and migration indicators."
+#| fig-alt: "Line chart comparing indexed age-structure indicators and migration indicators over time. Age-related indicators change more gradually, while migration indicators fluctuate more strongly."
+
+knitr::include_graphics("figures/age_migration_indexed_plot.png")
+```
+
+By placing age-structure and migration indicators on a common indexed scale, this comparison shows that Munich's demographic change was not a single synchronized process. Age-structure indicators changed gradually, while migration indicators fluctuated more strongly. This section is therefore a synthesis of the previous findings, not a causal analysis.
+ 
 # Smaller Households Remained Dominant
 
 The household analysis uses December observations from 2012 to 2024 as an annual baseline. This avoids counting several monthly observations for the same year.
