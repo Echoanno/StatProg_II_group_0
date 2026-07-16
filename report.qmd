@@ -47,7 +47,7 @@ More specifically, we focus on three descriptive questions:
 
 1.  How did Munich's age structure change during this period?
 2.  How did migration dynamics and international population composition change?
-3.  Did household size composition change in the same way, or did it remain relatively stable?
+3.  Did household-size composition change alongside Munich's age structure and migration dynamics, or did it remain relatively stable?
 
 The analysis is descriptive and exploratory. It does not aim to identify causal effects.
 
@@ -81,7 +81,7 @@ The age-share comparison gives a more direct view of demographic ageing. The 65+
 knitr::include_graphics("figures/age_share_bar_plot.png")
 ```
 
-The table reports exact start-end comparisons. This follows the communication principle that plots are better for patterns, while tables are better for precise values.
+The table reports start-end comparisons to show the exact magnitude of change between 2000 and 2024.
 
 ```{r}
 age_change_table %>%
@@ -103,7 +103,7 @@ age_change_table %>%
     title = "Age groups changed unevenly between 2000 and 2024",
     subtitle = "Values are yearly mean population counts"
   ) %>%
-  tab_source_note("Source: Munich Open Data Portal, Monatszahlen Bevölkerung")
+  tab_source_note("Source: Munich Open Data, Monatszahlen Bevölkerung; own calculations.")
 ```
 
 # Migration Became More Volatile After the Mid-2010s
@@ -111,6 +111,9 @@ age_change_table %>%
 Migration indicators are aggregated as yearly averages of monthly observations. Therefore, the values describe average monthly migration levels within each year, not total annual migration flows.
 
 ```{r}
+#| echo: false
+#| out-width: "90%"
+
 knitr::include_graphics("figures/migration_trend_plot.png")
 ```
 
@@ -119,9 +122,9 @@ migration_change_table %>%
   mutate(
     MONATSZAHL = recode(
       MONATSZAHL,
-      "Zugezogene" = "Inflow",
-      "Weggezogene" = "Outflow",
-      "Wanderungssaldo" = "Net migration balance"
+      "Zugezogene" = "Arrivals",
+      "Weggezogene" = "Departures",
+      "Wanderungssaldo" = "Net migration"
     )
   ) %>%
   gt() %>%
@@ -138,7 +141,7 @@ migration_change_table %>%
     title = "Migration indicators changed between 2000 and 2024",
     subtitle = "Yearly averages of monthly observations"
   ) %>%
-  tab_source_note("Source: Munich Open Data Portal, Monatszahlen Bevölkerung")
+  tab_source_note("Source: Munich Open Data, Monatszahlen Bevölkerung; own calculations.")
 ```
 
 # Net Migration Shows Strong Year-to-Year Fluctuation
@@ -146,6 +149,9 @@ migration_change_table %>%
 The rolling average smooths short-term variation and makes the longer-term pattern easier to read.
 
 ```{r}
+#| echo: false
+#| out-width: "90%"
+
 knitr::include_graphics("figures/migration_balance_rolling_plot.png")
 ```
 The rolling average highlights a clear change around the mid-2010s, including the negative net migration balance around 2017 and the later recovery. This supports interpreting migration as a short-term volatile indicator rather than a smooth structural trend.
@@ -155,9 +161,9 @@ migration_extreme_years %>%
   mutate(
     MONATSZAHL = recode(
       MONATSZAHL,
-      "Zugezogene" = "Inflow",
-      "Weggezogene" = "Outflow",
-      "Wanderungssaldo" = "Net migration balance"
+      "Zugezogene" = "Arrivals",
+      "Weggezogene" = "Departures",
+      "Wanderungssaldo" = "Net migration"
     )
   ) %>%
   gt() %>%
@@ -173,7 +179,7 @@ migration_extreme_years %>%
     title = "Migration indicators reached their extremes in different years",
     subtitle = "Extremes are based on yearly averages of monthly values"
   ) %>%
-  tab_source_note("Source: Munich Open Data Portal, Monatszahlen Bevölkerung")
+  tab_source_note("Source: Munich Open Data, Monatszahlen Bevölkerung; own calculations.")
 ```
 
 # Internationalisation Increased, Especially Among Non-EU Groups
@@ -181,6 +187,9 @@ migration_extreme_years %>%
 The EU/non-EU comparison helps describe Munich's demographic internationalisation. This comparison is descriptive and does not identify causal mechanisms.
 
 ```{r}
+#| echo: false
+#| out-width: "90%"
+
 knitr::include_graphics("figures/eu_non_eu_plot.png")
 ```
 
@@ -207,10 +216,13 @@ eu_non_eu_change_table %>%
     title = "Non-EU populations became increasingly important",
     subtitle = "Comparison of yearly mean population values in 2000 and 2024"
   ) %>%
-  tab_source_note("Source: Munich Open Data Portal, Monatszahlen Bevölkerung")
+  tab_source_note("Source: Munich Open Data, Monatszahlen Bevölkerung; own calculations.")
 ```
 
 ```{r}
+#| echo: false
+#| out-width: "100%"
+
 knitr::include_graphics("figures/continent_facet_plot.png")
 ```
 The continental comparison adds detail to the EU/non-EU result. European population groups remain the largest in absolute terms, but Asian and African population groups show stronger relative growth. This suggests that Munich's internationalisation is not only a change in EU/non-EU composition, but also a broader geographical diversification.
@@ -232,16 +244,21 @@ By placing age-structure and migration indicators on a common indexed scale, thi
 
 # Smaller Households Remained Dominant
 
-The household analysis uses December observations from 2012 to 2024 as an annual baseline. This avoids counting several monthly observations for the same year.
+The household analysis provides a contextual comparison to the age and migration results. While age structure, migration dynamics and international composition changed between 2000 and 2024, household-size composition can only be analysed consistently from 2012 onward.
+
+Household sizes are grouped into one-person, two-person and three-or-more-person households because larger household-size categories are smaller and easier to interpret together. The analysis uses December observations from 2012 to 2024 as an annual baseline. This avoids counting several monthly observations for the same year.
+
 
 ```{r}
+#| echo: false
+#| out-width: "90%"
+
 knitr::include_graphics("figures/household_grouped_percentage_plot.png")
 ```
 
-```{r}
-knitr::include_graphics("figures/household_share_change_plot.png")
-```
-The household results show stability rather than dramatic change. One-person households remained the dominant household type, accounting for about 54.3% in both 2012 and 2024. This stability is important because it contrasts with the stronger changes in population size, migration dynamics and international composition.
+The household results show stability rather than dramatic change. Smaller households remained dominant throughout the period: one-person households accounted for about 54.3% in both 2012 and 2024, and two-person households also remained an important share. Larger households stayed comparatively small.
+
+This means that Munich's demographic change was not accompanied by a major shift in household-size composition during the available household data period. The household analysis therefore works as a contextual contrast: migration and international composition changed visibly, while household-size structure remained relatively stable.
 
 # What This Analysis Cannot Answer
 

@@ -12,14 +12,14 @@ dir.create("figures", showWarnings = FALSE)
 
 pop_data <- read.csv("data/raw/monatszahlen_bevoelkerung.csv")
 
-# 1.Trend
+# 1. Trend
 
-# Filter by Year (2012-2024), December baseline, and Household sizes
+# Filter by year (2012-2024), December baseline, and household sizes
 household_base_filtered <- pop_data %>%
   filter(
     JAHR >= 2012 & JAHR <= 2024,
     MONATSZAHL == "Haushalte nach Personenzahl",
-    str_detect(as.character(MONAT), "12$"), # Select December to represent the annual stock data
+    str_detect(as.character(MONAT), "12$"),
     AUSPRAEGUNG %in% c(
       "1 Person",
       "2 Personen",
@@ -29,8 +29,11 @@ household_base_filtered <- pop_data %>%
     )
   ) %>%
   select(year = JAHR, category = AUSPRAEGUNG, count = WERT)
+
 write_csv(household_base_filtered, "data/processed/household_base_filtered.csv")
-# Based on data availability in the Munich Open Data platform, our household baseline analysis focuses on the period from 2012 to 2024.
+
+# Based on data availability in the Munich Open Data platform, our household
+# baseline analysis focuses on the period from 2012 to 2024.
 
 # Pivot from long to wide format to examine the clean structure
 household_base_wide <- household_base_filtered %>%
@@ -38,12 +41,18 @@ household_base_wide <- household_base_filtered %>%
     names_from = category,
     values_from = count
   )
+
 print(household_base_wide)
 
 # Calculate row totals and convert absolute counts into percentages
 household_percentage_wide <- household_base_wide %>%
   mutate(
-    total_households = `1 Person` + `2 Personen` + `3 Personen` + `4 Personen` + `5 Personen und mehr`
+    total_households =
+      `1 Person` +
+      `2 Personen` +
+      `3 Personen` +
+      `4 Personen` +
+      `5 Personen und mehr`
   ) %>%
   mutate(
     across(
@@ -59,26 +68,32 @@ household_size_baseline <- household_percentage_wide %>%
     names_to = "household_size",
     values_to = "percentage"
   ) %>%
-  select(year, household_size, percentage) %>%
+  mutate(
+    household_size_label = recode(
+      household_size,
+      "1 Person" = "One person",
+      "2 Personen" = "Two persons",
+      "3 Personen" = "Three persons",
+      "4 Personen" = "Four persons",
+      "5 Personen und mehr" = "Five or more persons"
+    )
+  ) %>%
+  select(year, household_size, household_size_label, percentage) %>%
   arrange(year, household_size)
 
 write_csv(household_size_baseline, "data/processed/household_size_baseline.csv")
 
-# Preview the long format output
 print(household_size_baseline)
-
-
-# Ensure the dataset is loaded (using the long format table from the previous step)
-# household_size_baseline should already be in R environment
 
 # Plot the household percentage trend
 household_percentage_plot <- ggplot(
-  household_size_baseline, 
+  household_size_baseline,
   aes(
-    x = year, 
-    y = percentage, 
-    color = household_size, 
-    group = household_size)
+    x = year,
+    y = percentage,
+    color = household_size_label,
+    group = household_size_label
+  )
 ) +
   geom_line() +
   geom_point() +
@@ -91,9 +106,9 @@ household_percentage_plot <- ggplot(
     caption = "Source: Munich Open Data, Monatszahlen Bevölkerung; December observations; own calculations."
   ) +
   theme_minimal()
+
 household_percentage_plot
 
-# Save the plot
 ggsave(
   filename = "figures/household_percentage_plot.png",
   plot = household_percentage_plot,
@@ -103,12 +118,26 @@ ggsave(
 )
 
 # Plot the household count trend
+household_base_plot <- household_base_filtered %>%
+  mutate(
+    category_label = recode(
+      category,
+      "1 Person" = "One person",
+      "2 Personen" = "Two persons",
+      "3 Personen" = "Three persons",
+      "4 Personen" = "Four persons",
+      "5 Personen und mehr" = "Five or more persons"
+    )
+  )
+
 household_count_plot <- ggplot(
-  household_base_filtered,
-  aes(x = year,
-      y = count,
-      color = category,
-      group = category)
+  household_base_plot,
+  aes(
+    x = year,
+    y = count,
+    color = category_label,
+    group = category_label
+  )
 ) +
   geom_line() +
   geom_point() +
@@ -121,9 +150,9 @@ household_count_plot <- ggplot(
     caption = "Source: Munich Open Data, Monatszahlen Bevölkerung; December observations; own calculations."
   ) +
   theme_minimal()
+
 household_count_plot
 
-# Save the plot
 ggsave(
   filename = "figures/household_count_plot.png",
   plot = household_count_plot,
@@ -135,9 +164,9 @@ ggsave(
 # 2. Strongest changes
 
 # Summary table: household share change between 2012 and 2024
-
 household_share_change_table <- household_size_baseline %>%
   filter(year %in% c(2012, 2024)) %>%
+  select(household_size_label, year, percentage) %>%
   pivot_wider(
     names_from = year,
     values_from = percentage,
@@ -162,7 +191,7 @@ household_share_change_gt <- household_share_change_table %>%
     decimals = 1
   ) %>%
   cols_label(
-    household_size = "Household size",
+    household_size_label = "Household size",
     percentage_2012 = "2012",
     percentage_2024 = "2024",
     percentage_point_change = html("Change<br>(percentage points)")
@@ -177,7 +206,7 @@ household_share_change_gt <- household_share_change_table %>%
   ) %>%
   tab_header(
     title = "Household shares in Munich by household size, 2012 and 2024",
-    subtitle = "One-person households remained the largest category, while all household-size shares changed only moderately."
+    subtitle = "Household-size shares changed only moderately."
   ) %>%
   tab_source_note(
     md("Source: Munich Open Data, Monatszahlen Bevölkerung; December observations; own calculations.")
@@ -186,11 +215,10 @@ household_share_change_gt <- household_share_change_table %>%
 household_share_change_gt
 
 # Plot the percentage point change
-
 household_share_change_plot <- ggplot(
   household_share_change_table,
   aes(
-    x = reorder(household_size, percentage_point_change),
+    x = reorder(household_size_label, percentage_point_change),
     y = percentage_point_change
   )
 ) +
@@ -207,7 +235,6 @@ household_share_change_plot <- ggplot(
 
 household_share_change_plot
 
-# Save the plot
 ggsave(
   filename = "figures/household_share_change_plot.png",
   plot = household_share_change_plot,
@@ -216,15 +243,15 @@ ggsave(
   dpi = 300
 )
 
-# 3.The trend towards smaller in Munich
+# 3. Trend towards smaller households in Munich
 
 # Regroup household types into broader household categories
 household_grouped <- household_base_filtered %>%
   mutate(
     household_group = case_when(
-      category == "1 Person" ~ "1 Person",
-      category == "2 Personen" ~ "2 Personen",
-      category %in% c("3 Personen", "4 Personen", "5 Personen und mehr") ~ "3+ Personen",
+      category == "1 Person" ~ "One person",
+      category == "2 Personen" ~ "Two persons",
+      category %in% c("3 Personen", "4 Personen", "5 Personen und mehr") ~ "Three or more persons",
       TRUE ~ NA_character_
     )
   ) %>%
@@ -275,7 +302,6 @@ household_grouped_percentage_plot <- ggplot(
 
 household_grouped_percentage_plot
 
-# Save
 ggsave(
   filename = "figures/household_grouped_percentage_plot.png",
   plot = household_grouped_percentage_plot,
