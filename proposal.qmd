@@ -206,7 +206,7 @@ age_data %>%
     .groups = "drop"
   ) %>%
   arrange(AUSPRAEGUNG) %>%
-  kable()
+ kable(caption = "Summary of age-group observations, missing values and time coverage.")
 ```
 
 The original age categories are partly overlapping. For example, `Minderjaehrige (0 bis 17 Jahre)` includes the younger age groups 0-5, 6-14 and 15-17. Therefore, the analysis does not simply add all original age groups together. Instead, it constructs five non-overlapping groups: 0-5, 6-14, 15-17, 18-64 and 65+.
@@ -217,7 +217,7 @@ The following plot compares the constructed age structure in selected years. Thi
 
 ```{r}
 #| label: fig-age-structure-selected-years
-#| fig-cap: "Age structure of Munich's population in selected years (2000, 2010, 2020, 2024)"
+#| fig-cap: "Age structure of Munich's population in selected years. The bars show the relative shares of constructed non-overlapping age groups in 2000, 2010, 2020 and 2024."
 
 age_structure_bar_plot <- ggplot(
   age_structure_share %>%
@@ -250,7 +250,7 @@ The following plot shows the yearly mean population for each age group from 2000
 
 ```{r}
 #| label: fig-age-trends-faceted
-#| fig-cap: "Population trends by age group in Munich, 2000-2024."
+#| fig-cap: "Population trends by age group in Munich. Each panel shows yearly mean population for one constructed age group from 2000 to 2024."
 
 age_trend_facet_plot <- ggplot(
   age_structure_long,
@@ -299,7 +299,7 @@ age_change_table %>%
     `Absolute change` = absolute_change,
     `Relative change (%)` = relative_change
   ) %>%
-  kable()
+  kable(caption = "Population change by constructed age group between 2000 and 2024.")
 ```
 
 The table shows that the 18-64 group had the largest absolute increase, growing by more than 212,000 people between 2000 and 2024. In relative terms, however, the strongest growth occurred among school-age children aged 6-14 and adolescents aged 15-17, both increasing by around 41%. The 65+ group also grew substantially, by about 38%, which provides preliminary evidence of demographic ageing. However, because younger age groups also increased strongly, Munich's demographic change cannot be described as ageing alone.
@@ -347,7 +347,7 @@ These trends suggest that migration has been an important contributor to Munich'
 
 ```{r}
 #| label: fig-migration-trends
-#| fig-cap: "Yearly averages of monthly migration inflows, outflows and migration balance in Munich, 2000-2024."
+#| fig-cap: "Migration dynamics in Munich. The lines show yearly averages of monthly arrivals, departures and net migration from 2000 to 2024."
 
 knitr::include_graphics(
   "figures/migration_trend_plot.png"
@@ -366,7 +366,7 @@ While Munich generally remained a net recipient of migrants, the results suggest
 
 ```{r}
 #| label: fig-migration-balance
-#| fig-cap: "Yearly average monthly net migration balance in Munich, 2000-2024, with a 3-year rolling average."
+#| fig-cap: "Net migration balance in Munich. The orange line shows the 3-year rolling average from 2000 to 2024."
 
 knitr::include_graphics(
   "figures/migration_balance_rolling_plot.png"
@@ -387,7 +387,7 @@ population_data %>%
 
 ```{r}
 #| label: fig-eu-non-eu
-#| fig-cap: "EU and non-EU demographic trends in Munich, 2000-2024."
+#| fig-cap: "EU and non-EU populations in Munich. The lines compare yearly mean population levels for EU and non-EU citizens from 2000 to 2024."
 
 knitr::include_graphics(
   "figures/eu_non_eu_plot.png"
@@ -425,7 +425,7 @@ Overall, the results suggest that Munich's demographic change has been character
 
 ```{r}
 #| label: fig-continental-groups
-#| fig-cap: "Population trends by continental groups in Munich, 2000-2024."
+#| fig-cap: "Population by continental group in Munich. Each panel shows yearly mean population for one continental group from 2000 to 2024."
 
 knitr::include_graphics(
   "figures/continent_facet_plot.png"
@@ -444,7 +444,7 @@ Because these indicators have different units, they are indexed to 2000 = 100. T
 
 ```{r}
 #| label: fig-age-migration-indexed
-#| fig-cap: "Indexed trends in selected age-structure and migration indicators in Munich, 2000-2024. All indicators are indexed to 2000 = 100."
+#| fig-cap: "Indexed age-structure and migration indicators in Munich. All indicators are scaled to 2000 = 100 to compare relative changes over time."
 
 knitr::include_graphics(
   "figures/age_migration_indexed_plot.png"
@@ -482,7 +482,7 @@ The following figure shows how the percentage share of different household-size 
 
 ```{r}
 #| label: fig-household-size-share-trend
-#| fig-cap: "Percentage share of household-size categories in Munich, 2012-2024."
+#| fig-cap: "Household structure in Munich by household size. The lines show each household-size category's share of total households from 2012 to 2024."
 
 knitr::include_graphics(
   "figures/household_percentage_plot.png"
@@ -498,7 +498,7 @@ The following figure compares the percentage point change of each household-size
 
 ```{r}
 #| label: fig-household-share-change
-#| fig-cap: "Percentage point change in household-size shares between 2012 and 2024."
+#| fig-cap: "Change in household-size shares in Munich. The bars show percentage-point changes by household-size category between 2012 and 2024."
 
 knitr::include_graphics(
   "figures/household_share_change_plot.png"
@@ -513,7 +513,7 @@ For a simpler comparison, the household types are also grouped into three broade
 
 ```{r}
 #| label: fig-household-grouped-share-trend
-#| fig-cap: "Percentage share of one-person, two-person, and three-or-more-person households in Munich, 2012-2024."
+#| fig-cap: "Grouped household structure in Munich. The lines show the shares of one-person, two-person and three-or-more-person households from 2012 to 2024."
 
 knitr::include_graphics(
   "figures/household_grouped_percentage_plot.png"
