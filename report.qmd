@@ -39,6 +39,18 @@ Munich’s demographic transformation between 2000 and 2024 is characterized by 
 
 - **Household composition remained surprisingly stable.** One-person households stayed at around 54.3% between 2012 and 2024. This stability provides an important contrast to the stronger changes observed in migration and international composition.
 
+# Research Questions
+
+This report asks how Munich's demographic structure changed between 2000 and 2024.
+
+More specifically, we focus on three descriptive questions:
+
+1. How did Munich's age structure change during this period?
+2. How did migration dynamics and international population composition change?
+3. Did household size composition change in the same way, or did it remain relatively stable?
+
+The analysis is descriptive and exploratory. It does not aim to identify causal effects.
+
 # Data and Scope
 
 This project uses the dataset *Monatszahlen Bevölkerung* from the Open Data Portal of the City of Munich. Each row represents one demographic topic, subcategory and month.
