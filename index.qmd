@@ -14,7 +14,7 @@ The analysis focuses on three dimensions:
 
 - Age structure
 - Migration dynamics
-- Household composition
+- Migration dynamics and international population composition
 
 # Analysis Modules
 
@@ -40,3 +40,4 @@ How has household composition changed between 2012 and 2024?
 
 - [Project Proposal](proposal.qmd)
 - [Final Report](report.qmd)
+- [Group Reflection](group-reflection.qmd)

@@ -12,6 +12,8 @@ website:
         text: Proposal
       - href: report.qmd
         text: Final Report
+      - href: group-reflection.qmd
+        text: Group Reflection
     right:
       - icon: github
         href: https://github.com/Echoanno/StatProg_II_group_0.git
