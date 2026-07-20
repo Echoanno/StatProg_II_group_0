@@ -79,18 +79,32 @@ age_migration_indexed_long <- age_migration_indexed %>%
     cols = -year,
     names_to = "indicator",
     values_to = "index_value"
+  ) %>%
+  mutate(
+    indicator_label = recode(
+      indicator,
+      "share_65_plus" = "Retirement age share (65+)",
+      "share_working_age" = "Working-age share (18-64)",
+      "share_younger" = "Younger age groups share (0-17)",
+      "migration_balance" = "Net migration balance",
+      "migration_inflows" = "Arrivals",
+      "migration_outflows" = "Departures",
+      "eu_population" = "EU citizens",
+      "non_eu_population" = "Non-EU citizens"
+    )
   )
 
 age_migration_indexed_plot <- age_migration_indexed_long %>%
-  ggplot(aes(x = year, y = index_value, color = indicator)) +  
+  ggplot(aes(x = year, y = index_value, color = indicator_label)) +  
   geom_line(linewidth = 1.0) +
   geom_hline(yintercept = 100, linetype = "dashed", color = "black") +
   labs(
-    title = "Indexed trends in age structure and migration indicators in Munich, 2000-2024",
-    subtitle = "All indicators indexed to 2000 = 100",
+    title = "Indexed age-structure and migration indicators in Munich, 2000-2024",
+    subtitle = "All indicators are indexed to 2000 = 100.",
     x = "Year",
-    y = "Index value",
-    color = "Indicator"
+    y = "Index value (2000 = 100)",
+    color = "Indicator",
+    caption = "Source: Munich Open Data, Monatszahlen Bevölkerung; own calculations."
   ) + 
   theme_minimal()
 
