@@ -1,0 +1,187 @@
+---
+title: "group-reflection.qmd"
+editor: visual
+---
+
+## Skills inventory
+
+### Functions & refactoring (W2)
+
+*What we did:*\
+We organised repeated cleaning and analysis steps into separate scripts, such as import/cleaning, EDA, migration analysis, household analysis and age-migration comparison.
+
+*What worked well:*\
+Numbered scripts made the workflow easier to follow and helped separate raw data cleaning from later analysis.
+
+*What was hard:*\
+Some code could still be refactored more. For example, several scripts repeat similar yearly aggregation patterns that could become helper functions.
+
+### Debugging (W3)
+
+*What we did:*\
+We debugged problems with date conversion, overlapping age categories, missing values, plot output and Quarto rendering.
+
+*What worked well:*\
+Checking intermediate tables with `glimpse()`, `distinct()` and summary tables helped us catch mistakes before writing interpretations.
+
+*What was hard:*\
+The hardest debugging issue was not a syntax error but a data-meaning error: recognising that some original categories overlapped and should not simply be added together.
+
+### Version control & remotes (W4)
+
+*What we did:*\
+We used Git and GitHub branches for collaboration and merged work through pull requests.
+
+*What worked well:*\
+Commit messages documented the development of the project, including adding household tables, migration summaries, website updates and final report revisions.
+
+*What was hard:*\
+Rendered HTML files, figures and processed CSV files changed often, which made some commits larger and harder to review.
+
+### Quarto websites & collaborative coding (W5)
+
+*What we did:*\
+We built a Quarto website with a home page, proposal and final report, rendered to the `docs/` folder.
+
+*What worked well:*\
+Quarto made it possible to combine code, figures, tables and written interpretation in one reproducible report.
+
+*What was hard:*\
+Keeping the rendered website up to date with the source `.qmd` files required discipline. It was easy for source files and `docs/` output to become temporarily inconsistent.
+
+### R packages (W6)
+
+*What we did:*\
+We used packages including `tidyverse`, `lubridate`, `ggplot2`, `gt`, `scales`, `knitr` and `zoo`.
+
+*What worked well:*\
+The tidyverse workflow was useful for cleaning, reshaping and plotting the long-format dataset.
+
+*What was hard:*\
+Choosing the right package was less difficult than understanding the meaning of the data. The main challenge was deciding what each variable represented.
+
+### Initial data analysis & data cleaning (W7)
+
+*What we did:*\
+We removed `MONAT == "Summe"` rows for monthly analyses, converted month values into dates, excluded incomplete 2025 data, and created processed CSV files.
+
+*What worked well:*\
+Initial EDA helped identify available years, missing values and relevant categories.
+
+*What was hard:*\
+The dataset contained many demographic topics, so selecting a focused set of variables took time.
+
+### Reproducibility, open data & renv (W9)
+
+*What we did:*\
+We used public Munich Open Data and separated raw data, processed data, scripts, figures and report files. The repository also contains an `renv.lock` file.
+
+*What worked well:*\
+Using open data made the project transparent and reproducible in principle.
+
+*What was hard:*\
+Full reproducibility requires keeping package versions, script order and rendered outputs consistent. We improved this, but it is still an area where the project could be cleaner.
+
+### Analysis & inference strategies (W10)
+
+*What we did:*\
+We used descriptive and exploratory analysis rather than causal modelling. We compared changes over time, relative shares, indexed trends and rolling averages.
+
+*What worked well:*\
+This matched the dataset well because the data describe aggregate demographic indicators.
+
+*What was hard:*\
+It was tempting to explain why patterns occurred, especially for migration and household structure. We had to keep the interpretation descriptive.
+
+### Communication & visualisation (W11)
+
+*What we did:*\
+We created line plots, faceted plots, bar charts, indexed comparisons and `gt` summary tables.
+
+*What worked well:*\
+Using both plots and tables helped: plots showed patterns, while tables gave exact start-end comparisons.
+
+*What was hard:*\
+Some plots involved indicators with different scales. The indexed age-migration comparison helped, but it also required careful explanation because indexing does not imply causality.
+
+## Key analytical decisions
+
+### Decision 1: Constructing non-overlapping age groups
+
+*What were we deciding between?*\
+We had to decide whether to use the original age categories directly or construct our own non-overlapping groups.
+
+*How did we reason through it?*\
+Because the original `15 bis 64 Jahre` group overlaps with the 15-17 group, using all categories directly would double-count some people. We therefore derived an 18-64 group by subtracting the 15-17 group from the 15-64 group.
+
+*In hindsight, would we decide differently?*\
+No. This was necessary for a meaningful age-structure analysis.
+
+### Decision 2: Using yearly averages for monthly migration data
+
+*What were we deciding between?*\
+We had to choose between monthly analysis, annual summaries, or yearly averages of monthly observations.
+
+*How did we reason through it?*\
+We wanted long-term trends from 2000 to 2024, so yearly averages made the plots easier to interpret. We excluded `Summe` rows and explained that the values are not annual totals.
+
+*In hindsight, would we decide differently?*\
+Mostly no, but we would label this choice even more clearly from the beginning.
+
+### Decision 3: Limiting household analysis to 2012-2024
+
+*What were we deciding between?*\
+We had to decide whether to force household data into the same 2000-2024 period or use the shorter consistent period.
+
+*How did we reason through it?*\
+The household-size categories were consistently available only from 2012 onward. We chose accuracy over having the same time range as the other sections.
+
+*In hindsight, would we decide differently?*\
+No. A shorter but consistent household analysis is better than a longer but unreliable one.
+
+## Workflow & collaboration
+
+*How did we divide work across group members?*\
+We divided work by topic: age structure, household structure, and migration/internationalisation. Later, we combined the sections into one report about demographic change in Munich.
+
+*What branching or Git workflow did we actually use -- and did it match the proposal?*\
+We used GitHub branches and pull requests. This matched the proposal in general, although the actual workflow was less clean because rendered outputs and generated files were sometimes committed together with source changes.
+
+*What would we change about how we coordinated?*\
+We would define earlier which files should be edited by whom, and we would agree more clearly when to commit rendered website output. We would also use GitHub Issues more consistently to track remaining tasks.
+
+## LLM usage
+
+### Usage 1: Debugging R code
+
+-   **Tool / model:** ChatGPT / Codex
+-   **What it produced:** Suggestions for tidyverse code, date conversion, grouping and plotting.
+-   **What we had to correct or verify:** We checked whether suggested code matched the actual German category names in the dataset.
+
+### Usage 2: Improving report wording
+
+-   **Tool / model:** ChatGPT / Codex
+-   **What it produced:** Clearer explanations of research questions, data scope and limitations.
+-   **What we had to correct or verify:** We removed or softened causal language when the LLM phrased descriptive results too strongly.
+
+### Usage 3: Quarto structure
+
+-   **Tool / model:** ChatGPT / Codex
+-   **What it produced:** Suggestions for section order, captions and website/report structure.
+-   **What we had to correct or verify:** We made sure the final structure matched the actual project files and available figures.
+
+### Usage 4: Interpretation of findings
+
+-   **Tool / model:** ChatGPT / Codex
+-   **What it produced:** Draft interpretations of ageing, migration volatility and household stability.
+-   **What we had to correct or verify:** We checked the numbers against our tables and plots, especially the 65+ share and one-person household share.
+
+### Usage 5: Reflection writing
+
+-   **Tool / model:** ChatGPT / Codex
+-   **What it produced:** A first draft of this group reflection.
+-   **What we had to correct or verify:** We needed to make sure the reflection described our actual workflow and did not invent GitHub Issues, contribution statements or analyses that were not completed.
+
+## One LLM error we caught
+
+An LLM suggestion described our migration values as "annual migration totals." This was incorrect for our analysis. We aggregated monthly observations into yearly averages, so the values represent average monthly migration levels within each year. We corrected the report text to avoid misleading interpretation.

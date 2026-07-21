@@ -483,10 +483,11 @@ $ year                           &lt;dbl&gt; 2025, 2025, 2025, 2025, 2025, 2025,
 <span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
 <span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
 <span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(AUSPRAEGUNG) <span class="sc">%&gt;%</span></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a> <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Summary of age-group observations, missing values and time coverage."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
+<caption>Summary of age-group observations, missing values and time coverage.</caption>
 <colgroup>
 <col style="width: 51%">
 <col style="width: 8%">
@@ -607,7 +608,7 @@ $ year                           &lt;dbl&gt; 2025, 2025, 2025, 2025, 2025, 2025,
 <img src="proposal_files/figure-html/fig-age-structure-selected-years-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-age-structure-selected-years-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Age structure of Munich’s population in selected years (2000, 2010, 2020, 2024)
+Figure&nbsp;1: Age structure of Munich’s population in selected years. The bars show the relative shares of constructed non-overlapping age groups in 2000, 2010, 2020 and 2024.
 </figcaption>
 </figure>
 </div>
@@ -652,7 +653,7 @@ Figure&nbsp;1: Age structure of Munich’s population in selected years (2000, 2
 <img src="proposal_files/figure-html/fig-age-trends-faceted-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-age-trends-faceted-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Population trends by age group in Munich, 2000-2024.
+Figure&nbsp;2: Population trends by age group in Munich. Each panel shows yearly mean population for one constructed age group from 2000 to 2024.
 </figcaption>
 </figure>
 </div>
@@ -681,10 +682,11 @@ Figure&nbsp;2: Population trends by age group in Munich, 2000-2024.
 <span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Absolute change</span><span class="st">`</span> <span class="ot">=</span> absolute_change,</span>
 <span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Relative change (%)</span><span class="st">`</span> <span class="ot">=</span> relative_change</span>
 <span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Population change by constructed age group between 2000 and 2024."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
+<caption>Population change by constructed age group between 2000 and 2024.</caption>
 <colgroup>
 <col style="width: 38%">
 <col style="width: 14%">
@@ -818,7 +820,7 @@ Third, demographic diversification is examined through continental population gr
 <img src="figures/migration_trend_plot.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-migration-trends-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Yearly averages of monthly migration inflows, outflows and migration balance in Munich, 2000-2024.
+Figure&nbsp;3: Migration dynamics in Munich. The lines show yearly averages of monthly arrivals, departures and net migration from 2000 to 2024.
 </figcaption>
 </figure>
 </div>
@@ -845,7 +847,7 @@ Figure&nbsp;3: Yearly averages of monthly migration inflows, outflows and migrat
 <img src="figures/migration_balance_rolling_plot.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-migration-balance-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Yearly average monthly net migration balance in Munich, 2000-2024, with a 3-year rolling average.
+Figure&nbsp;4: Net migration balance in Munich. The orange line shows the 3-year rolling average from 2000 to 2024.
 </figcaption>
 </figure>
 </div>
@@ -919,7 +921,7 @@ Figure&nbsp;4: Yearly average monthly net migration balance in Munich, 2000-2024
 <img src="figures/eu_non_eu_plot.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-eu-non-eu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5: EU and non-EU demographic trends in Munich, 2000-2024.
+Figure&nbsp;5: EU and non-EU populations in Munich. The lines compare yearly mean population levels for EU and non-EU citizens from 2000 to 2024.
 </figcaption>
 </figure>
 </div>
@@ -979,7 +981,7 @@ Figure&nbsp;5: EU and non-EU demographic trends in Munich, 2000-2024.
 <img src="figures/continent_facet_plot.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-continental-groups-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;6: Population trends by continental groups in Munich, 2000-2024.
+Figure&nbsp;6: Population by continental group in Munich. Each panel shows yearly mean population for one continental group from 2000 to 2024.
 </figcaption>
 </figure>
 </div>
@@ -1009,7 +1011,7 @@ Figure&nbsp;6: Population trends by continental groups in Munich, 2000-2024.
 <img src="figures/age_migration_indexed_plot.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-age-migration-indexed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7: Indexed trends in selected age-structure and migration indicators in Munich, 2000-2024. All indicators are indexed to 2000 = 100.
+Figure&nbsp;7: Indexed age-structure and migration indicators in Munich. All indicators are scaled to 2000 = 100 to compare relative changes over time.
 </figcaption>
 </figure>
 </div>
@@ -1063,7 +1065,7 @@ $ count    &lt;dbl&gt; 468540, 461441, 452585, 448248, 449561, 448732, 446350, 4
 <img src="figures/household_percentage_plot.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-household-size-share-trend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;8: Percentage share of household-size categories in Munich, 2012-2024.
+Figure&nbsp;8: Household structure in Munich by household size. The lines show each household-size category’s share of total households from 2012 to 2024.
 </figcaption>
 </figure>
 </div>
@@ -1088,7 +1090,7 @@ Figure&nbsp;8: Percentage share of household-size categories in Munich, 2012-202
 <img src="figures/household_share_change_plot.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-household-share-change-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;9: Percentage point change in household-size shares between 2012 and 2024.
+Figure&nbsp;9: Change in household-size shares in Munich. The bars show percentage-point changes by household-size category between 2012 and 2024.
 </figcaption>
 </figure>
 </div>
@@ -1113,7 +1115,7 @@ Figure&nbsp;9: Percentage point change in household-size shares between 2012 and
 <img src="figures/household_grouped_percentage_plot.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-household-grouped-share-trend-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;10: Percentage share of one-person, two-person, and three-or-more-person households in Munich, 2012-2024.
+Figure&nbsp;10: Grouped household structure in Munich. The lines show the shares of one-person, two-person and three-or-more-person households from 2012 to 2024.
 </figcaption>
 </figure>
 </div>
@@ -1974,7 +1976,7 @@ Update initial data analysis section</code></pre>
 <span id="cb36-217"><a href="#cb36-217" aria-hidden="true" tabindex="-1"></a>    <span class="at">.groups =</span> <span class="st">"drop"</span></span>
 <span id="cb36-218"><a href="#cb36-218" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
 <span id="cb36-219"><a href="#cb36-219" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(AUSPRAEGUNG) <span class="sc">%&gt;%</span></span>
-<span id="cb36-220"><a href="#cb36-220" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span>
+<span id="cb36-220"><a href="#cb36-220" aria-hidden="true" tabindex="-1"></a> <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Summary of age-group observations, missing values and time coverage."</span>)</span>
 <span id="cb36-221"><a href="#cb36-221" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb36-222"><a href="#cb36-222" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-223"><a href="#cb36-223" aria-hidden="true" tabindex="-1"></a>The original age categories are partly overlapping. For example, <span class="in">`Minderjaehrige (0 bis 17 Jahre)`</span> includes the younger age groups 0-5, 6-14 and 15-17. Therefore, the analysis does not simply add all original age groups together. Instead, it constructs five non-overlapping groups: 0-5, 6-14, 15-17, 18-64 and 65+.</span>
@@ -1985,7 +1987,7 @@ Update initial data analysis section</code></pre>
 <span id="cb36-228"><a href="#cb36-228" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-231"><a href="#cb36-231" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb36-232"><a href="#cb36-232" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-age-structure-selected-years</span></span>
-<span id="cb36-233"><a href="#cb36-233" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Age structure of Munich's population in selected years (2000, 2010, 2020, 2024)"</span></span>
+<span id="cb36-233"><a href="#cb36-233" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Age structure of Munich's population in selected years. The bars show the relative shares of constructed non-overlapping age groups in 2000, 2010, 2020 and 2024."</span></span>
 <span id="cb36-234"><a href="#cb36-234" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-235"><a href="#cb36-235" aria-hidden="true" tabindex="-1"></a>age_structure_bar_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
 <span id="cb36-236"><a href="#cb36-236" aria-hidden="true" tabindex="-1"></a>  age_structure_share <span class="sc">%&gt;%</span></span>
@@ -2018,7 +2020,7 @@ Update initial data analysis section</code></pre>
 <span id="cb36-263"><a href="#cb36-263" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-266"><a href="#cb36-266" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb36-267"><a href="#cb36-267" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-age-trends-faceted</span></span>
-<span id="cb36-268"><a href="#cb36-268" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Population trends by age group in Munich, 2000-2024."</span></span>
+<span id="cb36-268"><a href="#cb36-268" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Population trends by age group in Munich. Each panel shows yearly mean population for one constructed age group from 2000 to 2024."</span></span>
 <span id="cb36-269"><a href="#cb36-269" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-270"><a href="#cb36-270" aria-hidden="true" tabindex="-1"></a>age_trend_facet_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(</span>
 <span id="cb36-271"><a href="#cb36-271" aria-hidden="true" tabindex="-1"></a>  age_structure_long,</span>
@@ -2067,7 +2069,7 @@ Update initial data analysis section</code></pre>
 <span id="cb36-316"><a href="#cb36-316" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Absolute change</span><span class="st">`</span> <span class="ot">=</span> absolute_change,</span>
 <span id="cb36-317"><a href="#cb36-317" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Relative change (%)</span><span class="st">`</span> <span class="ot">=</span> relative_change</span>
 <span id="cb36-318"><a href="#cb36-318" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
-<span id="cb36-319"><a href="#cb36-319" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span>
+<span id="cb36-319"><a href="#cb36-319" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">"Population change by constructed age group between 2000 and 2024."</span>)</span>
 <span id="cb36-320"><a href="#cb36-320" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb36-321"><a href="#cb36-321" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-322"><a href="#cb36-322" aria-hidden="true" tabindex="-1"></a>The table shows that the 18-64 group had the largest absolute increase, growing by more than 212,000 people between 2000 and 2024. In relative terms, however, the strongest growth occurred among school-age children aged 6-14 and adolescents aged 15-17, both increasing by around 41%. The 65+ group also grew substantially, by about 38%, which provides preliminary evidence of demographic ageing. However, because younger age groups also increased strongly, Munich's demographic change cannot be described as ageing alone.</span>
@@ -2115,7 +2117,7 @@ Update initial data analysis section</code></pre>
 <span id="cb36-368"><a href="#cb36-368" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-371"><a href="#cb36-371" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb36-372"><a href="#cb36-372" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-migration-trends</span></span>
-<span id="cb36-373"><a href="#cb36-373" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Yearly averages of monthly migration inflows, outflows and migration balance in Munich, 2000-2024."</span></span>
+<span id="cb36-373"><a href="#cb36-373" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Migration dynamics in Munich. The lines show yearly averages of monthly arrivals, departures and net migration from 2000 to 2024."</span></span>
 <span id="cb36-374"><a href="#cb36-374" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-375"><a href="#cb36-375" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(</span>
 <span id="cb36-376"><a href="#cb36-376" aria-hidden="true" tabindex="-1"></a>  <span class="st">"figures/migration_trend_plot.png"</span></span>
@@ -2134,7 +2136,7 @@ Update initial data analysis section</code></pre>
 <span id="cb36-389"><a href="#cb36-389" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-392"><a href="#cb36-392" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb36-393"><a href="#cb36-393" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-migration-balance</span></span>
-<span id="cb36-394"><a href="#cb36-394" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Yearly average monthly net migration balance in Munich, 2000-2024, with a 3-year rolling average."</span></span>
+<span id="cb36-394"><a href="#cb36-394" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Net migration balance in Munich. The orange line shows the 3-year rolling average from 2000 to 2024."</span></span>
 <span id="cb36-395"><a href="#cb36-395" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-396"><a href="#cb36-396" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(</span>
 <span id="cb36-397"><a href="#cb36-397" aria-hidden="true" tabindex="-1"></a>  <span class="st">"figures/migration_balance_rolling_plot.png"</span></span>
@@ -2155,7 +2157,7 @@ Update initial data analysis section</code></pre>
 <span id="cb36-414"><a href="#cb36-414" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-417"><a href="#cb36-417" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb36-418"><a href="#cb36-418" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-eu-non-eu</span></span>
-<span id="cb36-419"><a href="#cb36-419" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "EU and non-EU demographic trends in Munich, 2000-2024."</span></span>
+<span id="cb36-419"><a href="#cb36-419" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "EU and non-EU populations in Munich. The lines compare yearly mean population levels for EU and non-EU citizens from 2000 to 2024."</span></span>
 <span id="cb36-420"><a href="#cb36-420" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-421"><a href="#cb36-421" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(</span>
 <span id="cb36-422"><a href="#cb36-422" aria-hidden="true" tabindex="-1"></a>  <span class="st">"figures/eu_non_eu_plot.png"</span></span>
@@ -2193,7 +2195,7 @@ Update initial data analysis section</code></pre>
 <span id="cb36-456"><a href="#cb36-456" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-459"><a href="#cb36-459" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb36-460"><a href="#cb36-460" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-continental-groups</span></span>
-<span id="cb36-461"><a href="#cb36-461" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Population trends by continental groups in Munich, 2000-2024."</span></span>
+<span id="cb36-461"><a href="#cb36-461" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Population by continental group in Munich. Each panel shows yearly mean population for one continental group from 2000 to 2024."</span></span>
 <span id="cb36-462"><a href="#cb36-462" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-463"><a href="#cb36-463" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(</span>
 <span id="cb36-464"><a href="#cb36-464" aria-hidden="true" tabindex="-1"></a>  <span class="st">"figures/continent_facet_plot.png"</span></span>
@@ -2212,7 +2214,7 @@ Update initial data analysis section</code></pre>
 <span id="cb36-477"><a href="#cb36-477" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-480"><a href="#cb36-480" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb36-481"><a href="#cb36-481" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-age-migration-indexed</span></span>
-<span id="cb36-482"><a href="#cb36-482" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Indexed trends in selected age-structure and migration indicators in Munich, 2000-2024. All indicators are indexed to 2000 = 100."</span></span>
+<span id="cb36-482"><a href="#cb36-482" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Indexed age-structure and migration indicators in Munich. All indicators are scaled to 2000 = 100 to compare relative changes over time."</span></span>
 <span id="cb36-483"><a href="#cb36-483" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-484"><a href="#cb36-484" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(</span>
 <span id="cb36-485"><a href="#cb36-485" aria-hidden="true" tabindex="-1"></a>  <span class="st">"figures/age_migration_indexed_plot.png"</span></span>
@@ -2250,7 +2252,7 @@ Update initial data analysis section</code></pre>
 <span id="cb36-519"><a href="#cb36-519" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-522"><a href="#cb36-522" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb36-523"><a href="#cb36-523" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-household-size-share-trend</span></span>
-<span id="cb36-524"><a href="#cb36-524" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Percentage share of household-size categories in Munich, 2012-2024."</span></span>
+<span id="cb36-524"><a href="#cb36-524" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Household structure in Munich by household size. The lines show each household-size category's share of total households from 2012 to 2024."</span></span>
 <span id="cb36-525"><a href="#cb36-525" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-526"><a href="#cb36-526" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(</span>
 <span id="cb36-527"><a href="#cb36-527" aria-hidden="true" tabindex="-1"></a>  <span class="st">"figures/household_percentage_plot.png"</span></span>
@@ -2266,7 +2268,7 @@ Update initial data analysis section</code></pre>
 <span id="cb36-537"><a href="#cb36-537" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-540"><a href="#cb36-540" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb36-541"><a href="#cb36-541" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-household-share-change</span></span>
-<span id="cb36-542"><a href="#cb36-542" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Percentage point change in household-size shares between 2012 and 2024."</span></span>
+<span id="cb36-542"><a href="#cb36-542" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Change in household-size shares in Munich. The bars show percentage-point changes by household-size category between 2012 and 2024."</span></span>
 <span id="cb36-543"><a href="#cb36-543" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-544"><a href="#cb36-544" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(</span>
 <span id="cb36-545"><a href="#cb36-545" aria-hidden="true" tabindex="-1"></a>  <span class="st">"figures/household_share_change_plot.png"</span></span>
@@ -2281,7 +2283,7 @@ Update initial data analysis section</code></pre>
 <span id="cb36-554"><a href="#cb36-554" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-557"><a href="#cb36-557" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb36-558"><a href="#cb36-558" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-household-grouped-share-trend</span></span>
-<span id="cb36-559"><a href="#cb36-559" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Percentage share of one-person, two-person, and three-or-more-person households in Munich, 2012-2024."</span></span>
+<span id="cb36-559"><a href="#cb36-559" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Grouped household structure in Munich. The lines show the shares of one-person, two-person and three-or-more-person households from 2012 to 2024."</span></span>
 <span id="cb36-560"><a href="#cb36-560" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-561"><a href="#cb36-561" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(</span>
 <span id="cb36-562"><a href="#cb36-562" aria-hidden="true" tabindex="-1"></a>  <span class="st">"figures/household_grouped_percentage_plot.png"</span></span>

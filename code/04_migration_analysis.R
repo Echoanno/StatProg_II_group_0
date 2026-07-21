@@ -38,21 +38,30 @@ migration_yearly <- migration_data %>%
 # Plot migration trends over time
 
 migration_trend_plot <- migration_yearly %>%
+  mutate(
+    migration_type = recode(
+      MONATSZAHL,
+      "Zugezogene" = "Arrivals",
+      "Weggezogene" = "Departures",
+      "Wanderungssaldo" = "Net migration"
+    )
+  ) %>%
   ggplot(
     aes(
       x = year,
       y = mean_value,
-      color = MONATSZAHL
+      color = migration_type
     )
   ) +
   geom_line(linewidth = 1) +
   geom_point(size = 1.5) +
   labs(
-    title = "Migration trends in Munich, 2000–2024",
-    subtitle = "Monthly migration values aggregated as yearly averages",
+    title = "Migration dynamics in Munich, 2000-2024",
+    subtitle = "Arrivals and departures are shown as yearly averages of monthly values.",
     x = "Year",
-    y = "Yearly average of monthly values",
-    color = "Migration type"
+    y = "Yearly average number of people",
+    color = "Migration type",
+    caption = "Source: Munich Open Data, Monatszahlen Bevölkerung; own calculations."
   ) +
   theme_minimal()
 
@@ -98,10 +107,11 @@ migration_balance_plot <- migration_balance %>%
     color = "gray40"
   ) +
   labs(
-    title = "Net migration balance in Munich, 2000–2024",
-    subtitle = "Positive values indicate net migration gains",
+    title = "Net migration balance in Munich, 2000-2024",
+    subtitle = "Positive values indicate net migration gains.",
     x = "Year",
-    y = "Average monthly migration balance"
+    y = "Average monthly net migration balance",
+    caption = "Source: Munich Open Data, Monatszahlen Bevölkerung; own calculations."
   ) +
   theme_minimal() +
   theme(
@@ -171,10 +181,11 @@ migration_balance_rolling_plot <- migration_balance_rolling %>%
   ) +
   
   labs(
-    title = "Net migration balance in Munich (3-year rolling average)",
-    subtitle = "Smoothed long-term migration trend",
+    title = "Net migration balance in Munich, 2000-2024",
+    subtitle = "The orange line shows a 3-year rolling average of monthly net migration balance.",
     x = "Year",
-    y = "Migration balance"
+    y = "Average monthly net migration balance",
+    caption = "Source: Munich Open Data, Monatszahlen Bevölkerung; own calculations."
   ) +
   
   theme_minimal() +
@@ -225,6 +236,16 @@ continent_yearly <- continent_data %>%
 # Faceted continent trend plot
 
 continent_facet_plot <- continent_yearly %>%
+  mutate(
+    continent_group = recode(
+      AUSPRAEGUNG,
+      "afrikanisch" = "African",
+      "amerikanisch" = "American",
+      "asiatisch" = "Asian",
+      "australisch" = "Australian",
+      "europäisch" = "European"
+    )
+  ) %>%
   ggplot(
     aes(
       x = year,
@@ -234,14 +255,18 @@ continent_facet_plot <- continent_yearly %>%
   geom_line(linewidth = 1) +
   geom_point(size = 1.5) +
   facet_wrap(
-    ~ AUSPRAEGUNG,
+    ~ continent_group,
     scales = "free_y"
   ) +
   labs(
-    title = "Population trends by continental groups in Munich",
-    subtitle = "Yearly mean population by continent group",
+    title = "Population by continental group in Munich, 2000-2024",
+    subtitle = "Each panel uses its own y-axis to show group-specific changes.",
     x = "Year",
-    y = "Mean population"
+    y = "Yearly mean population",
+    caption = "Source: Munich Open Data, Monatszahlen Bevölkerung; own calculations."
+  ) +
+  scale_x_continuous(
+    breaks = c(2000, 2005, 2010, 2015, 2020, 2024)
   ) +
   theme_minimal()
 
@@ -287,33 +312,49 @@ eu_yearly <- eu_data %>%
 # EU nationality trend plot
 
 eu_trend_plot <- eu_yearly %>%
+  mutate(
+    nationality = recode(
+      AUSPRAEGUNG,
+      "bulgarisch" = "Bulgarian",
+      "französisch" = "French",
+      "griechisch" = "Greek",
+      "insgesamt" = "Total",
+      "italienisch" = "Italian",
+      "kroatisch" = "Croatian",
+      "österreichisch" = "Austrian",
+      "polnisch" = "Polish",
+      "rumänisch" = "Romanian",
+      "ungarisch" = "Hungarian"
+    )
+  ) %>%
   ggplot(
     aes(
       x = year,
       y = mean_population,
-      color = AUSPRAEGUNG
+      color = nationality
     )
   ) +
   geom_line(linewidth = 1) +
   labs(
-    title = "EU nationality trends in Munich",
-    subtitle = "Yearly mean population by selected EU nationalities",
+    title = "EU nationality groups in Munich, 2000-2024",
+    subtitle = "Lines show yearly mean population by selected EU nationality group.",
     x = "Year",
-    y = "Mean population",
-    color = "Nationality"
+    y = "Yearly mean population",
+    color = "Nationality",
+    caption = "Source: Munich Open Data, Monatszahlen Bevölkerung; own calculations."
   ) +
   scale_color_manual(
     values = c(
-      "bulgarisch" = "#1b9e77",
-      "französisch" = "#d95f02",
-      "griechisch" = "#7570b3",
-      "insgesamt" = "#000000",
-      "italienisch" = "#e7298a",
-      "kroatisch" = "#66a61e",
-      "österreichisch" = "#e6ab02",
-      "polnisch" = "#a6761d",
-      "rumänisch" = "#1f78b4",
-      "ungarisch" = "#b2df8a"
+      "Bulgarian" = "#1b9e77",
+      "French" = "#d95f02",
+      "Greek" = "#7570b3",
+      "Total" = "#000000",
+      "Italian" = "#e7298a",
+      "Croatian" = "#66a61e",
+      "Austrian" = "#e6ab02",
+      "Polish" = "#a6761d",
+      "Romanian" = "#1f78b4",
+      "Hungarian" = "#b2df8a"
     )
   ) +
   theme_minimal() +
@@ -358,27 +399,35 @@ eu_non_eu_yearly <- eu_non_eu_data %>%
 # Plot EU vs non-EU trends
 
 eu_non_eu_plot <- eu_non_eu_yearly %>%
+  mutate(
+    citizenship_group = recode(
+      MONATSZAHL,
+      "EU-Staatsangehörigkeiten" = "EU citizens",
+      "Nicht-EU-Staatsangehörigkeiten" = "Non-EU citizens"
+    )
+  ) %>%
   ggplot(
     aes(
       x = year,
       y = mean_population,
-      color = MONATSZAHL
+      color = citizenship_group
     )
   ) +
   geom_line(linewidth = 1.2) +
   geom_point(size = 1.8) +
   scale_color_manual(
     values = c(
-      "EU-Staatsangehörigkeiten" = "#1b9e77",
-      "Nicht-EU-Staatsangehörigkeiten" = "#d95f02"
+      "EU citizens" = "#1b9e77",
+      "Non-EU citizens" = "#d95f02"
     )
   ) +
   labs(
-    title = "EU and non-EU demographic trends in Munich",
-    subtitle = "Yearly mean population by citizenship group",
+    title = "EU and non-EU populations in Munich, 2000-2024",
+    subtitle = "Non-EU populations became larger again after the late 2010s.",
     x = "Year",
-    y = "Mean population",
-    color = "Group"
+    y = "Yearly mean population",
+    color = "Citizenship group",
+    caption = "Source: Munich Open Data, Monatszahlen Bevölkerung; own calculations."
   ) +
   theme_minimal() +
   theme(

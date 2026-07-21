@@ -83,16 +83,30 @@ age_structure_long <- age_structure %>%
         values_to = "population"
     )
 
+age_structure_long <- age_structure_long %>%
+  mutate(
+    age_group_label = recode(
+      age_group,
+      "noch nicht Schulpflichtige (0 bis 5 Jahre)" = "Pre-school age (0-5)",
+      "Schulpflichtige (6 bis 14 Jahre)" = "School age (6-14)",
+      "Berufsschulpflichtige (15 bis 17 Jahre)" = "Vocational school age (15-17)",
+      "18 bis 64 Jahre" = "Working age (18-64)",
+      "Rentner*innen (65 Jahre und älter)" = "Retirement age (65+)"
+    )
+  )
 
 age_trend_plot <- age_structure_long %>%
-    ggplot(aes(x = year, y = population, color = age_group)) +
-    geom_line(linewidth = 1) +
-    geom_point(size = 1.5) +
-    labs(
-        title = "Population trends by age group in Munich, 2000–2024",
-        x = "Year",
-        y = "Mean population",
-        color = "Age group"
+  ggplot(aes(x = year, y = population, color = age_group_label)) +
+  geom_line(linewidth = 1) +
+  geom_point(size = 1.5) +
+  scale_y_continuous(labels = scales::comma) +
+  labs(
+    title = "Age structure in Munich, 2000-2024",
+    subtitle = "Lines show yearly mean population by constructed non-overlapping age group.",
+    x = "Year",
+    y = "Yearly mean population",
+    color = "Age group",
+    caption = "Source: Munich Open Data, Monatszahlen Bevölkerung; own calculations."
   ) +
   theme_minimal()
 
@@ -116,15 +130,19 @@ age_trend_facet_plot <- ggplot(
   geom_line(linewidth = 1) +
   geom_point(size = 1.5) +
   facet_wrap(
-    ~ age_group,
+    ~ age_group_label,
     scales = "free_y"
   ) +
   scale_y_continuous(labels = scales::comma) +
+  scale_x_continuous(
+    breaks = c(2000, 2005, 2010, 2015, 2020, 2024)
+  ) +
   labs(
-    title = "Population trends by age group in Munich, 2000–2024",
-    subtitle = "Yearly mean population, shown with separate y-axes for each age group",
+    title = "Population by age group in Munich, 2000-2024",
+    subtitle = "Each panel uses its own y-axis to show age-group-specific changes.",
     x = "Year",
-    y = "Mean population"
+    y = "Yearly mean population",
+    caption = "Source: Munich Open Data, Monatszahlen Bevölkerung; own calculations."
   ) +
   theme_minimal()
 
@@ -148,15 +166,16 @@ age_share_selected_years <- age_structure_share %>%
     filter(year %in% c(2000,2010,2020,2024))
 
 age_share_bar_plot <- age_share_selected_years %>%
-    ggplot(aes(x = factor(year), y = population_share, fill = age_group)) +
-    geom_col() +
-    scale_y_continuous(labels = scales::percent) +
-    labs(
-      title = "Age structure of Munich's population in selected years",
-      subtitle = "Comparison of age group shares in 2000, 2010, 2020 and 2024",
-      x = "Year",
-      y = "Share of population",
-      fill = "Age group"
+  ggplot(aes(x = factor(year), y = population_share, fill = age_group_label)) +
+  geom_col() +
+  scale_y_continuous(labels = scales::percent) +
+  labs(
+    title = "Age structure in Munich in selected years",
+    subtitle = "Bars show population shares for constructed non-overlapping age groups.",
+    x = "Year",
+    y = "Share of population",
+    fill = "Age group",
+    caption = "Source: Munich Open Data, Monatszahlen Bevölkerung; own calculations."
   ) +
   theme_minimal()
  
@@ -184,11 +203,11 @@ age_share_bar_plot <- age_share_selected_years %>%
 write_csv(age_change_table, "data/processed/age_change_table.csv")
 
 write_csv(
-  age_structure_long,
+  age_structure_long %>% select(-age_group_label),
   "data/processed/age_structure_long.csv"
 )
 
 write_csv(
-  age_structure_share,
+  age_structure_share %>% select(-age_group_label),
   "data/processed/age_structure_share.csv"
 )

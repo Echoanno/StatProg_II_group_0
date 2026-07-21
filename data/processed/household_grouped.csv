@@ -1,40 +1,40 @@
 year,household_group,count
-2012,1 Person,424213
-2012,2 Personen,198440
-2012,3+ Personen,159226
-2013,1 Person,429124
-2013,2 Personen,196217
-2013,3+ Personen,163944
-2014,1 Person,440857
-2014,2 Personen,206073
-2014,3+ Personen,162869
-2015,1 Person,450901
-2015,2 Personen,205094
-2015,3+ Personen,166911
-2016,1 Person,455931
-2016,2 Personen,207170
-2016,3+ Personen,169709
-2017,1 Person,442258
-2017,2 Personen,204996
-2017,3+ Personen,170866
-2018,1 Person,446350
-2018,2 Personen,205855
-2018,3+ Personen,173642
-2019,1 Person,448732
-2019,2 Personen,207552
-2019,3+ Personen,176344
-2020,1 Person,449561
-2020,2 Personen,207855
-2020,3+ Personen,177126
-2021,1 Person,448248
-2021,2 Personen,208639
-2021,3+ Personen,177039
-2022,1 Person,452585
-2022,2 Personen,214707
-2022,3+ Personen,178766
-2023,1 Person,461441
-2023,2 Personen,214572
-2023,3+ Personen,178383
-2024,1 Person,468540
-2024,2 Personen,215148
-2024,3+ Personen,179646
+2012,One person,424213
+2012,Three or more persons,159226
+2012,Two persons,198440
+2013,One person,429124
+2013,Three or more persons,163944
+2013,Two persons,196217
+2014,One person,440857
+2014,Three or more persons,162869
+2014,Two persons,206073
+2015,One person,450901
+2015,Three or more persons,166911
+2015,Two persons,205094
+2016,One person,455931
+2016,Three or more persons,169709
+2016,Two persons,207170
+2017,One person,442258
+2017,Three or more persons,170866
+2017,Two persons,204996
+2018,One person,446350
+2018,Three or more persons,173642
+2018,Two persons,205855
+2019,One person,448732
+2019,Three or more persons,176344
+2019,Two persons,207552
+2020,One person,449561
+2020,Three or more persons,177126
+2020,Two persons,207855
+2021,One person,448248
+2021,Three or more persons,177039
+2021,Two persons,208639
+2022,One person,452585
+2022,Three or more persons,178766
+2022,Two persons,214707
+2023,One person,461441
+2023,Three or more persons,178383
+2023,Two persons,214572
+2024,One person,468540
+2024,Three or more persons,179646
+2024,Two persons,215148
