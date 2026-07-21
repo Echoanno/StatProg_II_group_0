@@ -1,6 +1,5 @@
 ---
 title: "StatProg II - Project Proposal"
-author: "Group 0"
 format:
   html:
     toc: true

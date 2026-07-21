@@ -1,7 +1,6 @@
 ---
 title: "Demographic Change in Munich"
 subtitle: "Age structure, migration dynamics and household composition, 2000-2024"
-author: "Group 0"
 format:
   html:
     toc: true
@@ -16,10 +15,10 @@ execute:
 
 ```{r}
 library(tidyverse)
-library(gt)
 library(scales)
 library(knitr)
 
+age_structure_share <- read_csv("data/processed/age_structure_share.csv")
 age_change_table <- read_csv("data/processed/age_change_table.csv")
 migration_change_table <- read_csv("data/processed/migration_change_table.csv")
 migration_extreme_years <- read_csv("data/processed/migration_extreme_years.csv")
@@ -29,15 +28,12 @@ household_share_change_table <- read_csv("data/processed/household_share_change_
 
 # Executive Summary
 
-Munich’s demographic transformation between 2000 and 2024 is characterized by modest age-structure change, volatile migration flows, strong international diversification, and stable household composition.
+Munich's demographic transformation between 2000 and 2024 is characterised by modest age-structure change, volatile migration flows, strong international diversification, and stable household composition.
 
--   **Ageing is visible but limited.** The 65+ population increased in absolute terms, but its population share rose only slightly, from about 15.9% to 17.0%. Younger age groups also grew, so Munich cannot be described as simply getting older.
-
--   **Migration is better understood as a volatile short-term indicator than as a smooth long-term trend.** Net migration balance was about 833 in 2000 and 634 in 2024, but it fluctuated strongly between those years, reaching a high around 1,597 in 2011 and a low around -1,340 in 2017.
-
--   **International diversification is one of the clearest structural changes.** EU and non-EU populations both increased strongly, while Asian and African population groups grew especially fast. This suggests that Munich's demographic transformation is not only about population growth, but also about changing international composition.
-
--   **Household composition remained surprisingly stable.** One-person households stayed at around 54.3% between 2012 and 2024. This stability provides an important contrast to the stronger changes observed in migration and international composition.
+- **Ageing is visible but limited.** The 65+ population increased in absolute terms, but its population share rose only slightly, from about 15.9% to 17.0%. Younger age groups also grew, so Munich cannot be described as simply getting older.
+- **Migration is better understood as a volatile short-term indicator than as a smooth long-term trend.** Net migration balance was about 833 in 2000 and 634 in 2024, but it fluctuated strongly between those years.
+- **International diversification is one of the clearest structural changes.** EU and non-EU populations both increased strongly, while Asian and African population groups grew especially fast.
+- **Household composition remained surprisingly stable.** One-person households stayed at around 54.3% between 2012 and 2024.
 
 # Research Questions
 
@@ -45,15 +41,15 @@ This report asks how Munich's demographic structure changed between 2000 and 202
 
 More specifically, we focus on three descriptive questions:
 
-1.  How did Munich's age structure change during this period?
-2.  How did migration dynamics and international population composition change?
-3.  Did household-size composition change alongside Munich's age structure and migration dynamics, or did it remain relatively stable?
+1. How did Munich's age structure change during this period?
+2. How did migration dynamics and international population composition change?
+3. Did household-size composition change alongside Munich's age structure and migration dynamics, or did it remain relatively stable?
 
 The analysis is descriptive and exploratory. It does not aim to identify causal effects.
 
 # Data and Scope
 
-This project uses the dataset *Monatszahlen Bevölkerung* from the Open Data Portal of the City of Munich. Each row represents one demographic topic, subcategory and month.
+This project uses the dataset *Monatszahlen Bevoelkerung* from the Open Data Portal of the City of Munich. Each row represents one demographic topic, subcategory and month.
 
 The main value column, `WERT`, contains the reported population count or migration value for a specific demographic category and month. For population-stock variables such as age groups, EU/non-EU citizenship groups and household structure, the values describe the size of a group at a given time. For migration indicators, the values describe monthly inflows, outflows or net migration balance.
 
@@ -89,29 +85,77 @@ age_change_table %>%
     across(c(`2000`, `2024`, absolute_change), ~ round(.x, 0)),
     relative_change = round(relative_change, 1)
   ) %>%
-  gt() %>%
-  fmt_number(columns = c(`2000`, `2024`, absolute_change), decimals = 0) %>%
-  fmt_number(columns = relative_change, decimals = 1) %>%
-  cols_label(
-    age_group = "Age group",
-    `2000` = "2000",
-    `2024` = "2024",
-    absolute_change = "Absolute change",
-    relative_change = "Relative change (%)"
+  rename(
+    `Age group` = age_group,
+    `Population 2000` = `2000`,
+    `Population 2024` = `2024`,
+    `Absolute change` = absolute_change,
+    `Relative change (%)` = relative_change
   ) %>%
-  tab_header(
-    title = "Age groups changed unevenly between 2000 and 2024",
-    subtitle = "Values are yearly mean population counts"
-  ) %>%
-  tab_source_note("Source: Munich Open Data, Monatszahlen Bevölkerung; own calculations.")
+  kable(
+    caption = "Age groups changed unevenly between 2000 and 2024. Values are yearly mean population counts."
+  )
 ```
+
+# Simple Model: 65+ Share Over Time
+
+As a simple statistical model, the report fits a linear trend model for the 65+ population share:
+
+```text
+65+ population share = beta_0 + beta_1 * year + error
+```
+
+This model is used only as a descriptive trend summary. It does not explain the causes of demographic ageing.
+
+```{r}
+age_65_share <- age_structure_share %>%
+  filter(
+    year >= 2000,
+    year <= 2024,
+    str_detect(age_group, "Rentner")
+  ) %>%
+  transmute(
+    year,
+    population_share_percent = population_share * 100
+  )
+
+age_65_share_model <- lm(
+  population_share_percent ~ year,
+  data = age_65_share
+)
+
+age_65_slope <- coef(age_65_share_model)[["year"]]
+age_65_start <- age_65_share %>% filter(year == 2000) %>% pull(population_share_percent)
+age_65_end <- age_65_share %>% filter(year == 2024) %>% pull(population_share_percent)
+```
+
+```{r}
+#| fig-cap: "Linear trend in Munich's 65+ population share, 2000-2024."
+#| fig-alt: "Scatter plot of Munich's 65 plus population share from 2000 to 2024 with a fitted linear trend line."
+
+age_65_share %>%
+  ggplot(aes(x = year, y = population_share_percent)) +
+  geom_point(size = 2) +
+  geom_smooth(method = "lm", se = TRUE, linewidth = 1) +
+  scale_y_continuous(labels = label_number(suffix = "%")) +
+  labs(
+    title = "Trend in Munich's 65+ population share, 2000-2024",
+    subtitle = "Linear model fitted to yearly mean population shares",
+    x = "Year",
+    y = "65+ population share"
+  ) +
+  theme_minimal()
+```
+
+The 65+ population share increased from `r round(age_65_start, 2)`% in 2000 to `r round(age_65_end, 2)`% in 2024. In the simple linear model, the coefficient for year is `r round(age_65_slope, 3)` percentage points per year. This means that, on average, the 65+ share increased by about `r round(age_65_slope, 3)` percentage points per year during the observation period.
+
+This provides preliminary evidence of demographic ageing, but the model should be interpreted cautiously. The observed pattern is not strictly linear, and the model summarises a time trend rather than establishing a causal mechanism.
 
 # Migration Became More Volatile After the Mid-2010s
 
 Migration indicators are aggregated as yearly averages of monthly observations. Therefore, the values describe average monthly migration levels within each year, not total annual migration flows.
 
 ```{r}
-#| echo: false
 #| out-width: "90%"
 
 knitr::include_graphics("figures/migration_trend_plot.png")
@@ -127,21 +171,20 @@ migration_change_table %>%
       "Wanderungssaldo" = "Net migration"
     )
   ) %>%
-  gt() %>%
-  fmt_number(columns = c(year_2000, year_2024, absolute_change), decimals = 0) %>%
-  fmt_number(columns = relative_change_percent, decimals = 1) %>%
-  cols_label(
-    MONATSZAHL = "Migration indicator",
-    year_2000 = "2000",
-    year_2024 = "2024",
-    absolute_change = "Absolute change",
-    relative_change_percent = "Relative change (%)"
+  mutate(
+    across(c(year_2000, year_2024, absolute_change), ~ round(.x, 0)),
+    relative_change_percent = round(relative_change_percent, 1)
   ) %>%
-  tab_header(
-    title = "Migration indicators changed between 2000 and 2024",
-    subtitle = "Yearly averages of monthly observations"
+  rename(
+    `Migration indicator` = MONATSZAHL,
+    `2000` = year_2000,
+    `2024` = year_2024,
+    `Absolute change` = absolute_change,
+    `Relative change (%)` = relative_change_percent
   ) %>%
-  tab_source_note("Source: Munich Open Data, Monatszahlen Bevölkerung; own calculations.")
+  kable(
+    caption = "Migration indicators changed between 2000 and 2024. Values are yearly averages of monthly observations."
+  )
 ```
 
 # Net Migration Shows Strong Year-to-Year Fluctuation
@@ -149,11 +192,11 @@ migration_change_table %>%
 The rolling average smooths short-term variation and makes the longer-term pattern easier to read.
 
 ```{r}
-#| echo: false
 #| out-width: "90%"
 
 knitr::include_graphics("figures/migration_balance_rolling_plot.png")
 ```
+
 The rolling average highlights a clear change around the mid-2010s, including the negative net migration balance around 2017 and the later recovery. This supports interpreting migration as a short-term volatile indicator rather than a smooth structural trend.
 
 ```{r}
@@ -166,20 +209,20 @@ migration_extreme_years %>%
       "Wanderungssaldo" = "Net migration"
     )
   ) %>%
-  gt() %>%
-  fmt_number(columns = c(lowest_value, highest_value), decimals = 0) %>%
-  cols_label(
-    MONATSZAHL = "Migration indicator",
-    lowest_year = "Lowest year",
-    lowest_value = "Lowest value",
-    highest_year = "Highest year",
-    highest_value = "Highest value"
+  mutate(
+    lowest_value = round(lowest_value, 0),
+    highest_value = round(highest_value, 0)
   ) %>%
-  tab_header(
-    title = "Migration indicators reached their extremes in different years",
-    subtitle = "Extremes are based on yearly averages of monthly values"
+  rename(
+    `Migration indicator` = MONATSZAHL,
+    `Lowest year` = lowest_year,
+    `Lowest value` = lowest_value,
+    `Highest year` = highest_year,
+    `Highest value` = highest_value
   ) %>%
-  tab_source_note("Source: Munich Open Data, Monatszahlen Bevölkerung; own calculations.")
+  kable(
+    caption = "Migration indicators reached their extremes in different years. Extremes are based on yearly averages of monthly values."
+  )
 ```
 
 # Internationalisation Increased, Especially Among Non-EU Groups
@@ -187,7 +230,6 @@ migration_extreme_years %>%
 The EU/non-EU comparison helps describe Munich's demographic internationalisation. This comparison is descriptive and does not identify causal mechanisms.
 
 ```{r}
-#| echo: false
 #| out-width: "90%"
 
 knitr::include_graphics("figures/eu_non_eu_plot.png")
@@ -198,33 +240,34 @@ eu_non_eu_change_table %>%
   mutate(
     MONATSZAHL = recode(
       MONATSZAHL,
+      "EU-Staatsangehoerigkeiten" = "EU citizens",
       "EU-Staatsangehörigkeiten" = "EU citizens",
+      "Nicht-EU-Staatsangehoerigkeiten" = "Non-EU citizens",
       "Nicht-EU-Staatsangehörigkeiten" = "Non-EU citizens"
     )
   ) %>%
-  gt() %>%
-  fmt_number(columns = c(year_2000, year_2024, absolute_change), decimals = 0) %>%
-  fmt_number(columns = relative_change_percent, decimals = 1) %>%
-  cols_label(
-    MONATSZAHL = "Group",
-    year_2000 = "2000",
-    year_2024 = "2024",
-    absolute_change = "Absolute change",
-    relative_change_percent = "Relative change (%)"
+  mutate(
+    across(c(year_2000, year_2024, absolute_change), ~ round(.x, 0)),
+    relative_change_percent = round(relative_change_percent, 1)
   ) %>%
-  tab_header(
-    title = "Non-EU populations became increasingly important",
-    subtitle = "Comparison of yearly mean population values in 2000 and 2024"
+  rename(
+    `Group` = MONATSZAHL,
+    `2000` = year_2000,
+    `2024` = year_2024,
+    `Absolute change` = absolute_change,
+    `Relative change (%)` = relative_change_percent
   ) %>%
-  tab_source_note("Source: Munich Open Data, Monatszahlen Bevölkerung; own calculations.")
+  kable(
+    caption = "Non-EU populations became increasingly important. Values compare yearly mean population levels in 2000 and 2024."
+  )
 ```
 
 ```{r}
-#| echo: false
 #| out-width: "100%"
 
 knitr::include_graphics("figures/continent_facet_plot.png")
 ```
+
 The continental comparison adds detail to the EU/non-EU result. European population groups remain the largest in absolute terms, but Asian and African population groups show stronger relative growth. This suggests that Munich's internationalisation is not only a change in EU/non-EU composition, but also a broader geographical diversification.
 
 # Exploratory Age-Migration Comparison
@@ -232,7 +275,6 @@ The continental comparison adds detail to the EU/non-EU result. European populat
 To compare long-term structural change with short-term migration dynamics, we also use an indexed view of selected age and migration indicators.
 
 ```{r}
-#| echo: false
 #| out-width: "90%"
 #| fig-cap: "Indexed comparison of selected age-structure and migration indicators."
 #| fig-alt: "Line chart comparing indexed age-structure indicators and migration indicators over time. Age-related indicators change more gradually, while migration indicators fluctuate more strongly."
@@ -240,7 +282,7 @@ To compare long-term structural change with short-term migration dynamics, we al
 knitr::include_graphics("figures/age_migration_indexed_plot.png")
 ```
 
-By placing age-structure and migration indicators on a common indexed scale, this comparison shows that Munich's demographic change was not a single synchronized process. Age-structure indicators changed gradually, while migration indicators fluctuated more strongly. This section is therefore a synthesis of the previous findings, not a causal analysis.
+By placing age-structure and migration indicators on a common indexed scale, this comparison shows that Munich's demographic change was not a single synchronised process. Age-structure indicators changed gradually, while migration indicators fluctuated more strongly. This section is therefore a synthesis of the previous findings, not a causal analysis.
 
 # Smaller Households Remained Dominant
 
@@ -248,9 +290,7 @@ The household analysis provides a contextual comparison to the age and migration
 
 Household sizes are grouped into one-person, two-person and three-or-more-person households because larger household-size categories are smaller and easier to interpret together. The analysis uses December observations from 2012 to 2024 as an annual baseline. This avoids counting several monthly observations for the same year.
 
-
 ```{r}
-#| echo: false
 #| out-width: "90%"
 
 knitr::include_graphics("figures/household_grouped_percentage_plot.png")
@@ -268,22 +308,32 @@ Several limitations are important. First, the data are aggregate municipal stati
 
 For these reasons, the report avoids causal claims such as migration causing changes in age structure or household composition.
 
-# Next Steps
+# Group Reflection
 
--   Improve figure titles, captions and alt text for the final website.
--   Add one optional interactive migration exploration page using `plotly`.
--   Track remaining tasks with GitHub Issues.
--   Write `group-reflection.qmd` and individual contribution statements.
+At the beginning of the project, the group considered a broad set of demographic questions around age structure, migration, household composition, and possible links between these dimensions. During the initial discussion, the group identified that some questions were methodologically stronger than others. In particular, the idea of using unmarried population counts to infer non-marital cohabitation was considered too weak for a direct interpretation, because two-person households may also include roommates, family members, elderly couples, or other living arrangements.
+
+The group therefore kept the overall project descriptive and exploratory. A recurring decision was to avoid causal claims from aggregate municipal statistics. This affected the interpretation of all three strands: age-structure changes were described as preliminary evidence of demographic ageing, migration trends were treated as contextual demographic developments, and household changes were interpreted cautiously rather than as direct evidence of individual living arrangements.
+
+The final report narrows the main synthesis to the age-structure question because it is the most self-contained part of the analysis and can be taken from data construction through descriptive results to a simple model. The migration and household analyses remain important context, but they are not expanded into additional causal or explanatory models. This narrowing was necessary because the project had several possible research directions, and a smaller number of well-explained results is more useful than many weakly connected claims.
+
+From a programming perspective, the workflow uses numbered scripts and project-relative paths to make the analysis easier to reproduce. After feedback, the hard-coded `setwd()` call was removed from the age analysis script, and a small helper function was added for repeated yearly mean aggregation. More extensive refactoring was not done because the project was close to final submission and the priority was to keep the existing outputs stable.
+
+The work was divided across the main project strands. Youpeng Jiang focused on the age-structure analysis and exploratory data analysis. Xiaohan Liu focused on the household-structure analysis. Yang Xi focused on migration dynamics and internationalisation. The final synthesis combines these strands while keeping the strongest interpretation centred on age structure.
 
 # Reproducibility
 
 The project separates raw data, processed data, scripts, figures and rendered website files. To reproduce the main outputs, run the cleaning and analysis scripts and then render the Quarto website.
 
-``` bash
+```bash
 Rscript code/01_import_clean.R
 Rscript code/02_eda.R
+Rscript code/03_analysis.R
 Rscript code/04_migration_analysis.R
 Rscript code/05_household_analysis.R
 Rscript code/06_age_migration_comparison.R
 quarto render
 ```
+
+# Conclusion
+
+Munich's age structure changed between 2000 and 2024. The 65+ population increased, and the simple model indicates a weak positive long-term trend in the 65+ population share. At the same time, younger age groups also grew substantially. The results therefore support a cautious interpretation: the data provide preliminary evidence of demographic ageing, but Munich's demographic change cannot be reduced to ageing alone.

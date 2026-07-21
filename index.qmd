@@ -10,6 +10,12 @@ format:
 
 This website presents our Statistical Programming II group project on demographic change in Munich.
 
+Group members:
+
+- Youpeng Jiang
+- Xiaohan Liu
+- Yang Xi
+
 The analysis focuses on three dimensions:
 
 - Age structure
