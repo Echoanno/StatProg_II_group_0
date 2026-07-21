@@ -1,0 +1,151 @@
+---
+title: "Demographic Change in Munich"
+format:
+  html:
+    toc: true
+    toc-depth: 2
+    number-sections: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+library(tidyverse)
+library(knitr)
+library(scales)
+
+age_structure_share <- read_csv("data/processed/age_structure_share.csv")
+age_change_table <- read_csv("data/processed/age_change_table.csv")
+```
+
+# Introduction
+
+This report analyses demographic change in Munich using the *Monatszahlen Bevoelkerung* dataset from the Open Data Portal of the City of Munich. The project remains mainly descriptive and exploratory. To keep the final synthesis focused, this report prioritises the age-structure question and uses migration and household findings as contextual evidence.
+
+The main question addressed here is:
+
+**How has Munich's age structure changed between 2000 and 2024, and is there preliminary evidence of demographic ageing?**
+
+The year 2025 is excluded from the main analysis because the available monthly observations are incomplete.
+
+# Data and Method
+
+The analysis uses yearly mean population values constructed from monthly observations. The original age categories overlap, so the project uses five non-overlapping groups: 0-5, 6-14, 15-17, 18-64, and 65+. The 18-64 group is derived by subtracting the 15-17 group from the original working-age category `Erwerbsfaehige (15 bis 64 Jahre)`.
+
+The main descriptive indicators are population counts, age-group shares, and changes between 2000 and 2024. As a simple statistical model, the report fits a linear model for the 65+ population share over time:
+
+```text
+65+ population share = beta_0 + beta_1 * year + error
+```
+
+This model is used only as a simple trend summary. It does not explain the causes of demographic ageing.
+
+# Age Structure
+
+```{r}
+#| label: fig-report-age-structure-selected-years
+#| fig-cap: "Age structure of Munich's population in selected years."
+
+age_structure_share %>%
+  filter(year %in% c(2000, 2010, 2020, 2024)) %>%
+  ggplot(aes(x = factor(year), y = population_share, fill = age_group)) +
+  geom_col() +
+  scale_y_continuous(labels = percent) +
+  labs(
+    title = "Age structure of Munich's population in selected years",
+    subtitle = "Comparison of constructed age-group shares in 2000, 2010, 2020, and 2024",
+    x = "Year",
+    y = "Share of population",
+    fill = "Age group"
+  ) +
+  theme_minimal()
+```
+
+The 18-64 group remained the largest age group throughout the period. The 65+ group increased in both absolute and relative terms, but younger groups also grew. Therefore, Munich's demographic change should not be described as ageing alone.
+
+```{r}
+#| label: tbl-report-age-change
+
+age_change_table %>%
+  mutate(relative_change = relative_change / 100) %>%
+  select(age_group, `2000`, `2024`, absolute_change, relative_change) %>%
+  rename(
+    `Age group` = age_group,
+    `Population 2000` = `2000`,
+    `Population 2024` = `2024`,
+    `Absolute change` = absolute_change,
+    `Relative change` = relative_change
+  ) %>%
+  kable(
+    digits = 2,
+    caption = "Change in yearly mean population by age group, 2000-2024."
+  )
+```
+
+# Simple Model
+
+```{r}
+age_65_share <- age_structure_share %>%
+  filter(
+    year >= 2000,
+    year <= 2024,
+    str_detect(age_group, "Rentner")
+  ) %>%
+  transmute(
+    year,
+    population_share_percent = population_share * 100
+  )
+
+age_65_share_model <- lm(
+  population_share_percent ~ year,
+  data = age_65_share
+)
+
+age_65_slope <- coef(age_65_share_model)[["year"]]
+age_65_start <- age_65_share %>% filter(year == 2000) %>% pull(population_share_percent)
+age_65_end <- age_65_share %>% filter(year == 2024) %>% pull(population_share_percent)
+```
+
+```{r}
+#| label: fig-report-age-65-model
+#| fig-cap: "Linear trend in Munich's 65+ population share, 2000-2024."
+
+age_65_share %>%
+  ggplot(aes(x = year, y = population_share_percent)) +
+  geom_point(size = 2) +
+  geom_smooth(method = "lm", se = TRUE, linewidth = 1) +
+  scale_y_continuous(labels = label_number(suffix = "%")) +
+  labs(
+    title = "Trend in Munich's 65+ population share, 2000-2024",
+    subtitle = "Linear model fitted to yearly mean population shares",
+    x = "Year",
+    y = "65+ population share"
+  ) +
+  theme_minimal()
+```
+
+The 65+ population share increased from `r round(age_65_start, 2)`% in 2000 to `r round(age_65_end, 2)`% in 2024. In the simple linear model, the coefficient for year is `r round(age_65_slope, 3)` percentage points per year. This means that, on average, the 65+ share increased by about `r round(age_65_slope, 3)` percentage points per year during the observation period.
+
+This provides preliminary evidence of demographic ageing, but the model should be interpreted cautiously. It summarises a time trend and does not establish a causal mechanism.
+
+# Context from Other Strands
+
+The migration analysis shows that Munich generally remained a net recipient of migrants, although migration dynamics fluctuated over time. The household analysis shows that one-person households remained the largest household category, while relative household shares changed only moderately. These findings provide useful context for Munich's broader demographic transformation, but they are not used here to make causal claims about age structure.
+
+# Group Reflection
+
+At the beginning of the project, the group considered a broad set of demographic questions around age structure, migration, household composition, and possible links between these dimensions. During the initial discussion, the group identified that some questions were methodologically stronger than others. In particular, the idea of using unmarried population counts to infer non-marital cohabitation was considered too weak for a direct interpretation, because two-person households may also include roommates, family members, elderly couples, or other living arrangements.
+
+The group therefore kept the overall project descriptive and exploratory. A recurring decision was to avoid causal claims from aggregate municipal statistics. This affected the interpretation of all three strands: age-structure changes were described as preliminary evidence of demographic ageing, migration trends were treated as contextual demographic developments, and household changes were interpreted cautiously rather than as direct evidence of individual living arrangements.
+
+The final report narrows the main synthesis to the age-structure question because it is the most self-contained part of the analysis and can be taken from data construction through descriptive results to a simple model. The migration and household analyses remain important context, but they are not expanded into additional causal or explanatory models. This narrowing was necessary because the project had several possible research directions, and a smaller number of well-explained results is more useful than many weakly connected claims.
+
+From a programming perspective, the workflow uses numbered scripts and project-relative paths to make the analysis easier to reproduce. After feedback, the hard-coded `setwd()` call was removed from the age analysis script, and a small helper function was added for repeated yearly mean aggregation. More extensive refactoring was not done because the project was close to final submission and the priority was to keep the existing outputs stable.
+
+The work was divided across the main project strands. Youpeng Jiang focused on the age-structure analysis and exploratory data analysis. Xiaohan Liu focused on the household-structure analysis. Yang Xi focused on migration dynamics and internationalisation. The final synthesis combines these strands while keeping the strongest interpretation centred on age structure.
+
+# Conclusion
+
+Munich's age structure changed between 2000 and 2024. The 65+ population increased, and the simple model indicates a positive long-term trend in the 65+ population share. At the same time, younger age groups also grew substantially. The results therefore support a cautious interpretation: the data provide preliminary evidence of demographic ageing, but Munich's demographic change cannot be reduced to ageing alone.

@@ -1,8 +1,23 @@
 library(tidyverse)
 
-setwd("C:/Users/youpe/Desktop/Informatik bachelor/StatsProg2/Statprog_Project/StatProg_II_group_0")
-
 age_data <- read_csv("data/processed/age_data.csv")
+
+summarise_yearly_mean <- function(
+  data,
+  grouping_columns,
+  value_column = "WERT",
+  output_column = "mean_population",
+  start_year = 2000,
+  end_year = 2024
+) {
+  data %>%
+    filter(year >= start_year, year <= end_year) %>%
+    group_by(across(all_of(grouping_columns))) %>%
+    summarise(
+      "{output_column}" := mean(.data[[value_column]], na.rm = TRUE),
+      .groups = "drop"
+    )
+}
 
 glimpse(age_data)
 
@@ -36,11 +51,8 @@ age_selected %>%
     distinct(AUSPRAEGUNG)
 
 age_yearly <- age_selected %>%
-    filter(year >= 2000, year <= 2024) %>%
-    group_by(AUSPRAEGUNG, year) %>%
-    summarise(
-        mean_population = mean(WERT, na.rm = TRUE),
-        .groups = "drop"
+    summarise_yearly_mean(
+        grouping_columns = c("AUSPRAEGUNG", "year")
     )
 
 age_wide <- age_yearly %>%

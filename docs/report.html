@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>report – Demographic Change in Munich</title>
+<title>Demographic Change in Munich</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-7f8f88aac4f3542376d5c11b86a4c14d.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-158031087360bce0ff56dc785ce39e06.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-a0f9fd0d421825b736dc1bbcbcba2219.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -156,19 +156,182 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#data-and-method" id="toc-data-and-method" class="nav-link" data-scroll-target="#data-and-method"><span class="header-section-number">2</span> Data and Method</a></li>
+  <li><a href="#age-structure" id="toc-age-structure" class="nav-link" data-scroll-target="#age-structure"><span class="header-section-number">3</span> Age Structure</a></li>
+  <li><a href="#simple-model" id="toc-simple-model" class="nav-link" data-scroll-target="#simple-model"><span class="header-section-number">4</span> Simple Model</a></li>
+  <li><a href="#context-from-other-strands" id="toc-context-from-other-strands" class="nav-link" data-scroll-target="#context-from-other-strands"><span class="header-section-number">5</span> Context from Other Strands</a></li>
+  <li><a href="#group-reflection" id="toc-group-reflection" class="nav-link" data-scroll-target="#group-reflection"><span class="header-section-number">6</span> Group Reflection</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">7</span> Conclusion</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><h1 class="title display-7"></h1></header><div class="quarto-title-block"><div class="quarto-title-tools-only"><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<main class="content column-page-left" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Demographic Change in Munich</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+</div>
 
 
 
+<div class="quarto-title-meta column-page-left">
 
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
+<p>This report analyses demographic change in Munich using the <em>Monatszahlen Bevoelkerung</em> dataset from the Open Data Portal of the City of Munich. The project remains mainly descriptive and exploratory. To keep the final synthesis focused, this report prioritises the age-structure question and uses migration and household findings as contextual evidence.</p>
+<p>The main question addressed here is:</p>
+<p><strong>How has Munich’s age structure changed between 2000 and 2024, and is there preliminary evidence of demographic ageing?</strong></p>
+<p>The year 2025 is excluded from the main analysis because the available monthly observations are incomplete.</p>
+</section>
+<section id="data-and-method" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Data and Method</h1>
+<p>The analysis uses yearly mean population values constructed from monthly observations. The original age categories overlap, so the project uses five non-overlapping groups: 0-5, 6-14, 15-17, 18-64, and 65+. The 18-64 group is derived by subtracting the 15-17 group from the original working-age category <code>Erwerbsfaehige (15 bis 64 Jahre)</code>.</p>
+<p>The main descriptive indicators are population counts, age-group shares, and changes between 2000 and 2024. As a simple statistical model, the report fits a linear model for the 65+ population share over time:</p>
+<pre class="text"><code>65+ population share = beta_0 + beta_1 * year + error</code></pre>
+<p>This model is used only as a simple trend summary. It does not explain the causes of demographic ageing.</p>
+</section>
+<section id="age-structure" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Age Structure</h1>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-report-age-structure-selected-years" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-report-age-structure-selected-years-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="report_files/figure-html/fig-report-age-structure-selected-years-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-report-age-structure-selected-years-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Age structure of Munich’s population in selected years.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The 18-64 group remained the largest age group throughout the period. The 65+ group increased in both absolute and relative terms, but younger groups also grew. Therefore, Munich’s demographic change should not be described as ageing alone.</p>
+<div class="cell">
+<div id="tbl-report-age-change" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-report-age-change-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;1: Change in yearly mean population by age group, 2000-2024.
+</figcaption>
+<div aria-describedby="tbl-report-age-change-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<table class="cell caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Age group</th>
+<th style="text-align: right;">Population 2000</th>
+<th style="text-align: right;">Population 2024</th>
+<th style="text-align: right;">Absolute change</th>
+<th style="text-align: right;">Relative change</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Schulpflichtige (6 bis 14 Jahre)</td>
+<td style="text-align: right;">84870.33</td>
+<td style="text-align: right;">119601.25</td>
+<td style="text-align: right;">34730.92</td>
+<td style="text-align: right;">0.41</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Berufsschulpflichtige (15 bis 17 Jahre)</td>
+<td style="text-align: right;">27045.42</td>
+<td style="text-align: right;">38038.08</td>
+<td style="text-align: right;">10992.67</td>
+<td style="text-align: right;">0.41</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Rentner*innen (65 Jahre und älter)</td>
+<td style="text-align: right;">196769.33</td>
+<td style="text-align: right;">270945.33</td>
+<td style="text-align: right;">74176.00</td>
+<td style="text-align: right;">0.38</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">noch nicht Schulpflichtige (0 bis 5 Jahre)</td>
+<td style="text-align: right;">65097.00</td>
+<td style="text-align: right;">89063.00</td>
+<td style="text-align: right;">23966.00</td>
+<td style="text-align: right;">0.37</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">18 bis 64 Jahre</td>
+<td style="text-align: right;">865765.08</td>
+<td style="text-align: right;">1078140.08</td>
+<td style="text-align: right;">212375.00</td>
+<td style="text-align: right;">0.25</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="simple-model" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Simple Model</h1>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-report-age-65-model" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-report-age-65-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="report_files/figure-html/fig-report-age-65-model-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-report-age-65-model-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Linear trend in Munich’s 65+ population share, 2000-2024.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The 65+ population share increased from 15.87% in 2000 to 16.98% in 2024. In the simple linear model, the coefficient for year is 0.027 percentage points per year. This means that, on average, the 65+ share increased by about 0.027 percentage points per year during the observation period.</p>
+<p>This provides preliminary evidence of demographic ageing, but the model should be interpreted cautiously. It summarises a time trend and does not establish a causal mechanism.</p>
+</section>
+<section id="context-from-other-strands" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Context from Other Strands</h1>
+<p>The migration analysis shows that Munich generally remained a net recipient of migrants, although migration dynamics fluctuated over time. The household analysis shows that one-person households remained the largest household category, while relative household shares changed only moderately. These findings provide useful context for Munich’s broader demographic transformation, but they are not used here to make causal claims about age structure.</p>
+</section>
+<section id="group-reflection" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> Group Reflection</h1>
+<p>At the beginning of the project, the group considered a broad set of demographic questions around age structure, migration, household composition, and possible links between these dimensions. During the initial discussion, the group identified that some questions were methodologically stronger than others. In particular, the idea of using unmarried population counts to infer non-marital cohabitation was considered too weak for a direct interpretation, because two-person households may also include roommates, family members, elderly couples, or other living arrangements.</p>
+<p>The group therefore kept the overall project descriptive and exploratory. A recurring decision was to avoid causal claims from aggregate municipal statistics. This affected the interpretation of all three strands: age-structure changes were described as preliminary evidence of demographic ageing, migration trends were treated as contextual demographic developments, and household changes were interpreted cautiously rather than as direct evidence of individual living arrangements.</p>
+<p>The final report narrows the main synthesis to the age-structure question because it is the most self-contained part of the analysis and can be taken from data construction through descriptive results to a simple model. The migration and household analyses remain important context, but they are not expanded into additional causal or explanatory models. This narrowing was necessary because the project had several possible research directions, and a smaller number of well-explained results is more useful than many weakly connected claims.</p>
+<p>From a programming perspective, the workflow uses numbered scripts and project-relative paths to make the analysis easier to reproduce. After feedback, the hard-coded <code>setwd()</code> call was removed from the age analysis script, and a small helper function was added for repeated yearly mean aggregation. More extensive refactoring was not done because the project was close to final submission and the priority was to keep the existing outputs stable.</p>
+<p>The work was divided across the main project strands. Youpeng Jiang focused on the age-structure analysis and exploratory data analysis. Xiaohan Liu focused on the household-structure analysis. Yang Xi focused on migration dynamics and internationalisation. The final synthesis combines these strands while keeping the strongest interpretation centred on age structure.</p>
+</section>
+<section id="conclusion" class="level1" data-number="7">
+<h1 data-number="7"><span class="header-section-number">7</span> Conclusion</h1>
+<p>Munich’s age structure changed between 2000 and 2024. The 65+ population increased, and the simple model indicates a positive long-term trend in the 65+ population share. At the same time, younger age groups also grew substantially. The results therefore support a cautious interpretation: the data provide preliminary evidence of demographic ageing, but Munich’s demographic change cannot be reduced to ageing alone.</p>
 
 
 <!-- -->
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -622,7 +785,158 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "Demographic Change in Munich"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">    toc-depth: 2</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">    number-sections: true</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: false</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">  message: false</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(scales)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>age_structure_share <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/processed/age_structure_share.csv"</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>age_change_table <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/processed/age_change_table.csv"</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introduction</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>This report analyses demographic change in Munich using the *Monatszahlen Bevoelkerung* dataset from the Open Data Portal of the City of Munich. The project remains mainly descriptive and exploratory. To keep the final synthesis focused, this report prioritises the age-structure question and uses migration and household findings as contextual evidence.</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>The main question addressed here is:</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>**How has Munich's age structure changed between 2000 and 2024, and is there preliminary evidence of demographic ageing?**</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>The year 2025 is excluded from the main analysis because the available monthly observations are incomplete.</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="fu"># Data and Method</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>The analysis uses yearly mean population values constructed from monthly observations. The original age categories overlap, so the project uses five non-overlapping groups: 0-5, 6-14, 15-17, 18-64, and 65+. The 18-64 group is derived by subtracting the 15-17 group from the original working-age category <span class="in">`Erwerbsfaehige (15 bis 64 Jahre)`</span>.</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>The main descriptive indicators are population counts, age-group shares, and changes between 2000 and 2024. As a simple statistical model, the report fits a linear model for the 65+ population share over time:</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="in">65+ population share = beta_0 + beta_1 * year + error</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>This model is used only as a simple trend summary. It does not explain the causes of demographic ageing.</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="fu"># Age Structure</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-report-age-structure-selected-years</span></span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Age structure of Munich's population in selected years."</span></span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>age_structure_share <span class="sc">%&gt;%</span></span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2000</span>, <span class="dv">2010</span>, <span class="dv">2020</span>, <span class="dv">2024</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(year), <span class="at">y =</span> population_share, <span class="at">fill =</span> age_group)) <span class="sc">+</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> percent) <span class="sc">+</span></span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Age structure of Munich's population in selected years"</span>,</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Comparison of constructed age-group shares in 2000, 2010, 2020, and 2024"</span>,</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Share of population"</span>,</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>    <span class="at">fill =</span> <span class="st">"Age group"</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>The 18-64 group remained the largest age group throughout the period. The 65+ group increased in both absolute and relative terms, but younger groups also grew. Therefore, Munich's demographic change should not be described as ageing alone.</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-report-age-change</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>age_change_table <span class="sc">%&gt;%</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">relative_change =</span> relative_change <span class="sc">/</span> <span class="dv">100</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(age_group, <span class="st">`</span><span class="at">2000</span><span class="st">`</span>, <span class="st">`</span><span class="at">2024</span><span class="st">`</span>, absolute_change, relative_change) <span class="sc">%&gt;%</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(</span>
+<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Age group</span><span class="st">`</span> <span class="ot">=</span> age_group,</span>
+<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Population 2000</span><span class="st">`</span> <span class="ot">=</span> <span class="st">`</span><span class="at">2000</span><span class="st">`</span>,</span>
+<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Population 2024</span><span class="st">`</span> <span class="ot">=</span> <span class="st">`</span><span class="at">2024</span><span class="st">`</span>,</span>
+<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Absolute change</span><span class="st">`</span> <span class="ot">=</span> absolute_change,</span>
+<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">Relative change</span><span class="st">`</span> <span class="ot">=</span> relative_change</span>
+<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(</span>
+<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="dv">2</span>,</span>
+<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>    <span class="at">caption =</span> <span class="st">"Change in yearly mean population by age group, 2000-2024."</span></span>
+<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a><span class="fu"># Simple Model</span></span>
+<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a>age_65_share <span class="ot">&lt;-</span> age_structure_share <span class="sc">%&gt;%</span></span>
+<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>    year <span class="sc">&gt;=</span> <span class="dv">2000</span>,</span>
+<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>    year <span class="sc">&lt;=</span> <span class="dv">2024</span>,</span>
+<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>    <span class="fu">str_detect</span>(age_group, <span class="st">"Rentner"</span>)</span>
+<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span></span>
+<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb2-105"><a href="#cb2-105" aria-hidden="true" tabindex="-1"></a>    year,</span>
+<span id="cb2-106"><a href="#cb2-106" aria-hidden="true" tabindex="-1"></a>    <span class="at">population_share_percent =</span> population_share <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb2-107"><a href="#cb2-107" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-108"><a href="#cb2-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-109"><a href="#cb2-109" aria-hidden="true" tabindex="-1"></a>age_65_share_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(</span>
+<span id="cb2-110"><a href="#cb2-110" aria-hidden="true" tabindex="-1"></a>  population_share_percent <span class="sc">~</span> year,</span>
+<span id="cb2-111"><a href="#cb2-111" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> age_65_share</span>
+<span id="cb2-112"><a href="#cb2-112" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-113"><a href="#cb2-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-114"><a href="#cb2-114" aria-hidden="true" tabindex="-1"></a>age_65_slope <span class="ot">&lt;-</span> <span class="fu">coef</span>(age_65_share_model)[[<span class="st">"year"</span>]]</span>
+<span id="cb2-115"><a href="#cb2-115" aria-hidden="true" tabindex="-1"></a>age_65_start <span class="ot">&lt;-</span> age_65_share <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2000</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(population_share_percent)</span>
+<span id="cb2-116"><a href="#cb2-116" aria-hidden="true" tabindex="-1"></a>age_65_end <span class="ot">&lt;-</span> age_65_share <span class="sc">%&gt;%</span> <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2024</span>) <span class="sc">%&gt;%</span> <span class="fu">pull</span>(population_share_percent)</span>
+<span id="cb2-117"><a href="#cb2-117" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-118"><a href="#cb2-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-121"><a href="#cb2-121" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb2-122"><a href="#cb2-122" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-report-age-65-model</span></span>
+<span id="cb2-123"><a href="#cb2-123" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Linear trend in Munich's 65+ population share, 2000-2024."</span></span>
+<span id="cb2-124"><a href="#cb2-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-125"><a href="#cb2-125" aria-hidden="true" tabindex="-1"></a>age_65_share <span class="sc">%&gt;%</span></span>
+<span id="cb2-126"><a href="#cb2-126" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> population_share_percent)) <span class="sc">+</span></span>
+<span id="cb2-127"><a href="#cb2-127" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb2-128"><a href="#cb2-128" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>, <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb2-129"><a href="#cb2-129" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> <span class="fu">label_number</span>(<span class="at">suffix =</span> <span class="st">"%"</span>)) <span class="sc">+</span></span>
+<span id="cb2-130"><a href="#cb2-130" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Trend in Munich's 65+ population share, 2000-2024"</span>,</span>
+<span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Linear model fitted to yearly mean population shares"</span>,</span>
+<span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>,</span>
+<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"65+ population share"</span></span>
+<span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span>
+<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a>The 65+ population share increased from <span class="in">`r round(age_65_start, 2)`</span>% in 2000 to <span class="in">`r round(age_65_end, 2)`</span>% in 2024. In the simple linear model, the coefficient for year is <span class="in">`r round(age_65_slope, 3)`</span> percentage points per year. This means that, on average, the 65+ share increased by about <span class="in">`r round(age_65_slope, 3)`</span> percentage points per year during the observation period.</span>
+<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a>This provides preliminary evidence of demographic ageing, but the model should be interpreted cautiously. It summarises a time trend and does not establish a causal mechanism.</span>
+<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a><span class="fu"># Context from Other Strands</span></span>
+<span id="cb2-144"><a href="#cb2-144" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-145"><a href="#cb2-145" aria-hidden="true" tabindex="-1"></a>The migration analysis shows that Munich generally remained a net recipient of migrants, although migration dynamics fluctuated over time. The household analysis shows that one-person households remained the largest household category, while relative household shares changed only moderately. These findings provide useful context for Munich's broader demographic transformation, but they are not used here to make causal claims about age structure.</span>
+<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-147"><a href="#cb2-147" aria-hidden="true" tabindex="-1"></a><span class="fu"># Group Reflection</span></span>
+<span id="cb2-148"><a href="#cb2-148" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-149"><a href="#cb2-149" aria-hidden="true" tabindex="-1"></a>At the beginning of the project, the group considered a broad set of demographic questions around age structure, migration, household composition, and possible links between these dimensions. During the initial discussion, the group identified that some questions were methodologically stronger than others. In particular, the idea of using unmarried population counts to infer non-marital cohabitation was considered too weak for a direct interpretation, because two-person households may also include roommates, family members, elderly couples, or other living arrangements.</span>
+<span id="cb2-150"><a href="#cb2-150" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-151"><a href="#cb2-151" aria-hidden="true" tabindex="-1"></a>The group therefore kept the overall project descriptive and exploratory. A recurring decision was to avoid causal claims from aggregate municipal statistics. This affected the interpretation of all three strands: age-structure changes were described as preliminary evidence of demographic ageing, migration trends were treated as contextual demographic developments, and household changes were interpreted cautiously rather than as direct evidence of individual living arrangements.</span>
+<span id="cb2-152"><a href="#cb2-152" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-153"><a href="#cb2-153" aria-hidden="true" tabindex="-1"></a>The final report narrows the main synthesis to the age-structure question because it is the most self-contained part of the analysis and can be taken from data construction through descriptive results to a simple model. The migration and household analyses remain important context, but they are not expanded into additional causal or explanatory models. This narrowing was necessary because the project had several possible research directions, and a smaller number of well-explained results is more useful than many weakly connected claims.</span>
+<span id="cb2-154"><a href="#cb2-154" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-155"><a href="#cb2-155" aria-hidden="true" tabindex="-1"></a>From a programming perspective, the workflow uses numbered scripts and project-relative paths to make the analysis easier to reproduce. After feedback, the hard-coded <span class="in">`setwd()`</span> call was removed from the age analysis script, and a small helper function was added for repeated yearly mean aggregation. More extensive refactoring was not done because the project was close to final submission and the priority was to keep the existing outputs stable.</span>
+<span id="cb2-156"><a href="#cb2-156" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-157"><a href="#cb2-157" aria-hidden="true" tabindex="-1"></a>The work was divided across the main project strands. Youpeng Jiang focused on the age-structure analysis and exploratory data analysis. Xiaohan Liu focused on the household-structure analysis. Yang Xi focused on migration dynamics and internationalisation. The final synthesis combines these strands while keeping the strongest interpretation centred on age structure.</span>
+<span id="cb2-158"><a href="#cb2-158" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-159"><a href="#cb2-159" aria-hidden="true" tabindex="-1"></a><span class="fu"># Conclusion</span></span>
+<span id="cb2-160"><a href="#cb2-160" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-161"><a href="#cb2-161" aria-hidden="true" tabindex="-1"></a>Munich's age structure changed between 2000 and 2024. The 65+ population increased, and the simple model indicates a positive long-term trend in the 65+ population share. At the same time, younger age groups also grew substantially. The results therefore support a cautious interpretation: the data provide preliminary evidence of demographic ageing, but Munich's demographic change cannot be reduced to ageing alone.</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
