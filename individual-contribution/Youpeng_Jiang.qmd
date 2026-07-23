@@ -1,0 +1,7 @@
+---
+title: "Individual Contribution Statement"
+author: "Youpeng Jiang"
+format: pdf
+---
+
+My main contribution to the project was the age-structure analysis. I helped set up the repository and Quarto website, prepared the initial project proposal, and developed the data import, cleaning, and exploratory analysis workflow in R. For the age component, I transformed the raw population data into analysis-ready tables, calculated age-group shares and changes over time, created the corresponding figures, and interpreted the main demographic trends. I also extended this work with an exploratory comparison between the ageing population and migration trends, and added a simple linear model to describe the development of the population aged 65 and over. During the final stage, I revised the age-related sections of the report, improved the methods and reproducibility documentation, updated the repository README, and rendered and checked the Quarto website. Through this work, I learned that a reproducible group project depends not only on correct analysis, but also on clear file organization, consistent definitions, careful interpretation, and regular coordination when integrating independently developed sections.
