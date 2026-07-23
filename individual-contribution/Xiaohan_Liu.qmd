@@ -1,0 +1,7 @@
+---
+title: "Individual Contribution Statement"
+author: "Xiaohan Liu"
+format: pdf
+---
+
+My main contributions to the project included developing the household structure analysis and supporting the coordination of project tasks. I was responsible for the household part of the analysis, including data cleaning, refining the related research question, writing the analysis code, creating the household figures, and interpreting the results. I also worked on improving the clarity and consistency of figures across the project by reviewing titles, subtitles, axis labels, legends, captions and source notes. In addition, I revised parts of the proposal and final report, especially where terminology, figure presentation and the role of the household analysis needed to be clarified. I also drafted an earlier version of the project README, which helped provide structure for the final repository documentation. Throughout the project, I participated in task coordination, GitHub issue discussions, report review and final website review.
