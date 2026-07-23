@@ -1,0 +1,12 @@
+My main contributions to the project included forming
+the group at the beginning of the project, organizing
+group meetings, coordinating tasks, and helping to keep
+the project on schedule. I selected and evaluated the
+dataset, set up parts of the project and Quarto website
+structure, and conducted the migration dynamics
+analysis, including the corresponding figures and
+summary tables. I also contributed to the EU/non-EU
+analysis and helped structure and write the final report.
+In addition, I wrote the group reflection and supported
+the integration of the different analyses into a coherent
+final project.
